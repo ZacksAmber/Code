@@ -1,0 +1,37 @@
+{
+    "name": "OrderFlowersBot",
+    "description": "Bot to order flowers on the behalf of a user",
+    "intents": [
+        {
+            "intentName": "OrderFlowers",
+            "intentVersion": "2"
+        }
+    ],
+    "clarificationPrompt": {
+        "messages": [
+            {
+                "contentType": "PlainText",
+                "content": "I didn't understand you, what would you like to do?"
+            }
+        ],
+        "maxAttempts": 2
+    },
+    "abortStatement": {
+        "messages": [
+            {
+                "contentType": "PlainText",
+                "content": "Sorry, I'm not able to assist at this time"
+            }
+        ]
+    },
+    "status": "READY",
+    "lastUpdatedDate": 1579939807.534,
+    "createdDate": 1579861212.298,
+    "idleSessionTTLInSeconds": 600,
+    "voiceId": "Salli",
+    "checksum": "6d643e86-84d7-4a91-aa9b-7285eb376a89",
+    "version": "$LATEST",
+    "locale": "en-US",
+    "childDirected": false,
+    "detectSentiment": false
+}

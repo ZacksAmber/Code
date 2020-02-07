@@ -1,4 +1,6 @@
-# 升级R Core
+##############
+# 升级R Core #
+##############
 install.packages("devtools") #assuming it is not already installed
 library(devtools)
 install_github("andreacirilloac/updateR")
@@ -47,3 +49,23 @@ sub.o <- Housing.original$subway
 sub.1<- sub.o - mean(sub.o) # Step 1
 sub.2 <- (sub.o - mean(sub.o))/(sd(sub.o)) # Step 2
 sub.2/norm(as.matrix(sub.2), "1")  # Step 2
+
+#########################
+# Draw a function graph #
+#########################
+library(ggplot2)
+
+# Define function
+function_name <- function(x) 1/(1+exp(-x))
+
+# Create point and data.frame
+x <- seq(-5, 5, by=0.01)
+y <- function_name(x)
+df <- data.frame(x, y)
+
+# Drawing
+g <- ggplot(df, aes(x,y))
+g <- g + geom_line(col='red')
+g <- g + geom_hline(yintercept = 0.5) + geom_vline(xintercept = 0) # axis
+g <- g + ggtitle("function_name")
+g

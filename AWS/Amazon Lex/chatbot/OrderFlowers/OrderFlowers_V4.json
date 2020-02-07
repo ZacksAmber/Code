@@ -1,0 +1,93 @@
+{
+    "name": "OrderFlowers",
+    "description": "Intent to order a bouquet of flowers for pick up",
+    "slots": [
+        {
+            "name": "PickupTime",
+            "description": "The time to pick up the flowers",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.TIME",
+            "valueElicitationPrompt": {
+                "messages": [
+                    {
+                        "contentType": "PlainText",
+                        "content": "Pick up the {FlowerType} at what time on {PickupDate}?"
+                    }
+                ],
+                "maxAttempts": 2
+            },
+            "priority": 3,
+            "sampleUtterances": [],
+            "obfuscationSetting": "NONE"
+        },
+        {
+            "name": "FlowerType",
+            "description": "The type of flowers to pick up",
+            "slotConstraint": "Required",
+            "slotType": "FlowerTypes",
+            "slotTypeVersion": "1",
+            "valueElicitationPrompt": {
+                "messages": [
+                    {
+                        "contentType": "PlainText",
+                        "content": "What type of flowers would you like to order?"
+                    }
+                ],
+                "maxAttempts": 2
+            },
+            "priority": 1,
+            "sampleUtterances": [
+                "I would like to order {FlowerType}"
+            ],
+            "obfuscationSetting": "NONE"
+        },
+        {
+            "name": "PickupDate",
+            "description": "The date to pick up the flowers",
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.DATE",
+            "valueElicitationPrompt": {
+                "messages": [
+                    {
+                        "contentType": "PlainText",
+                        "content": "What day do you want the {FlowerType} to be picked up?"
+                    }
+                ],
+                "maxAttempts": 2
+            },
+            "priority": 2,
+            "sampleUtterances": [],
+            "obfuscationSetting": "NONE"
+        }
+    ],
+    "sampleUtterances": [
+        "I would like to pick up flowers",
+        "I would like to order some flowers",
+        "I want to order flowers"
+    ],
+    "confirmationPrompt": {
+        "messages": [
+            {
+                "contentType": "PlainText",
+                "content": "Okay, your {FlowerType} will be ready for pickup by {PickupTime} on {PickupDate}.  Does this sound okay?"
+            }
+        ],
+        "maxAttempts": 2
+    },
+    "rejectionStatement": {
+        "messages": [
+            {
+                "contentType": "PlainText",
+                "content": "Okay, I will not place your order."
+            }
+        ]
+    },
+    "fulfillmentActivity": {
+        "type": "CodeHook",
+        "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:542892269888:function:OrderFlowersCodeHook",
+            "messageVersion": "1.0"
+        }
+    },
+    "checksum": "8c69809f-9d5a-4853-a8d3-f6f2c95cce81"
+}
