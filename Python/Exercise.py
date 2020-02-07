@@ -2096,3 +2096,21 @@ def judge_date():
     return(result)
 
 git filter-branch --index-filter 'git rm -r --cached --ignore-unmatch /Python/311_service_requests_2019.csv' HEAD
+
+bfg --delete-files 311_service_requests_2019.csv
+
+git filter-branch --index-filter 'git rm -r --cached --ignore-unmatch 311_service_requests_2019.csv' HEAD
+
+git rm --cached 311_service_requests_2019.csv
+
+git reset --soft HEAD~7
+
+
+import mysql.connector
+
+mysql_test = mysql.connector.connect(
+    host="cloud-analytics-db.crmnbmzm85lc.us-east-1.rds.amazonaws.com",
+    user="admin",
+    passwd="Test1234",
+    database="bosbot"
+)

@@ -130,7 +130,7 @@ def status_4(): # Duplicated and open case > Raise priority
     case_information['location_zipcode'] = "02203"
     case_information['location_street_name'] = "15 Sudbury St"
     case_information['case_status'] = "Open"
-    case_information['open_dt'] = "2020-01-22" # Several days ago
+    case_information['open_dt'] = None # Several days ago
     return(case_information)
 
 status_4()
