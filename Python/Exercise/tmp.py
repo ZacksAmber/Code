@@ -30,6 +30,13 @@ def mysql_login(mysql_host, mysql_user, mysql_passwd, mysql_database):
 def case(open_dt, case_status, case_title, reason, location, source, email, priority):
     global case_information
 
+    try:
+        case_information
+    except NameError:
+        pass
+    else:
+        case_information.clear()
+
     case_information = {
     'case_enquiry_id': None,
     'open_dt': open_dt,
@@ -144,17 +151,6 @@ def mysql_update():
 
 # Define the INSERT function to insert new case
 def mysql_insert():
-    case(
-    open_dt = datetime.datetime.now().date().isoformat(),
-    case_status = "",
-    case_title = "",
-    reason = "",
-    location = "360 Huntington Ave",
-    source = "ChatBot",
-    email = "test@gmail.com",
-    priority = 100
-    )
-
     sql = "INSERT INTO " + mysql_table + " (case_enquiry_id, open_dt, target_dt, closed_dt, ontime, case_status, closure_reason, case_title, subject, reason, type, queue, department, submittedphoto, closedphoto, location, fire_district, pwd_district, city_council_district, police_district, neighborhood, neighborhood_services_district, ward, precinct, location_street_name, location_zipcode, latitude, longitude, source, email, priority) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
     val = (0, datetime.datetime.now().date().isoformat(), None, None, None, 'Open', None, case_information['case_title'], None, case_information['reason'], None, None, None, None, None, case_information['location'], None, None, None, None, None, None, None, None, None, None, None, None, case_information['source'], case_information['email'], 1)
@@ -198,18 +194,6 @@ mysql = mysql_connect.cursor()
 # Set MySQL table
 mysql_table = 'test_2020'
 
-# Set case information
-case(
-    open_dt = datetime.datetime.now().date().isoformat(),
-    case_status = "",
-    case_title = "",
-    reason = "",
-    location = "360 Huntington Ave",
-    source = "ChatBot",
-    email = "test@gmail.com",
-    priority = 100
-)
-
 # Set date (for judge_date())
 # today = datetime.datetime.now().date().isoformat()
 today = '2020-01-31' # Assume today is '2020-01-31'
@@ -222,8 +206,8 @@ today = '2020-01-31' # Assume today is '2020-01-31'
 ########
 # Test #
 ########
-# Status 1: NOT duplicate case > INSERT Database
-def status_1():
+# Situation 1: NOT duplicate case > INSERT Database
+def situation_1():
     case(
         open_dt = None,
         case_status = None,
@@ -234,14 +218,15 @@ def status_1():
         email = "test@gmail.com",
         priority = 1
     )
-    main_function()
+    return(case_information)
 
-status_1()
+situation_1()
+main_function()
 # SELECT * FROM test_2020 WHERE case_enquiry_id = 0 \G;
 # DELETE FROM test_2020 WHERE case_enquiry_id = 0;
 
-# Status 2: duplicate case but closed several days ago > New case and INSERT database
-def status_2():
+# Situation 2: duplicate case but closed several days ago > New case and INSERT database
+def situation_2():
     case(
         open_dt = "2020-01-13",
         case_status = "Closed",
@@ -252,14 +237,15 @@ def status_2():
         email = "test@gmail.com",
         priority = 1
     )
-    main_function()
+    return(case_information)
 
-status_2()
+situation_2()
+main_function()
 # SELECT * FROM test_2020 WHERE case_enquiry_id = 0 \G;
 # DELETE FROM test_2020 WHERE case_enquiry_id = 0;
 
-# Status 3: # duplicate case but closed today > Analyze(Rekognition)
-def status_3():
+# Situation 3: # duplicate case but closed today > Analyze(Rekognition)
+def situation_3():
     case(
         open_dt = "2020-01-31", # Assume today is 2020-01-31,
         case_status = "Closed",
@@ -270,12 +256,13 @@ def status_3():
         email = "test@gmail.com",
         priority = 1
     )
-    main_function()
+    return(case_information)
 
-status_3()
+situation_3()
+main_function()
 
-# Status 4: duplicate and open case > UPDATE database
-def status_4():
+# Situation 4: duplicate and open case > UPDATE database
+def situation_4():
     case(
         open_dt = None,
         case_status = "Open",
@@ -286,8 +273,9 @@ def status_4():
         email = "test@gmail.com",
         priority = 1
     )
-    main_function()
+    return(case_information)
 
-status_4()
-# SELECT * FROM test_2020 WHERE priority = 2;
+situation_4()
+main_function()
+# SELECT * FROM test_2020 WHERE priority = 2 \G;
 # UPDATE test_2020 SET priority = 1 WHERE priority = 2;
