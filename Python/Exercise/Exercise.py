@@ -2115,28 +2115,199 @@ mysql_test = mysql.connector.connect(
     database="bosbot"
 )
 
+SELECT priority FROM test_2020 WHERE case_status = "Open" AND reason = "Street Lights" AND location = "15 Sudbury St  Boston  MA  02203";
 
-from flask import Flask
-app = Flask(_name_)
+UPDATE test_2020 SET priority = 2 WHERE case_status = "Open" AND reason = "Street Lights" AND location = "15 Sudbury St  Boston  MA  02203"
 
-@app.route('/findDuplicate')
-def hello_world():
+length = 0
+sql = "UPDATE {0} SET priority = {1} WHERE case_status = '{2}' AND reason = '{3}' AND location = '{4}'".format(
+    mysql_table,
+    length,
+    case_information['reason'],
+    case_information['location'],
+    case_information['case_status']
+)
 
-    return "Hello World"
+case_information
 
-if _name_ == '_main_':
-   app.run()
+def judge_duplicate():
+    sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}'".format(
+    mysql_table,
+    case_information['reason'],
+    case_information['location']
+)
+    global result
+
+    mysql.execute(sql)
+    result = mysql.fetchall()
+
+    
+
+    global nums_of_duplicate
+
+    if len(result) > 0:
+        nums_of_duplicate = len(result)
+        return(result)
+    else:
+        nums_of_duplicate = None
+        return(result)
 
 
-def judge_date():
-    sql = "SELECT * FROM test WHERE reason = '{0}' AND location_zipcode = '{1}' AND '{2}' AND case_status = '{3}' AND open_dt LIKE '{4}%'".format(
-        case_information['reason'],
-        case_information['location_zipcode'],
-        case_information['location_street_name'],
+def mysql_raise_priority():
+    if case_information['priority'] > 5:
+        case_information['priority'] = 5
+    else:
+        case_information['priority']+= 1
+
+    sql = "UPDATE {0} SET priority = {1} WHERE case_status = '{2}' AND reason = '{3}' AND location = '{4}'".format(
+        mysql_table,
+        case_information['priority'],
         case_information['case_status'],
-        case_information['open_dt']
+        case_information['reason'],
+        case_information['location']
     )
 
-    test_cursor.execute(sql)
-    result = test_cursor.fetchall()
-    return result
+    mysql.execute(sql)
+
+case_information['priority'] = 0
+
+UPDATE test_2020 SET priority = 2 WHERE case_status = "Open" AND reason = "Street Lights" AND location = "15 Sudbury St  Boston  MA  02203";
+
+SELECT priority from test_2020 WHERE case_status = "Open" AND reason = "Street Lights" AND location = "15 Sudbury St  Boston  MA  02203";
+
+
+###
+
+import mysql.connector
+
+# Define a function to connect MySQL
+def mysql_login(mysql_host, mysql_user, mysql_passwd, mysql_database):
+    global mysql_connect
+
+    mysql_connect = mysql.connector.connect(
+        host = mysql_host,
+        user = mysql_user,
+        passwd = mysql_passwd,
+        database = mysql_database
+    )
+
+# Set login information
+mysql_login(
+    mysql_host = "localhost",
+    mysql_user = "test",
+    mysql_passwd = "passwd",
+    mysql_database = "BOS311"
+    )
+
+# Set MySQL cursor
+mysql = mysql_connect.cursor()
+
+# Set MySQL table
+mysql_table = "test_2020"
+
+# Set the values
+case_information = {}
+case_information['priority'] = 1
+case_information['case_status'] = 'Open'
+case_information['reason'] = 'Street Lights'
+case_information['location'] = '15 Sudbury St  Boston  MA  02203'
+
+# Define a function raise the priority
+def mysql_raise_priority():
+    sql = "UPDATE {0} SET priority = {1} WHERE case_status = '{2}' AND reason = '{3}' AND location = '{4}'".format(
+        mysql_table,
+        case_information['priority'],
+        case_information['case_status'],
+        case_information['reason'],
+        case_information['location']
+    )
+
+    mysql.execute(sql)
+    mysql_connect.commit()
+    print(mysql.rowcount, "record(s) affected")
+
+mysql_raise_priority()
+
+
+
+case_information['priority'] = 100
+def mysql_raise_priority():
+    if case_information['priority'] > 5:
+        case_information['priority'] = 5
+    else:
+        case_information['priority']+= 1
+
+    sql = "UPDATE {0} SET priority = {1} WHERE case_status = '{2}' AND reason = '{3}' AND location = '{4}'".format(
+        mysql_table,
+        case_information['priority'],
+        case_information['case_status'],
+        case_information['reason'],
+        case_information['location']
+    )
+
+    mysql.execute(sql)
+    mysql_connect.commit()
+    print(mysql.rowcount, "record(s) affected")
+
+mysql_raise_priority()
+
+
+
+sql = "INSERT INTO " + mysql_table + " (case_enquiry_id, open_dt, target_dt, closed_dt, ontime, case_status, closure_reason, case_title, subject, reason, type, queue, department, submittedphoto, closedphoto, location, fire_district, pwd_district, city_council_district, police_district, neighborhood, neighborhood_services_district, ward, precinct, location_street_name, location_zipcode, latitude, longitude, source, email, priority) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+
+val = (0, datetime.datetime.now().date().isoformat(), None, None, None, 'Open', None, case_information['case_title'], None, case_information['reason'], None, None, None, None, None, case_information['location'], None, None, None, None, None, None, None, None, None, None, None, None, case_information['source'], case_information['email'], 1)
+
+mysql.execute(sql, val)
+mysql_connect.commit()
+print(mysql.rowcount, "record inserted.")
+
+
+case_information
+
+val[0][1]
+
+l = []
+for x in range(len(val)):
+    l.append(val[x][1])
+
+tuple(l)
+
+val = [
+    ('case_enquiry_id', None),
+    ('open_dt', datetime.datetime.now().date().isoformat()),
+    ('target_dt', None),
+    ('closed_dt', None),
+    ('ontime', None),
+    ('case_status', 'Open'),
+    ('closure_reason', None),
+    ('case_title', "API"),
+    ('subject', None),
+    ('reason', "API"),
+    ('type', None),
+    ('queue', None),
+    ('department', None),
+    ('submittedphoto', None),
+    ('closedphoto', None),
+    ('location', "API"),
+    ('fire_district', None),
+    ('pwd_district', None),
+    ('city_council_district', None),
+    ('police_district', None),
+    ('neighborhood', None),
+    ('neighborhood_services_district', None),
+    ('ward', None),
+    ('precinct', None),
+    ('location_street_name', None),
+    ('location_zipcode', None),
+    ('latitude', None),
+    ('longitude', None),
+    ('source', "API"),
+    ('email', "API"),
+    ('priority', 1)
+]
+
+mysql.execute(sql, val)
+
+mysql_conncet.commit()
+
+print(mysql.rowcount, "record inserted.")
