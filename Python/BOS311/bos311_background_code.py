@@ -5,10 +5,11 @@
 # Created Date: February 06, 2020, 9:18:21 pm
 # Author: Danlin Shen(shen.da@husky.neu.edu)
 # Github: https://github.com/ZacksAmber/Python
+# Blog: https://zacks.one
 # Copyright (c) 2020 Danlin Shen
 ###
 
-# Import module
+# Import modules
 import mysql.connector
 import datetime
 
@@ -96,7 +97,7 @@ def judge_open():
     mysql.execute(sql)
     result = mysql.fetchall()
 
-    if result[0][5] == "Open":
+    if result[0][5] == "Open": # extract case_status
         return(result)
     else:
         result = []
@@ -114,7 +115,7 @@ def judge_date():
     mysql.execute(sql)
     result = mysql.fetchall()
 
-    if case_information['open_dt'] == today:
+    if result[0][1][0:10] == today: # extract the date part from open_dt. e.g, '2020-01-31 14:35:46' > '2020-01-31'
         return(result)
     else:
         result = []
@@ -168,17 +169,17 @@ def mysql_insert():
 #################
 def main_function():
     if judge_duplicate():
-        if judge_open(): # Status 4: Open case
-            print("Status 4: This is a duplicate case. You should UPDATE database!")
+        if judge_open(): # Situation 4: Open case
+            print("Situation 4: This is a duplicate case. You should UPDATE database!")
             mysql_update()
         else: # Closed case
             if judge_date():
-                print("Status 3: This may not be a new case. You should use AWS Rekognition!")
-            else: # Status 2: closed several days ago
-                print("Status 2: This is a new case. You should INSERT database!")
+                print("Situation 3: This may not be a new case. You should use AWS Rekognition!")
+            else: # Situation 2: closed several days ago
+                print("Situation 2: This is a new case. You should INSERT database!")
                 mysql_insert()
-    else: # Status 1: NOT duplicate case
-        print("Status 1: This is a new case. You should INSERT database!")
+    else: # Situation 1: NOT duplicate case
+        print("Situation 1: This is a new case. You should INSERT database!")
         mysql_insert()
 
 ###################
@@ -222,7 +223,7 @@ today = '2020-01-31' # Assume today is '2020-01-31'
 ########
 # Test #
 ########
-# Status 1: NOT duplicate case > INSERT Database
+# Situation 1: NOT duplicate case > INSERT Database
 def status_1():
     case(
         open_dt = None,
@@ -234,13 +235,13 @@ def status_1():
         email = "test@gmail.com",
         priority = 1
     )
-    main_function()
 
 status_1()
+main_function()
 # SELECT * FROM test_2020 WHERE case_enquiry_id = 0 \G;
 # DELETE FROM test_2020 WHERE case_enquiry_id = 0;
 
-# Status 2: duplicate case but closed several days ago > New case and INSERT database
+# Situation 2: duplicate case but closed several days ago > New case and INSERT database
 def status_2():
     case(
         open_dt = "2020-01-13",
@@ -252,13 +253,13 @@ def status_2():
         email = "test@gmail.com",
         priority = 1
     )
-    main_function()
 
 status_2()
+main_function()
 # SELECT * FROM test_2020 WHERE case_enquiry_id = 0 \G;
 # DELETE FROM test_2020 WHERE case_enquiry_id = 0;
 
-# Status 3: # duplicate case but closed today > Analyze(Rekognition)
+# Situation 3: # duplicate case but closed today > Analyze(Rekognition)
 def status_3():
     case(
         open_dt = "2020-01-31", # Assume today is 2020-01-31,
@@ -270,11 +271,11 @@ def status_3():
         email = "test@gmail.com",
         priority = 1
     )
-    main_function()
 
 status_3()
+main_function()
 
-# Status 4: duplicate and open case > UPDATE database
+# Situation 4: duplicate and open case > UPDATE database
 def status_4():
     case(
         open_dt = None,
@@ -286,8 +287,8 @@ def status_4():
         email = "test@gmail.com",
         priority = 1
     )
-    main_function()
 
 status_4()
-# SELECT * FROM test_2020 WHERE priority = 2;
+main_function()
+# SELECT * FROM test_2020 WHERE priority = 2 \G;
 # UPDATE test_2020 SET priority = 1 WHERE priority = 2;
