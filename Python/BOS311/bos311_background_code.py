@@ -3,10 +3,10 @@
 ###
 # Title: bos311_background_code.py
 # Created Date: February 06, 2020, 9:18:21 pm
-# Author: Danlin Shen(shen.da@husky.neu.edu)
-# Github: https://github.com/ZacksAmber/Python
+# Author: Zacks Shen(zacks.shen@gmail.com)
+# Github: https://github.com/ZacksAmber
 # Blog: https://zacks.one
-# Copyright (c) 2020 Danlin Shen
+# Copyright (c) 2020 Zacks Shen
 ###
 
 # Import modules
