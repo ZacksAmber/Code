@@ -3,12 +3,13 @@
 ###
 # Title: bos311_background_code.py
 # Created Date: February 06, 2020, 9:18:21 pm
-# Author: Danlin Shen(shen.da@husky.neu.edu)
-# Github: https://github.com/ZacksAmber/Python
-# Copyright (c) 2020 Danlin Shen
+# Author: Zacks Shen(zacks.shen@gmail.com)
+# Github: https://github.com/ZacksAmber
+# Blog: https://zacks.one
+# Copyright (c) 2020 Zacks Shen
 ###
 
-# Import module
+# Import modules
 import mysql.connector
 import datetime
 
@@ -29,6 +30,13 @@ def mysql_login(mysql_host, mysql_user, mysql_passwd, mysql_database):
 # Define a function to collect case information
 def case(open_dt, case_status, case_title, reason, location, source, email, priority):
     global case_information
+
+    try:
+        case_information
+    except NameError:
+        pass
+    else:
+        case_information.clear()
 
     case_information = {
     'case_enquiry_id': None,
@@ -82,42 +90,55 @@ def judge_duplicate():
         return(result)
     else:
         case_information['priority'] = 1
-        return(result)
+        return(result) # it should be an empty list
 
 # Define a function to judge if the case is Open.
 def judge_open():
-    sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}' AND case_status = '{3}'".format(
+    sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}'".format(
         mysql_table,
         case_information['reason'],
-        case_information['location'],
-        case_information['case_status']
+        case_information['location']
     )
 
     mysql.execute(sql)
     result = mysql.fetchall()
 
-    if result[0][5] == "Open":
+    l = []
+    for i in result:
+        l.append(i[5]) # extract case_status
+
+    if 'Open' in l:
         return(result)
     else:
-        result = []
+        return(None)
 
 # Define a function to judge if the case is created today.
 def judge_date():
-    sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}' AND case_status = '{3}' AND open_dt LIKE '{4}%'".format(
+    sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}' AND open_dt LIKE '{3}%'".format(
         mysql_table,
         case_information['reason'],
         case_information['location'],
-        case_information['case_status'],
         case_information['open_dt']
     )
 
     mysql.execute(sql)
     result = mysql.fetchall()
 
-    if case_information['open_dt'] == today:
+    l = []
+    for i in result:
+        l.append(i[1][0:10]) # extract date
+
+    if '2020-01-31' in l: # extract the date part from open_dt. e.g, '2020-01-31 14:35:46' > '2020-01-31'
         return(result)
     else:
-        result = []
+        return(None)
+
+    """ Replace it in Prodcution Environment
+    if datetime.datetime.now().date().isoformat() in l:
+        return(result)
+    else:
+        return(None)
+    """
 
 ##########################
 # Define MySQL Functions #
@@ -130,10 +151,9 @@ def mysql_update():
     else:
         case_information['priority']+= 1
 
-    sql = "UPDATE {0} SET priority = {1} WHERE case_status = '{2}' AND reason = '{3}' AND location = '{4}'".format(
+    sql = "UPDATE {0} SET priority = {1} WHERE case_status = 'Open' AND reason = '{2}' AND location = '{3}'".format(
         mysql_table,
         case_information['priority'],
-        case_information['case_status'],
         case_information['reason'],
         case_information['location']
     )
@@ -144,20 +164,9 @@ def mysql_update():
 
 # Define the INSERT function to insert new case
 def mysql_insert():
-    case(
-    open_dt = datetime.datetime.now().date().isoformat(),
-    case_status = "",
-    case_title = "",
-    reason = "",
-    location = "360 Huntington Ave",
-    source = "ChatBot",
-    email = "test@gmail.com",
-    priority = 100
-    )
-
     sql = "INSERT INTO " + mysql_table + " (case_enquiry_id, open_dt, target_dt, closed_dt, ontime, case_status, closure_reason, case_title, subject, reason, type, queue, department, submittedphoto, closedphoto, location, fire_district, pwd_district, city_council_district, police_district, neighborhood, neighborhood_services_district, ward, precinct, location_street_name, location_zipcode, latitude, longitude, source, email, priority) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
-    val = (0, datetime.datetime.now().date().isoformat(), None, None, None, 'Open', None, case_information['case_title'], None, case_information['reason'], None, None, None, None, None, case_information['location'], None, None, None, None, None, None, None, None, None, None, None, None, case_information['source'], case_information['email'], 1)
+    val = (0, case_information['open_dt'], None, None, None, 'Open', None, case_information['case_title'], None, case_information['reason'], None, None, None, None, None, case_information['location'], None, None, None, None, None, None, None, None, None, None, None, None, case_information['source'], case_information['email'], 1)
 
     mysql.execute(sql, val)
     mysql_connect.commit()
@@ -168,17 +177,17 @@ def mysql_insert():
 #################
 def main_function():
     if judge_duplicate():
-        if judge_open(): # Status 4: Open case
-            print("Status 4: This is a duplicate case. You should UPDATE database!")
+        if judge_open(): # Situation 4: Open case
+            print("Situation 4: This is a duplicate case. You should UPDATE database!")
             mysql_update()
-        else: # Closed case
-            if judge_date():
-                print("Status 3: This may not be a new case. You should use AWS Rekognition!")
-            else: # Status 2: closed several days ago
-                print("Status 2: This is a new case. You should INSERT database!")
+        else: # Must be Closed case
+            if judge_date(): # Situation 3: closed today days
+                print("Situation 3: This may not be a new case. You should use AWS Rekognition!")
+            else: # Situation 2: closed several days ago
+                print("Situation 2: This is a new case. You should INSERT database!")
                 mysql_insert()
-    else: # Status 1: NOT duplicate case
-        print("Status 1: This is a new case. You should INSERT database!")
+    else: # Situation 1: NOT duplicate case
+        print("Situation 1: This is a new case. You should INSERT database!")
         mysql_insert()
 
 ###################
@@ -196,23 +205,22 @@ mysql_login(
 mysql = mysql_connect.cursor()
 
 # Set MySQL table
+# mysql_table = 'test_2020'
 mysql_table = 'test_2020'
 
-# Set case information
+# Case information sample
+"""
 case(
     open_dt = datetime.datetime.now().date().isoformat(),
-    case_status = "",
+    case_status = "Open",
     case_title = "",
     reason = "",
-    location = "360 Huntington Ave",
+    location = "360 Huntington Ave  Boston  MA  00000",
     source = "ChatBot",
     email = "test@gmail.com",
     priority = 100
 )
-
-# Set date (for judge_date())
-# today = datetime.datetime.now().date().isoformat()
-today = '2020-01-31' # Assume today is '2020-01-31'
+"""
 
 ########################
 # Receive Request JSON #
@@ -222,72 +230,76 @@ today = '2020-01-31' # Assume today is '2020-01-31'
 ########
 # Test #
 ########
-# Status 1: NOT duplicate case > INSERT Database
-def status_1():
+# Situation 1: NOT duplicate case > INSERT Database
+def situation_1():
     case(
-        open_dt = None,
-        case_status = None,
-        case_title = "",
-        reason = "Test",
+        open_dt = datetime.datetime.now().date().isoformat(),
+        case_status = "Open",
+        case_title = "Situation 1",
+        reason = "TTTTTTTTTTTTTTTTTTTTest",
         location = "15 Sudbury St  Boston  MA  02203",
         source = "ChatBot",
         email = "test@gmail.com",
         priority = 1
     )
-    main_function()
+    return(case_information)
 
-status_1()
-# SELECT * FROM test_2020 WHERE case_enquiry_id = 0 \G;
-# DELETE FROM test_2020 WHERE case_enquiry_id = 0;
+situation_1()
+main_function()
+# SELECT * FROM test_2020 WHERE case_title  = "Situation 1" \G;
+# DELETE FROM test_2020 WHERE case_title  = "Situation 1" \G;
 
-# Status 2: duplicate case but closed several days ago > New case and INSERT database
-def status_2():
+# Situation 2: duplicate case but closed several days ago > New case and INSERT database
+def situation_2():
     case(
-        open_dt = "2020-01-13",
-        case_status = "Closed",
-        case_title = "",
+        open_dt = datetime.datetime.now().date().isoformat(),
+        case_status = "Open",
+        case_title = "Situation 2",
         reason = "Enforcement & Abandoned Vehicles",
         location = "15 Sudbury St  Boston  MA  02203",
         source = "ChatBot",
         email = "test@gmail.com",
         priority = 1
     )
-    main_function()
+    return(case_information)
 
-status_2()
-# SELECT * FROM test_2020 WHERE case_enquiry_id = 0 \G;
-# DELETE FROM test_2020 WHERE case_enquiry_id = 0;
+situation_2()
+main_function()
+# SELECT * FROM test_2020 WHERE case_title  = "Situation 2" \G;
+# DELETE FROM test_2020 WHERE case_title  = "Situation 2";
 
-# Status 3: # duplicate case but closed today > Analyze(Rekognition)
-def status_3():
+# Situation 3: # duplicate case but closed today > Analyze(Rekognition)
+def situation_3():
     case(
         open_dt = "2020-01-31", # Assume today is 2020-01-31,
-        case_status = "Closed",
-        case_title = "",
+        case_status = "Open",
+        case_title = "Situation 3",
         reason = "Enforcement & Abandoned Vehicles",
         location = "15 Sudbury St  Boston  MA  02203",
         source = "ChatBot",
         email = "test@gmail.com",
         priority = 1
     )
-    main_function()
+    return(case_information)
 
-status_3()
+situation_3()
+main_function()
 
-# Status 4: duplicate and open case > UPDATE database
-def status_4():
+# Situation 4: duplicate and open case > UPDATE database
+def situation_4():
     case(
-        open_dt = None,
+        open_dt = datetime.datetime.now().date().isoformat(),
         case_status = "Open",
-        case_title = "",
+        case_title = "Situation 4",
         reason = "Street Lights",
         location = "15 Sudbury St  Boston  MA  02203",
         source = "ChatBot",
         email = "test@gmail.com",
         priority = 1
     )
-    main_function()
+    return(case_information)
 
-status_4()
-# SELECT * FROM test_2020 WHERE priority = 2;
+situation_4()
+main_function()
+# SELECT * FROM test_2020 WHERE priority = 2 \G;
 # UPDATE test_2020 SET priority = 1 WHERE priority = 2;
