@@ -39,7 +39,7 @@ def mysql_login(mysql_host, mysql_user, mysql_passwd, mysql_database):
     )
 
 # Define a function to collect case information
-def case(open_dt, case_status, case_title, reason, location, source, email, priority):
+def case(open_dt, case_status = 'Open', case_title = None, reason, location, source = 'ChatBot', email = None, priority = 1):
     global case_information
 
     try:
