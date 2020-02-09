@@ -236,8 +236,8 @@ def situation_1():
         open_dt = datetime.datetime.now().date().isoformat(),
         case_status = "Open",
         case_title = "Situation 1",
-        reason = "TTTTTTTTTTTTTTTTTTTTest",
-        location = "15 Sudbury St  Boston  MA  02203",
+        reason = "Street Lights",
+        location = "000 Huntington Ave  Boston  MA  02203",
         source = "ChatBot",
         email = "test@gmail.com",
         priority = 1
