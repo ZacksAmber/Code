@@ -286,8 +286,8 @@ for x in d:
 # model
 # year
 
-for x, y in d.items():
-    print(x, y)
+for b, n in d.items():
+    print(b, n)
 # brand Ford
 # model Mustang
 # Year 1964
@@ -539,7 +539,7 @@ fruits = ["apple", "banana", "cherry"]
 
 for x in adj:
   for y in fruits:
-    print(x, y)
+    print(b, n)
 """
 red apple
 red banana
@@ -767,17 +767,6 @@ print("\n\nRecursion Example Results")
 
 tri_recursion(2)
 
-
-
-def exp(b, n):
-    if n == 0:
-        return 1
-    elif n > 0:
-        result = b * exp(b, n)
-        n - 1
-
-
-exp(2, 2)
 
 # A function returns exponentiation
 def exp(b, n):
@@ -2140,3 +2129,151 @@ def judge_date():
     test_cursor.execute(sql)
     result = test_cursor.fetchall()
     return result
+
+# comment
+
+
+
+def exp(b, n):
+    b = int(b)
+    n = int(n)
+    if n == 0:
+        return 1
+    elif n == 1:
+        return b
+    elif n >= 2:
+        return exp1(b, n)
+    else:
+        return exp2(b, -n)
+
+def exp1(b, n):
+    if n >= 2:
+        return b * exp1(b, n-1)
+    else:
+        return b
+
+def exp2(b, n):
+    if n >= 2:
+        return b * exp2(b, n-1)
+    else:
+        return b
+
+def exp3(b):
+    return(b)
+
+def t():
+    for i in range(3):
+        return(i)
+
+t()
+
+exp(2, -10)
+
+def exp(b, n):
+    if n >= 1:
+        return b * exp(b, n - 1)
+    else:
+        return 1
+
+
+def exp(b, n):
+    if n >= 2:
+        return b * exp(b, n - 1)
+    else:
+        print(b)
+
+exp(3, 3)
+
+2 ** 10
+
+-10 ** 1
+
+-1/27
+
+for i in range(3):
+    print(i)
+
+
+def tmp():
+    for i in range(3):
+        print(i)
+
+tmp()
+
+def bmi_calculate_1(h, w):
+    return w/(h*h)
+
+bmi_calculate_1(1.8, 70)
+# 21.604938271604937
+
+def bmi_calculate_2(h, w):
+    print( w/(h*h))
+
+bmi_calculate_2(1.8, 70)
+# 21.604938271604937
+
+
+# A function try to RETURN the values in a range one by one, but it doesn't work.
+def tmp():
+    for i in range(3):
+        return(i)
+
+tmp()
+
+
+def hello_1():
+    print("Hello")
+    print("World")
+
+hello_1()
+# Hello
+# World
+
+def hello_2():
+    return("Hello")
+    return("World") # Will be ignored!
+
+hello_2()
+# 'Hello'
+
+def hello_3():
+    return("Hello")
+    print("World") # Will be ignored!
+
+hello_3()
+# 'Hello'
+
+def hello_4():
+    print("Hello")
+    return("World") # Will not be ignored!
+
+hello_4()
+# Hello
+# 'World'
+
+
+def while_loop_1(i):
+    while i < 5:
+        return i
+        i += 1
+
+while_loop_1(1)
+# 1
+
+def while_loop_2(i):
+    while i < 5:
+        print(i)
+        i += 1
+
+while_loop_2(1)
+# 1
+# 2
+# 3
+# 4
+
+def while_loop_3(i):
+    while i < 5:
+        l = i
+        i += 1
+
+while_loop_2(1)

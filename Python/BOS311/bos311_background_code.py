@@ -39,7 +39,7 @@ def mysql_login(mysql_host, mysql_user, mysql_passwd, mysql_database):
     )
 
 # Define a function to collect case information
-def case(open_dt, case_status = 'Open', case_title = None, reason, location, source = 'ChatBot', email = None, priority = 1):
+def case(open_dt, reason, location, case_status = 'Open', case_title = None,  source = 'ChatBot', email = None, priority = 1):
     global case_information
 
     try:
@@ -84,6 +84,22 @@ def case(open_dt, case_status = 'Open', case_title = None, reason, location, sou
     }
 
     return(case_information)
+
+# Define a MySQL SELECT function. This function will not be used in this program.
+def mysql_select():
+    sql = input("Input your SELECT sentence: ")
+
+    mysql.execute(sql)
+    result = mysql.fetchall()
+
+    if mysql.rowcount == 0:
+        print("Empty set")
+    elif mysql.rowcount == 1:
+        print("1 row in set")
+    else:
+        print("{0} rows in set".format(mysql.rowcount))
+
+    return(result)
 
 # Define a function to judge if the case is duplicate.
 def judge_duplicate():
@@ -216,7 +232,7 @@ mysql_login(
 mysql = mysql_connect.cursor()
 
 # Set MySQL table
-# mysql_table = 'test_2020'
+# mysql_table = 'sample311'
 mysql_table = 'sample311'
 
 # Case information sample
@@ -257,8 +273,8 @@ def situation_1():
 
 situation_1()
 main_function()
-# SELECT * FROM test_2020 WHERE case_title  = "Situation 1" \G;
-# DELETE FROM test_2020 WHERE case_title  = "Situation 1" \G;
+# SELECT * FROM sample311 WHERE case_title  = "Situation 1" \G;
+# DELETE FROM sample311 WHERE case_title  = "Situation 1" \G;
 
 # Situation 2: duplicate case but closed several days ago > New case and INSERT database
 def situation_2():
@@ -276,8 +292,8 @@ def situation_2():
 
 situation_2()
 main_function()
-# SELECT * FROM test_2020 WHERE case_title  = "Situation 2" \G;
-# DELETE FROM test_2020 WHERE case_title  = "Situation 2";
+# SELECT * FROM sample311 WHERE case_title  = "Situation 2" \G;
+# DELETE FROM sample311 WHERE case_title  = "Situation 2";
 
 # Situation 3: # duplicate case but closed today > Analyze(Rekognition)
 def situation_3():
@@ -312,5 +328,5 @@ def situation_4():
 
 situation_4()
 main_function()
-# SELECT * FROM test_2020 WHERE priority = 2 \G;
-# UPDATE test_2020 SET priority = 1 WHERE priority = 2;
+# SELECT * FROM sample311 WHERE priority != 1 \G;
+# UPDATE sample311 SET priority = 1 WHERE priority != 1;
