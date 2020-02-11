@@ -2252,7 +2252,6 @@ def mysql_raise_priority():
 mysql_raise_priority()
 
 
-
 sql = "INSERT INTO " + mysql_table + " (case_enquiry_id, open_dt, target_dt, closed_dt, ontime, case_status, closure_reason, case_title, subject, reason, type, queue, department, submittedphoto, closedphoto, location, fire_district, pwd_district, city_council_district, police_district, neighborhood, neighborhood_services_district, ward, precinct, location_street_name, location_zipcode, latitude, longitude, source, email, priority) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
 val = (0, datetime.datetime.now().date().isoformat(), None, None, None, 'Open', None, case_information['case_title'], None, case_information['reason'], None, None, None, None, None, case_information['location'], None, None, None, None, None, None, None, None, None, None, None, None, case_information['source'], case_information['email'], 1)
@@ -2505,8 +2504,9 @@ for col in result:
     for val in col:
         print(val)
 
+101003158348
 val1 = (
-    '101003158348',
+    '',
     '2020-01-13 12:40:13',
     '2020-01-14 12:40:12',
     '2020-01-13 13:09:24',
@@ -2539,8 +2539,9 @@ val1 = (
     '1'
 )
 
+101003176201
 val2 = (
-    '101003176201',
+    '',
     '2020-01-22 21:32:00',
     '2020-02-06 08:30:00',
     None,
@@ -2573,8 +2574,9 @@ val2 = (
     '1'
 )
 
+101003184198
 val3 = (
-    '101003184198',
+    '',
     '2020-01-31 14:35:46',
     '2020-02-03 14:35:46',
     '2020-01-31 14:55:00',
@@ -2607,10 +2609,88 @@ val3 = (
     '1'
 )
 
+mysql_table = "sample_311"
+
 sql = "INSERT INTO " + mysql_table + " (case_enquiry_id, open_dt, target_dt, closed_dt, ontime, case_status, closure_reason, case_title, subject, reason, type, queue, department, submittedphoto, closedphoto, location, fire_district, pwd_district, city_council_district, police_district, neighborhood, neighborhood_services_district, ward, precinct, location_street_name, location_zipcode, latitude, longitude, source, email, priority) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
 val = (0, case_information['open_dt'], None, None, None, 'Open', None, case_information['case_title'], None, case_information['reason'], None, None, None, None, None, case_information['location'], None, None, None, None, None, None, None, None, None, None, None, None, case_information['source'], case_information['email'], 1)
 
+mysql.execute(sql, val1)
+mysql_connect.commit()
+print(mysql.rowcount, "record inserted.")
+
+mysql.execute(sql, val2)
+mysql_connect.commit()
+print(mysql.rowcount, "record inserted.")
+
 mysql.execute(sql, val3)
 mysql_connect.commit()
 print(mysql.rowcount, "record inserted.")
+
+
+
+def situation_1():
+    case(
+        open_dt = datetime.datetime.now().date().isoformat(),
+        case_status = "Open",
+        case_title = "Situation 1",
+        reason = "Illegal Parking",
+        location = "360 Huntington Ave  Boston  MA  02115",
+        source = "ChatBot",
+        email = "test_1@gmail.com",
+        priority = 1
+    )
+    return(case_information)
+
+SELECT * FROM sample_311 WHERE reason = "Illegal Parking" AND location = "360 Huntington Ave  Boston  MA  02115" \G
+
+def situation_2():
+    case(
+        open_dt = datetime.datetime.now().date().isoformat(),
+        case_status = "Open",
+        case_title = "Situation 2",
+        reason = "Enforcement & Abandoned Vehicles",
+        location = "15 Sudbury St  Boston  MA  02203",
+        source = "ChatBot",
+        email = "test_2@gmail.com",
+        priority = 1
+    )
+    return(case_information)
+
+SELECT * FROM sample_311 WHERE reason = "Enforcement & Abandoned Vehicles" AND location = "15 Sudbury St  Boston  MA  02203" \G
+
+def situation_3():
+    case(
+        open_dt = "2020-01-31", # Assume today is 2020-01-31,
+        case_status = "Open",
+        case_title = "Situation 3",
+        reason = "Enforcement & Abandoned Vehicles",
+        location = "15 Sudbury St  Boston  MA  02203",
+        source = "ChatBot",
+        email = "test_3@gmail.com",
+        priority = 1
+    )
+    return(case_information)
+
+SELECT * FROM sample_311 WHERE reason = "Enforcement & Abandoned Vehicles" AND location = "15 Sudbury St  Boston  MA  02203" \G
+
+def situation_4():
+    case(
+        open_dt = datetime.datetime.now().date().isoformat(),
+        case_status = "Open",
+        case_title = "Situation 4",
+        reason = "Illegal Parking",
+        location = "360 Huntington Ave  Boston  MA  02115",
+        source = "ChatBot",
+        email = "test_4@gmail.com",
+        priority = 1
+    )
+    return(case_information)
+
+SELECT * FROM sample_311 WHERE reason = "Illegal Parking" AND location = "360 Huntington Ave  Boston  MA  02115" \G
+
+import datetime
+def time():
+    return datetime.datetime.now().strftime("%Y-%d-%m %H:%M:%S")
+
+time()

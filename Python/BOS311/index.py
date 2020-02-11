@@ -4,6 +4,8 @@ import mysql.connector
 import datetime
 app = Flask(__name__)
 
+def time():
+    return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 def mysql_login(mysql_host, mysql_user, mysql_passwd, mysql_database):
     global mysql_connect
@@ -37,9 +39,11 @@ def userInfo():
             "sessionAttributes": {},
             "sessionId": "2020-02-07T23:49:44.247Z-HUaNiEmX",
             "slotToElicit": "null",
-            "location" : "31 Juliette St  Dorchester  MA  02122",
+            "location" : "360 Huntington Ave  Boston  MA  02115",
+            # location = "15 Sudbury St  Boston  MA  02203",
             "email": "test@mail.com",
-            "reason": "Housing"
+            "reason": "Illegal Parking"
+            # reason = "Enforcement & Abandoned Vehicles"
             }
             response = findDuplicate(requestParam)
             return jsonify(response)
@@ -50,8 +54,7 @@ def userInfo():
 
 @app.route('/')
 def findDuplicate(userInfo):
-      current_date = datetime.datetime.now().date().isoformat()
-      userinfo =case(open_dt=current_date,email=userInfo.get('email'),location=userInfo.get('location'),reason=userInfo.get('reason'))
+      userinfo =case(open_dt=time(),email=userInfo.get('email'),location=userInfo.get('location'),reason=userInfo.get('reason'))
       print(userinfo)
       main_function()
       
@@ -169,18 +172,17 @@ def judge_date():
     l = []
     for i in result:
         l.append(i[1][0:10]) # extract date
-
+    """
     if '2020-01-31' in l: # extract the date part from open_dt. e.g, '2020-01-31 14:35:46' > '2020-01-31'
         return(result)
     else:
         return(None)
+    """
 
-    """ Replace it in Prodcution Environment
     if datetime.datetime.now().date().isoformat() in l:
         return(result)
     else:
         return(None)
-    """
 
 ##########################
 # Define MySQL Functions #
@@ -229,9 +231,9 @@ mysql_login(
 
 # Set MySQL cursor
 mysql = mysql_connect.cursor()
-mysql_table = 'sample311'
+
 # Set MySQL table
-# mysql_table = 'test_2020'
+mysql_table = 'sample_311'
 
 
 

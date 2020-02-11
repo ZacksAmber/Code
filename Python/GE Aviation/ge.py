@@ -9,15 +9,21 @@
 # Copyright (c) 2020 Zacks Shen
 ###
 
-import mysql.connector
-import pandas
-
 # Before you import the GE Aviation in your database.
 # Make sure you have a MySQL and Python Environment.
 # Also, you need have a basic knowledge of MySQL, Python and Shell.
 
-# Required:
-# 1. Download the files you in needed. Then
+# Requirements:
+# 1. Download the files you in needed. Then run the following code in your shell:
+#    cp *.csv /tmp
+# 2. Your Python needs two modules: mysql-connector-python, pandas
+#    https://zacks.one/2020/02/05/Python-MySQL/#2.4
+# 3. If your MySQL version > 5.6. Make sure you configure it in a right way.
+#    https://zacks.one/2020/02/05/Python-MySQL/#2.7
+# 4. Create a MySQL database.
+
+import mysql.connector
+import pandas
 
 # Set MySQL Querry
 def mysql_login(mysql_host, mysql_user, mysql_passwd, mysql_database):
@@ -30,16 +36,43 @@ def mysql_login(mysql_host, mysql_user, mysql_passwd, mysql_database):
         database = mysql_database
     )
 
+# Set login information
+mysql_database = input("Your Database name: ")
+mysql_table = input("Your Table name): ")
+mysql_user = input("Username: ")
+mysql_password = input("Password: ")
 
-ge_data_dict_alerts = pandas.read_csv("/Users/Zacks/Desktop/Code/Python/GE Aviation/GE obfuscated_demo_data/Data Dictionary Alerts.csv")
 
-ge_data_dict_demographics = pandas.read_csv("/Users/Zacks/Desktop/Code/Python/GE Aviation/GE obfuscated_demo_data/Data Dictionary Demographics.csv")
+mysql_login(
+    mysql_host = "localhost",
+    mysql_user = mysql_user,
+    mysql_passwd = mysql_password,
+    mysql_database = mysql_database
+    )
 
-ge_heat_scores = pandas.read_csv("/Users/Zacks/Desktop/Code/Python/GE Aviation/GE obfuscated_demo_data/heat_scores.csv")
+try:
+    mysql_login()
+except AttributeError:
+    import mysql.connector
+    mysql_login()
 
-ge_indicator_data = pandas.read_csv("/Users/Zacks/Desktop/Code/Python/GE Aviation/GE obfuscated_demo_data/indicator_pairs_data.csv")
+# Set MySQL cursor
+mysql = mysql_connect.cursor()
 
-ge_obfuscated_demo_data = pandas.read_csv("/Users/Zacks/Desktop/Code/Python/GE Aviation/GE obfuscated_demo_data/obfuscated_demo_data.csv")
+
+
+
+
+
+
+
+# Read data from .csv files
+ge_data_dict_alerts = pandas.read_csv("/tmp/Data Dictionary Alerts.csv")
+ge_data_dict_demographics = pandas.read_csv("/tmp/Data Dictionary Demographics.csv")
+ge_heat_scores = pandas.read_csv("/tmp/heat_scores.csv")
+ge_indicator_data = pandas.read_csv("/tmp/indicator_pairs_data.csv")
+ge_obfuscated_demo_data = pandas.read_csv("/tmp/obfuscated_demo_data.csv")
+
 
 ge_indicator_data.dtypes
 """

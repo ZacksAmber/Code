@@ -232,8 +232,8 @@ mysql_login(
 mysql = mysql_connect.cursor()
 
 # Set MySQL table
-# mysql_table = 'sample311'
-mysql_table = 'sample311'
+# mysql_table = 'sample_311'
+mysql_table = 'sample_311'
 
 # Case information sample
 """
@@ -273,8 +273,8 @@ def situation_1():
 
 situation_1()
 main_function()
-# SELECT * FROM sample311 WHERE case_title  = "Situation 1" \G;
-# DELETE FROM sample311 WHERE case_title  = "Situation 1" \G;
+# SELECT * FROM sample_311 WHERE case_title  = "Situation 1" \G;
+# DELETE FROM sample_311 WHERE case_title  = "Situation 1";
 
 # Situation 2: duplicate case but closed several days ago > New case and INSERT database
 def situation_2():
@@ -292,8 +292,8 @@ def situation_2():
 
 situation_2()
 main_function()
-# SELECT * FROM sample311 WHERE case_title  = "Situation 2" \G;
-# DELETE FROM sample311 WHERE case_title  = "Situation 2";
+# SELECT * FROM sample_311 WHERE case_title  = "Situation 2" \G;
+# DELETE FROM sample_311 WHERE case_title  = "Situation 2";
 
 # Situation 3: # duplicate case but closed today > Analyze(Rekognition)
 def situation_3():
@@ -328,5 +328,5 @@ def situation_4():
 
 situation_4()
 main_function()
-# SELECT * FROM sample311 WHERE priority != 1 \G;
-# UPDATE sample311 SET priority = 1 WHERE priority != 1;
+# SELECT * FROM sample_311 WHERE priority != 1 \G;
+# UPDATE sample_311 SET priority = 1 WHERE priority != 1;

@@ -1,10 +1,10 @@
 Field,Description,Notes,Assigned By,When
 classification,"Corrected classification from system (FP, TP/DE, TP/LOW, TP/HIGH)","FP - no risk, indicator misfired.",Analyst,When analyst closes the alert.
-,,"TP/DE - indicator fired correctly, but little to no risk.Ê Do not escalate.",,
+,,"TP/DE - indicator fired correctly, but little to no risk. Do not escalate.",,
 ,,"TP/LOW - Risk involved, but handled by tier 1 analyst.",,
-,,TP/HIGH - High risk or evidence of coordinated effort.Ê Further investigation required.,,
+,,TP/HIGH - High risk or evidence of coordinated effort. Further investigation required.,,
 alert_escalation_date,Date the alert was escalated to an analyst.,,System,Alert sent to analyst
-alert_id_fk,Unique ID for alerts.,Not unique within the data set.Ê Data at indicator level.,System,Alert created
+alert_id_fk,Unique ID for alerts.,Not unique within the data set. Data at indicator level.,System,Alert created
 insert_date,Date the alert was created in the system.,,System,Alert created
 score,Sum of indicator heat scores.,,System,Alert created
 employee_id,Unique ID for employees,Obfuscate,System,Alert created

@@ -2277,3 +2277,10 @@ def while_loop_3(i):
         i += 1
 
 while_loop_2(1)
+
+
+def tmp_2():
+    for i in range(3):
+        return(i)
+
+tmp_2()

@@ -263,7 +263,7 @@ def situation_1():
 situation_1()
 main_function()
 # SELECT * FROM sample311 WHERE case_title  = "Situation 1" \G;
-# DELETE FROM sample311 WHERE case_title  = "Situation 1" \G;
+# DELETE FROM sample311 WHERE case_title  = "Situation 1";
 
 # Situation 2: duplicate case but closed several days ago > New case and INSERT database
 def situation_2():
