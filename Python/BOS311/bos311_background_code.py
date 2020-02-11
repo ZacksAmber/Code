@@ -222,9 +222,9 @@ def main_function():
 ###################
 # Set login information
 mysql_login(
-    mysql_host = "cloud-analytics-db.crmnbmzm85lc.us-east-1.rds.amazonaws.com",
-    mysql_user = "admin",
-    mysql_passwd = "Test1234",
+    mysql_host = "",
+    mysql_user = "",
+    mysql_passwd = "",
     mysql_database = "bosbot"
     )
 

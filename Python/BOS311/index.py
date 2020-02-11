@@ -6,6 +6,10 @@ app = Flask(__name__)
 
 def time():
     return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    #d = datetime.datetime(2020, 1, 31, 14 ,35, 46)
+    #d = d.strftime("%Y-%m-%d %H:%M:%S")
+    #return d
+
 
 def mysql_login(mysql_host, mysql_user, mysql_passwd, mysql_database):
     global mysql_connect
@@ -40,10 +44,13 @@ def userInfo():
             "sessionId": "2020-02-07T23:49:44.247Z-HUaNiEmX",
             "slotToElicit": "null",
             "location" : "360 Huntington Ave  Boston  MA  02115",
-            # location = "15 Sudbury St  Boston  MA  02203",
-            "email": "test@mail.com",
+            # "location": "15 Sudbury St  Boston  MA  02203",
+            # "email": "Jaswanth@gmail.com",
+            #"email": "Zacks.Shen@gmail.com",
+            #"email": "Bdeepak@gmail.com",
+            "email": "Gowtham@gmail.com",
             "reason": "Illegal Parking"
-            # reason = "Enforcement & Abandoned Vehicles"
+            # "reason": "Enforcement & Abandoned Vehicles"
             }
             response = findDuplicate(requestParam)
             return jsonify(response)
@@ -130,8 +137,17 @@ def judge_duplicate():
     mysql.execute(sql)
     result = mysql.fetchall()
 
-    if len(result) > 0:
-        case_information['priority'] = len(result)
+    sql_open = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}' AND case_status = 'Open'".format(
+    mysql_table,
+    case_information['reason'],
+    case_information['location']
+)
+
+    mysql.execute(sql_open)
+    result_open = mysql.fetchall()
+
+    if len(result_open) > 0:
+        case_information['priority'] = len(result_open)
         return(result)
     else:
         case_information['priority'] = 1
@@ -159,7 +175,7 @@ def judge_open():
 
 # Define a function to judge if the case is created today.
 def judge_date():
-    sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}' AND open_dt LIKE '{3}%'".format(
+    sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}' AND open_dt LIKE '%{3}%'".format(
         mysql_table,
         case_information['reason'],
         case_information['location'],
@@ -171,7 +187,7 @@ def judge_date():
 
     l = []
     for i in result:
-        l.append(i[1][0:10]) # extract date
+        l.append(i[1]) # extract date
     """
     if '2020-01-31' in l: # extract the date part from open_dt. e.g, '2020-01-31 14:35:46' > '2020-01-31'
         return(result)
@@ -183,6 +199,8 @@ def judge_date():
         return(result)
     else:
         return(None)
+
+
 
 ##########################
 # Define MySQL Functions #

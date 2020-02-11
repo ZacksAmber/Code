@@ -101,8 +101,17 @@ def judge_duplicate():
     mysql.execute(sql)
     result = mysql.fetchall()
 
-    if len(result) > 0:
-        case_information['priority'] = len(result)
+    sql_open = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}' AND case_status = 'Open'".format(
+    mysql_table,
+    case_information['reason'],
+    case_information['location']
+)
+
+    mysql.execute(sql_open)
+    result_open = mysql.fetchall()
+
+    if len(result_open) > 0:
+        case_information['priority'] = len(result_open)
         return(result)
     else:
         case_information['priority'] = 1
@@ -130,7 +139,7 @@ def judge_open():
 
 # Define a function to judge if the case is created today.
 def judge_date():
-    sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}' AND open_dt LIKE '{3}%'".format(
+    sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}' AND open_dt LIKE '%{3}%'".format(
         mysql_table,
         case_information['reason'],
         case_information['location'],
@@ -165,7 +174,7 @@ def mysql_update():
     if case_information['priority'] > 5:
         case_information['priority'] = 5
     else:
-        case_information['priority']+= 1
+        case_information['priority'] += 1
 
     sql = "UPDATE {0} SET priority = {1} WHERE case_status = 'Open' AND reason = '{2}' AND location = '{3}'".format(
         mysql_table,
@@ -221,8 +230,8 @@ mysql_login(
 mysql = mysql_connect.cursor()
 
 # Set MySQL table
-# mysql_table = 'sample311'
-mysql_table = 'sample311'
+# mysql_table = 'sample_311'
+mysql_table = 'sample_311'
 
 # Case information sample
 """
@@ -262,8 +271,8 @@ def situation_1():
 
 situation_1()
 main_function()
-# SELECT * FROM sample311 WHERE case_title  = "Situation 1" \G;
-# DELETE FROM sample311 WHERE case_title  = "Situation 1";
+# SELECT * FROM sample_311 WHERE case_title  = "Situation 1" \G;
+# DELETE FROM sample_311 WHERE case_title  = "Situation 1";
 
 # Situation 2: duplicate case but closed several days ago > New case and INSERT database
 def situation_2():
@@ -281,8 +290,8 @@ def situation_2():
 
 situation_2()
 main_function()
-# SELECT * FROM sample311 WHERE case_title  = "Situation 2" \G;
-# DELETE FROM sample311 WHERE case_title  = "Situation 2";
+# SELECT * FROM sample_311 WHERE case_title  = "Situation 2" \G;
+# DELETE FROM sample_311 WHERE case_title  = "Situation 2";
 
 # Situation 3: # duplicate case but closed today > Analyze(Rekognition)
 def situation_3():
@@ -317,5 +326,5 @@ def situation_4():
 
 situation_4()
 main_function()
-# SELECT * FROM sample311 WHERE priority != 1 \G;
-# UPDATE sample311 SET priority = 1 WHERE priority != 1;
+# SELECT * FROM sample_311 WHERE priority != 1 \G;
+# UPDATE sample_311 SET priority = 1 WHERE priority != 1;

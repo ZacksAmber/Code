@@ -2691,6 +2691,37 @@ SELECT * FROM sample_311 WHERE reason = "Illegal Parking" AND location = "360 Hu
 
 import datetime
 def time():
-    return datetime.datetime.now().strftime("%Y-%d-%m %H:%M:%S")
+    return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 time()
+
+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")[0:10]
+
+if datetime.datetime.now().date().isoformat() in l:
+    return(result)
+else:
+    return(None)
+
+
+
+d ={'sssss':'ddddd'}
+d['sssss'][0:3]
+
+
+sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}' AND open_dt LIKE '%{3}%'".format(
+    mysql_table,
+    case_information['reason'],
+    case_information['location'],
+    case_information['open_dt'][0:10]
+)
+
+sql = "SELECT * FROM sample_311 WHERE open_dt like '%2020-01-13%'"
+
+mysql.execute(sql)
+result = mysql.fetchall()
+
+result[0][1]
+
+l = []
+for i in result:
+    l.append(i[1]) # extract date
