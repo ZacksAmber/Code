@@ -2725,3 +2725,1054 @@ result[0][1]
 l = []
 for i in result:
     l.append(i[1]) # extract date
+
+import re
+
+txt = "Stand with Hongkong. Overthrow CCP"
+
+#x = re.search("^H.*P$", txt) # Starts with H
+
+x = re.search("^S.*P$", txt) # Starts with H
+
+if (x):
+  print("YES! We have a match!")
+else:
+  print("No match")
+
+
+import datetime
+
+def time():
+    return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+time()
+
+Kobe_Bryant = datetime.datetime(2020, 1, 26, 15, 50, 23)
+print(Kobe_Bryant.strftime("%Y-%m-%d %H:%M:%S"))
+
+import re
+
+re.findall("[a-m]", "Amber") # Returns a list containing all matches
+# ['m', 'b', 'e']
+
+re.findall("[a-m]", "amber") # Returns a list containing all matches with case sensitive
+# ['a', 'm', 'b', 'e']
+
+re.findall("[a-m]", "Amber m") # Returns a list containing all matches in the original sequence
+# ['m', 'b', 'e', 'm']
+
+
+
+re.search("\a", "Amber")
+# <re.Match object; span=(1, 2), match='m'>
+re.search("[a-m]", "Amber").start()
+
+txt = "The rain in Spain"
+x = re.search("\s", txt)
+print("The first white-space character is located in position:", x.start())
+
+import re
+
+China = "The Chinese Communist Party will disintegrate in 2020."
+
+re.findall("[a-e]", China) # Returns a list containing all matches in the original sequence and case sentitive.
+# ['e', 'e', 'e', 'a', 'd', 'e', 'a', 'e']
+
+re.findall("\d", China) # Find all digit characters:
+# ['2', '0', '2', '0']
+
+re.findall("Pa..y", China) # Search for a sequence that starts with "Pa", followed by two (any) characters, and an "y":
+# ['Party']
+
+re.findall("^The", China) # Check if the string starts with 'The':
+# ['The']
+
+re.findall("2020[.]$", China) # Check if the string ends with '2020.':
+# ['2020.']
+
+re.findall("isx*", China) # Check if the string contains "is" followed by 0 or more "x" characters. It returns 'is' twice because 'x' occures 0 time.
+# ['is', 'is']
+
+re.findall("ine+", China) # Check if the string contains "in" followed by 1 or more "e" characters:
+# ['ine']
+
+re.findall("om{2}", China) # Check if the string contains "o" followed by exactly two "m" characters:
+# ['omm']
+
+re.findall("Chi|Com", China) # Check if the string contains either "Chi" or "Com":
+# ['Chi', 'Com']
+
+re.findall("(Par)", China) # Put a series characters in a group. In this case, it is the same as "Par".
+
+re.findall("(ine)(se)*", China) # Check if the string contains "ine" followed by 0 or more "se" characters:
+# [('ine', 'se')]
+
+re.findall("inese*", China)  # Check if the string contains "ines" followed by 0 or more "e" characters:
+# ['inese']
+
+re.findall("(ine)(xx)*", China) # Check if the string contains "ine" followed by 0 or more "xx" characters:
+# [('ine', '')]
+
+
+re.search("C", China) # Returns a Match object if there is a match anywhere in the string
+# <re.Match object; span=(4, 5), match='C'>
+
+re.findall("\AThe", China) # Returns a match if the specified characters are at the beginning of the string
+# ['The']
+
+re.search("Chin", China) # 
+# <re.Match object; span=(4, 8), match='Chin'>
+
+re.split("\s", China) # Returns a list where the string has been split at each match + Returns a match where the string contains a white space character
+# ['The', 'Chinese', 'Communist', 'Party', 'will', 'disintegrate', 'in', '2020.']
+
+
+import re
+
+China = "The Chinese Communist Party will disintegrate in 2020."
+
+re.findall("\AThe", China) # Check if the string starts with "The":
+# ['The']
+re.findall("\AThe", China) == re.findall("^The", China)
+# True
+
+# Note: Prefix r or R is used for escaping sequence.
+print('a\\ab') # Backslash (\)
+# a\ab
+print('aa\ab') # ASCII Bell (BEL)
+# aab
+print('aa\bb') # ASCII Backspace (BS)
+# ab
+print('aa\fb') # Formfeed
+# aa
+#   b
+print('aa\nb') # ASCII Linefeed (LF)
+# aa
+# b
+print('aa\rb') # Carriage Return
+# b
+print('aa\tb') # ASCII Horizontal Tab (TAB
+# aa	b
+print('aa\vb') # ASCII Vertical Tab (VT)
+# aa
+#   b
+
+re.findall(r"\bThe", China) # Check if the string starts or ends with "The":
+# ['The']
+re.findall(r"\b2020[.]", China) # Check if the string starts or ends with "2020.":
+# ['2020.']
+
+re.findall(r'\BChi', China) # Check if "Chi" is present, but NOT at the beginning of a word:
+# []
+re.findall(r'\Bhi', China) # Check if "hi" is present, but NOT at the beginning of or at the end of a WORD:
+# hi
+
+re.findall('\d', China) # Check if the string contains any digits (numbers from 0-9):
+# ['2', '0', '2', '0']
+
+re.findall('\D', China) # Return a match at every no-digit character:
+"""
+['T',
+ 'h',
+ 'e',
+ ' ',
+ 'C',
+ 'h',
+ 'i',
+ 'n',
+ 'e',
+ 's',
+ 'e',
+ ' ',
+ 'C',
+ 'o',
+ 'm',
+ 'm',
+ 'u',
+ 'n',
+ 'i',
+ 's',
+ 't',
+ ' ',
+ 'P',
+ 'a',
+ 'r',
+ 't',
+ 'y',
+ ' ',
+ 'w',
+ 'i',
+ 'l',
+ 'l',
+ ' ',
+ 'd',
+ 'i',
+ 's',
+ 'i',
+ 'n',
+ 't',
+ 'e',
+ 'g',
+ 'r',
+ 'a',
+ 't',
+ 'e',
+ ' ',
+ 'i',
+ 'n',
+ ' ',
+ '.']
+"""
+
+re.findall('\s', China) # Return a match at every white-space character:
+# [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+re.search('\s', China)
+# <re.Match object; span=(3, 4), match=' '>
+re.split('\s', China)
+# ['The', 'Chinese', 'Communist', 'Party', 'will', 'disintegrate', 'in', '2020.']
+
+re.findall('\S', China) # Return a match at every NON white-space character:
+"""
+['T',
+ 'h',
+ 'e',
+ 'C',
+ 'h',
+ 'i',
+ 'n',
+ 'e',
+ 's',
+ 'e',
+ 'C',
+ 'o',
+ 'm',
+ 'm',
+ 'u',
+ 'n',
+ 'i',
+ 's',
+ 't',
+ 'P',
+ 'a',
+ 'r',
+ 't',
+ 'y',
+ 'w',
+ 'i',
+ 'l',
+ 'l',
+ 'd',
+ 'i',
+ 's',
+ 'i',
+ 'n',
+ 't',
+ 'e',
+ 'g',
+ 'r',
+ 'a',
+ 't',
+ 'e',
+ 'i',
+ 'n',
+ '2',
+ '0',
+ '2',
+ '0',
+ '.']
+"""
+
+re.findall('\w', China) # Return a match at every word character (characters from a to Z, digits from 0-9, and the underscore _ character):
+"""
+['T',
+ 'h',
+ 'e',
+ 'C',
+ 'h',
+ 'i',
+ 'n',
+ 'e',
+ 's',
+ 'e',
+ 'C',
+ 'o',
+ 'm',
+ 'm',
+ 'u',
+ 'n',
+ 'i',
+ 's',
+ 't',
+ 'P',
+ 'a',
+ 'r',
+ 't',
+ 'y',
+ 'w',
+ 'i',
+ 'l',
+ 'l',
+ 'd',
+ 'i',
+ 's',
+ 'i',
+ 'n',
+ 't',
+ 'e',
+ 'g',
+ 'r',
+ 'a',
+ 't',
+ 'e',
+ 'i',
+ 'n',
+ '2',
+ '0',
+ '2',
+ '0']
+"""
+
+re.findall('\W', China) # Return a match at every NON word character (characters NOT between a and Z. Like "!", "?" white-space etc.):
+# [' ', ' ', ' ', ' ', ' ', ' ', ' ', '.']
+
+re.findall('2020[.]\Z', China) # Check if the string ends with "2020.":
+# ['2020.']
+re.findall('2020[.]\Z', China) == re.findall('2020[.]$', China)
+# True
+
+
+import re
+
+China = "The Chinese Communist Party will disintegrate in 2020."
+
+re.findall('[arn]', China) # Check if the string has any a, r, or n characters:
+# ['n', 'n', 'a', 'r', 'n', 'r', 'a', 'n']
+
+re.findall('[a-n]', China) # Check if the string has any characters between a and n:
+"""
+['h',
+ 'e',
+ 'h',
+ 'i',
+ 'n',
+ 'e',
+ 'e',
+ 'm',
+ 'm',
+ 'n',
+ 'i',
+ 'a',
+ 'i',
+ 'l',
+ 'l',
+ 'd',
+ 'i',
+ 'i',
+ 'n',
+ 'e',
+ 'g',
+ 'a',
+ 'e',
+ 'i',
+ 'n']
+"""
+
+re.findall('[^arn]', China) # Check if the string has other characters than a, r, or n:
+"""
+['T',
+ 'h',
+ 'e',
+ ' ',
+ 'C',
+ 'h',
+ 'i',
+ 'e',
+ 's',
+ 'e',
+ ' ',
+ 'C',
+ 'o',
+ 'm',
+ 'm',
+ 'u',
+ 'i',
+ 's',
+ 't',
+ ' ',
+ 'P',
+ 't',
+ 'y',
+ ' ',
+ 'w',
+ 'i',
+ 'l',
+ 'l',
+ ' ',
+ 'd',
+ 'i',
+ 's',
+ 'i',
+ 't',
+ 'e',
+ 'g',
+ 't',
+ 'e',
+ ' ',
+ 'i',
+ ' ',
+ '2',
+ '0',
+ '2',
+ '0',
+ '.']
+"""
+
+re.findall('[0123]', China) # Check if the string has any 0, 1, 2, or 3 digits:
+# ['2', '0', '2', '0']
+
+re.findall('[0-9]', China) # Check if the string has any digits:
+# ['2', '0', '2', '0']
+re.findall('[0-9]', China) == re.findall('\d', China)
+# True
+
+re.findall('[0-5][0-9]', China) # Check if the string has any two-digit numbers, from 00 to 59:
+# ['20', '20']
+
+re.findall('[a-zA-Z]', China) # Check if the string has any characters from a to z lower case, and A to Z upper case:
+"""
+['T',
+ 'h',
+ 'e',
+ 'C',
+ 'h',
+ 'i',
+ 'n',
+ 'e',
+ 's',
+ 'e',
+ 'C',
+ 'o',
+ 'm',
+ 'm',
+ 'u',
+ 'n',
+ 'i',
+ 's',
+ 't',
+ 'P',
+ 'a',
+ 'r',
+ 't',
+ 'y',
+ 'w',
+ 'i',
+ 'l',
+ 'l',
+ 'd',
+ 'i',
+ 's',
+ 'i',
+ 'n',
+ 't',
+ 'e',
+ 'g',
+ 'r',
+ 'a',
+ 't',
+ 'e',
+ 'i',
+ 'n']
+"""
+re.findall('[a-zA-Z0-9_]', China) == re.findall('\w', China)
+# True
+
+re.findall('[.]', China) # Check if the string has any . characters:
+# ['.']
+
+
+import re
+
+China = "The Chinese Communist Party will disintegrate in 2020."
+
+re.findall('^The.*2020[.]$', China) # Check if the string starts with "The" and ends with "2020.":
+# 'The Chinese Communist Party will disintegrate in 2020.']
+
+
+import re
+
+China = "The Chinese Communist Party will disintegrate in 2020."
+
+re.findall('\s', China) # Return a match at every white-space character:
+# [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+re.search('\s', China)
+# <re.Match object; span=(3, 4), match=' '>
+re.search('\s', China).start()
+# 3
+re.split('\s', China)
+# ['The', 'Chinese', 'Communist', 'Party', 'will', 'disintegrate', 'in', '2020.']
+
+import re
+
+China = "The Chinese Communist Party will disintegrate in 2020."
+
+print(re.search('[!]', China))
+# None
+
+re.split('\s', China, 1)
+# ['The', 'Chinese Communist Party will disintegrate in 2020.']
+
+
+import re
+
+China = "The Chinese Communist Party will disintegrate in 2020."
+
+re.sub('\s', 'X', China, 2) # Replace all white-space characters with the character 'X'
+# 'TheXChineseXCommunist Party will disintegrate in 2020.'
+
+
+import re
+
+China = "The Chinese Communist Party will disintegrate in 2020."
+
+re.search(r'\bP\w+', China) # Search for an upper case "P" character in the beginning of a word, and print its position:
+# <re.Match object; span=(22, 27), match='Party'>
+
+re.search(r'\bP\w+', China).span()
+# (22, 27)
+
+
+import re
+
+China = "The Chinese Communist Party will disintegrate in 2020."
+
+re.search(r'\bP\w+', China)
+# <re.Match object; span=(22, 27), match='Party'>
+
+re.search(r'\bP\w+', China).group() # Search for an upper case "P" character in the beginning of a word, and print the word:
+# 'Party'
+
+re.search(r'\bW\w+', China).group() # Search for an upper case "W" character in the beginning of a word, and print the word:
+# AttributeError: 'NoneType' object has no attribute 'group'
+
+
+print(x)
+# NameError: name 'x' is not defined
+
+try:
+  print(x)
+except:
+  print("An exception occurred")
+# An exception occurred
+
+try:
+  print(x)
+except NameError:
+  print("Variable x is not defined")
+except:
+  print("Something else went wrong")
+# Variable x is not defined
+
+#The try block does not raise any errors, so the else block is executed:
+
+try:
+  print("Hello")
+except:
+  print("Something went wrong")
+else:
+  print("Nothing went wrong")
+# Hello
+# Nothing went wrong
+
+try:
+    print(x)
+except:
+    print("Something went wrong")
+else:
+    print("Nothing went wrong")
+finally:
+  print("The 'try except' is finished")
+# Something went wrong
+# The 'try except' is finished
+
+try:
+    print("Hello")
+except:
+    print("Something went wrong")
+else:
+    print("Nothing went wrong")
+finally:
+  print("The 'try except' is finished")
+# Hello
+# Nothing went wrong
+# The 'try except' is finished
+
+import os
+
+try:
+    f = open("demofile.txt")
+    f.write("Lorum Ipsum")
+except:
+    print("Something went wrong when writing to the file")
+finally:
+    f.close()
+# Something went wrong when writing to the file
+# NameError: name 'f' is not defined. We do not have a file named "demofile.txt", so we cannot open it. And f is never be daclared. The finally block will raise a error.
+
+try:
+    f = open("demofile.txt")
+    f.write("Lorum Ipsum")
+except:
+    print("Something went wrong when writing to the file")
+finally:
+    if f in globals():
+        f.close()
+
+globals()
+locals()
+
+x in globals()
+
+x = -1
+
+if x < 0:
+    raise Exception("Sorry, no numbers below zero")
+# Exception: Sorry, no numbers below zero
+
+x = "hello"
+
+if not type(x) is int:
+    raise TypeError("Only integers are allowed")
+# TypeError: Only integers are allowed
+
+username = input("Enter username:")
+print("Username is: " + username)
+# Username is: Zacks
+
+
+age = 25
+
+print("I am " + age + " year's old")
+# TypeError: can only concatenate str (not "int") to str
+
+print("I am {} year's old".format(age))
+# I am 25 year's old
+
+name = "Zacks"
+age = 25
+country = "United States"
+
+Introduction = "I am {name}. {name} is {age:.2f} year's old, and live in {country}."
+print(Introduction.format(age, name, country))
+# KeyError: 'name'
+
+import os
+os.getcwd()
+os.chdir("/Users/zacks/Desktop/Code/Python")
+
+f = open("demofile.txt", "r")
+f.read(5) # Return the 5 first characters of the file:
+# 'Hello'
+
+f = open("demofile.txt", "r")
+print(f.readline()) # Read one line of the file:
+# Hello! Welcome to demofile.txt
+print(f.readline())
+# This file is for testing purposes.
+
+f = open("demofile.txt", "r")
+for lines in f:
+    print(lines)
+# Hello! Welcome to demofile.txt
+
+# This file is for testing purposes.
+
+# Good Luck!
+
+f = open("demofile.txt", "r")
+print(f.readline())
+# Hello! Welcome to demofile.txt
+f.close()
+
+with open("demofile.txt", "r") as f:
+    print(f.read())
+# Hello! Welcome to demofile.txt
+# This file is for testing purposes.
+# Good Luck!
+
+with open("demofile.txt", "a") as f: # Open the file "demofile.txt" and append content to the file:
+    f.write("Now the file has more content!")
+
+with open("demofile.txt", "r") as f: # Open the file "demofile.txt" and read the content:
+    print(f.read())
+# Hello! Welcome to demofile.txt
+# This file is for testing purposes.
+# Good Luck!
+# Now the file has more content!
+
+
+with open("demofile.txt", "w") as f: # Open the file "demofile.txt" and overwrite content to the file:
+    f.write("Woops! I have deleted the content!")
+
+with open("demofile.txt", "r") as f: # Open the file "demofile.txt" and read the content:
+    print(f.read())
+# Woops! I have deleted the content!
+
+f = open("myfile.txt", "a")
+
+f = open("myfile2.txt", "w")
+
+import os
+os.remove("demofile.txt")
+
+import os
+
+os.path.exists("myfile.txt")
+# True
+
+if os.path.exists("myfile.txt"):
+    os.remove("myfile.txt")
+else:
+    print("The file does not exist")
+
+
+speed = [99,86,87,88,111,86,103,87,94,78,77,85,86]
+
+sum = 0
+
+for i in speed:
+    sum = sum + i
+
+mean = sum/len(speed)
+
+print(mean)
+# 89.76923076923077
+
+import numpy
+
+speed = [99,86,87,88,111,86,103,87,94,78,77,85,86]
+
+mean = numpy.mean(speed)
+
+print(mean)
+# 89.76923076923077
+
+speed = [99,86,87,88,111,86,103,87,94,78,77,85,86]
+
+speed.sort()
+
+x = len(speed)/2
+
+if x % 2 == 0.0:
+    print((speed[int(x-1)] + speed[int(x)])/2)
+else:
+    print(speed[int(x)])
+# 87
+
+import numpy
+
+speed = [99,86,87,88,111,86,103,87,94,78,77,85,86]
+
+median = numpy.median(speed)
+
+print(median)
+# 87.0
+
+speed = [77, 78, 85, 86, 86, 86, 87, 87, 94, 98, 99, 103]
+
+median = numpy.median(speed)
+
+print(median)
+# 86.5
+
+speed = [77, 78, 85, 86, 86, 86, 87, 87, 94, 98, 99, 103]
+
+speed.sort()
+
+x = len(speed)/2
+
+if x % 2 == 0.0:
+    print((speed[int(x-1)] + speed[int(x)])/2)
+else:
+    print(speed[int(x)])
+
+from scipy import stats
+
+speed = [99,86,87,88,111,86,103,87,94,78,77,85,86]
+
+mode = stats.mode(speed)
+
+print(mode)
+# ModeResult(mode=array([86]), count=array([3]))
+
+print(mode[0][0])
+# 86
+
+import numpy
+
+speed = [86,87,88,86,87,85,86]
+Variance = numpy.var(speed)
+print(Variance)
+# 
+
+import numpy
+
+speed = [86,87,88,86,87,85,86]
+SD = numpy.std(speed)
+
+
+import numpy
+
+# Standard Deviation - Population
+speed = [86,87,88,86,87,85,86]
+numpy.std(speed)
+# 0.9035079029052513
+
+# Standard Deviation - Sample
+speed = [86,87,88,86,87,85,86]
+numpy.std(speed, ddof = 1) # ddof: Degree of freedom
+# 0.9759000729485332
+
+
+
+import numpy
+
+# Variance - Population
+speed = [86,87,88,86,87,85,86]
+numpy.var(speed)
+# 0.8163265306122449
+
+# Variance - Sample
+speed = [86,87,88,86,87,85,86]
+numpy.var(speed, ddof = 1) # ddof: Degree of freedom
+# 0.9523809523809524
+
+
+import numpy
+
+# Variance - Population
+speed = [32,111,138,28,59,77,97]
+numpy.var(speed)
+# 1432.2448979591834
+
+# Variance - Sample
+speed = [32,111,138,28,59,77,97]
+numpy.var(speed, ddof = 1) # ddof: Degree of freedom
+# 1670.9523809523807
+
+
+import numpy
+
+# Standard Deviation - Population
+speed = [32,111,138,28,59,77,97]
+numpy.std(speed)
+# 37.84501153334721
+
+# Standard Deviation - Sample
+speed = [32,111,138,28,59,77,97]
+numpy.std(speed, ddof = 1) # ddof: Degree of freedom
+# 40.877284412646354
+
+
+import numpy
+
+ages = [5,31,43,48,50,41,7,11,15,39,80,82,32,2,8,6,25,36,27,61,31]
+
+#  Percentiles
+k = numpy.percentile(ages, 70)
+print(k)
+# 41.0
+
+# Quartiles
+numpy.percentile(ages, 25) # Q1
+# 11.0
+
+numpy.percentile(ages, 50) # Q2
+# 31.0
+
+numpy.percentile(ages, 75) # Q3
+# 43.0
+
+import numpy
+
+x = numpy.random.uniform(0.0, 5.0, 250)
+
+print(x)
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+np.random.seed(100)
+x = np.random.normal(200, 25, size = 10000) # mu = 200, sigma = 25
+
+plt.hist(x, bins = 'auto', normed = True， cumulative = True)
+plt.title("Normal Distribution")
+plt.xlabel("Range")
+plt.ylabel("Relative Frequency")
+plt.show()
+
+
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+np.random.seed(19680801)
+x = np.random.normal(200, 25, size = 10000) # mu = 200, sigma = 25
+
+fig, ax = plt.subplots(figsize=(8, 4))
+
+# plot the cumulative histogram
+n, bins, patches = ax.hist(x, n_bins, density=True, histtype='step',
+                           cumulative=True, label='Empirical')
+
+# Add a line showing the expected distribution.
+y = ((1 / (np.sqrt(2 * np.pi) * sigma)) *
+     np.exp(-0.5 * (1 / sigma * (bins - mu))**2))
+y = y.cumsum()
+y /= y[-1]
+
+ax.plot(bins, y, 'k--', linewidth=1.5, label='Theoretical')
+
+# Overlay a reversed cumulative histogram.
+ax.hist(x, bins=bins, density=True, histtype='step', cumulative=-1,
+        label='Reversed emp.')
+
+# tidy up the figure
+ax.grid(True)
+ax.legend(loc='right')
+ax.set_title('Cumulative step histograms')
+ax.set_xlabel('Annual rainfall (mm)')
+ax.set_ylabel('Likelihood of occurrence')
+
+plt.show()
+
+plt.plot([1, 2, 3, 4], [1, 4, 9, 16])
+
+
+from plotnine import ggplot, geom_point, aes, stat_smooth, facet_wrap
+from plotnine.data import mtcars
+
+(ggplot(mtcars, aes('wt', 'mpg', color='factor(gear)'))
+ + geom_point()
+ + stat_smooth(method='lm')
+ + facet_wrap('~gear'))
+
+
+import pandas as pd
+import numpy as np
+from plotnine import *
+from plotnine.data import mtcars
+
+# Define data as dictionary
+d = {'x_value': [0, 1], 'y_value': [0, 1]}
+
+# Convert dict to data frame
+two_points = pd.DataFrame(data = d)
+
+# Draw two points
+(ggplot(two_points, # Data: tell ggplot the data source.
+        aes(x = 'x_value', y = 'y_value')) + # Aesthetics: Define x
+    geom_point()) # Geometric Objects: Tell ggplot what kind of plot you need.
+
+# Connect two points
+(ggplot(two_points, # Data: tell ggplot the data source.
+       aes(x = 'x_value', y = 'y_value')) + # Aesthetics: Define x variables and y variables.
+    geom_point() + geom_line()) # Geometric Objects: This time we connect the two points.
+
+qplot(x = 'x_value', y = 'y_value', data = two_points, 
+    geom = ['point', 'line'])
+
+import matplotlib
+import pandas as pd
+import numpy as np
+from plotnine import *
+from plotnine.data import mtcars
+%matplotlib inline
+
+df = mtcars[["name", "mpg", "cyl", "wt"]]
+df.head(6) # show the first 6 rows of data
+
+#               name   mpg  cyl     wt
+#          Mazda RX4  21.0    6  2.620
+#      Mazda RX4 Wag  21.0    6  2.875
+#         Datsun 710  22.8    4  2.320
+#     Hornet 4 Drive  21.4    6  3.215
+#  Hornet Sportabout  18.7    8  3.440
+#            Valiant  18.1    6  3.460
+
+# Basic scatter plot
+qplot(x = 'mpg', y = 'wt', data = df, geom = "point")
+
+# Scatter plot with smoothed line
+qplot('mpg', 'wt', data = df, 
+      geom = ["point", "smooth"])
+
+# Scatter plot with smoothed line
+(ggplot(df, aes(x = 'mpg', y = 'wt')) + 
+    geom_point() +
+    geom_smooth() +
+    stat_smooth(method='lm'))
+
+qplot('mpg', 'wt', data = df, color = 'cyl', shape = 'cyl')
+
+set.seed(1234)
+wdata = data.frame(
+        sex = factor(rep(c("F", "M"), each=200)),
+        weight = c(rnorm(200, 55), rnorm(200, 58)))
+head(wdata)
+
+import pandas as pd
+import numpy as np
+from plotnine import *
+
+# Define Wight
+np.random.seed(1234)
+weight1 = np.random.normal(55, size = 200)
+weight2 = np.random.normal(58, size = 200)
+weight = np.append(weight1, weight2)
+
+# Define sex
+sex = ['F'] * 200 + ['M'] * 200
+
+# Define Data Frame
+wdata = pd.DataFrame(list(zip(sex, weight)), columns = ["Sex", "Weight"]) # zip() for zipping two lists
+
+wdata.head(6)
+
+"""
+  Sex     Weight
+0   F  55.471435
+1   F  53.809024
+2   F  56.432707
+3   F  54.687348
+4   F  54.279411
+5   F  55.887163
+"""
+
+# Basic box plot from data frame
+qplot('sex', 'weight', data = wdata, 
+      geom = "boxplot", fill = 'sex')
+
+# Violin plot
+qplot('sex', 'weight', data = wdata, geom = "violin")
+
+# Dot plot
+qplot('sex', 'weight', data = wdata, geom = "dotplot",
+      stackdir = "center", binaxis = "y", dotsize = 0.5)
+
+# Dot plot
+qplot('sex', 'weight', data = wdata, geom = "dotplot",
+      stackdir = "center", binaxis = 'y', dotsize = 0.05)
+
+
+# Histogram  plot
+# Change histogram fill color by group (sex)
+qplot('weight', data = wdata, geom = "histogram",
+      fill = 'sex')
+
+# Density plot
+# Change density plot line color by group (sex)
+# change line type
+qplot('weight', data = wdata, geom = "density",
+    color = 'sex', linetype = 'sex')

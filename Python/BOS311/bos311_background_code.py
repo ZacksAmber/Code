@@ -9,17 +9,6 @@
 # Copyright (c) 2020 Zacks Shen
 ###
 
-#!/usr/bin/env python3
-# -*- coding:utf-8 -*-
-###
-# Title: bos311_background_code.py
-# Created Date: February 06, 2020, 9:18:21 pm
-# Author: Zacks Shen(zacks.shen@gmail.com)
-# Github: https://github.com/ZacksAmber
-# Blog: https://zacks.one
-# Copyright (c) 2020 Zacks Shen
-###
-
 # Import modules
 import mysql.connector
 import datetime

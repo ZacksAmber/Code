@@ -2283,4 +2283,27 @@ def tmp_2():
     for i in range(3):
         return(i)
 
-tmp_2()
+import plotly.express as px
+print(px.data.iris.__doc__)
+px.data.iris().head()
+
+print("hello world")
+
+import plotly.graph_objects as go
+fig = go.Figure(data=go.Bar(y=[2, 3, 1]))
+fig.show()
+
+import plotly.graph_objects as go
+fig = go.FigureWidget(data=go.Bar(y=[2, 3, 1]))
+fig
+
+
+import plotly.express as px
+df = px.data.iris()
+fig = px.scatter(df, x="sepal_width", y="sepal_length")
+fig.show()
+
+import plotly.express as px
+df = px.data.iris()
+fig = px.scatter(df, x="sepal_width", y="sepal_length", color="species", marginal_y="rug", marginal_x="histogram")
+fig

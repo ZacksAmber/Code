@@ -25,55 +25,26 @@
 import mysql.connector
 import pandas
 
-# Set MySQL Querry
-def mysql_login(mysql_host, mysql_user, mysql_passwd, mysql_database):
-    global mysql_connect
+# Set MySQL login information
+mysql_connect = mysql.connector.connect(
+    host = "localhost",
+    user = "test",
+    passwd = "passwd",
+    database = "GE"
+)
 
-    mysql_connect = mysql.connector.connect(
-        host = mysql_host,
-        user = mysql_user,
-        passwd = mysql_passwd,
-        database = mysql_database
-    )
-
-# Set login information
-mysql_database = input("Your Database name: ")
-mysql_table = input("Your Table name): ")
-mysql_user = input("Username: ")
-mysql_password = input("Password: ")
-
-
-mysql_login(
-    mysql_host = "localhost",
-    mysql_user = mysql_user,
-    mysql_passwd = mysql_password,
-    mysql_database = mysql_database
-    )
-
-try:
-    mysql_login()
-except AttributeError:
-    import mysql.connector
-    mysql_login()
-
-# Set MySQL cursor
 mysql = mysql_connect.cursor()
 
-
-
-
-
-
-
-
 # Read data from .csv files
-ge_data_dict_alerts = pandas.read_csv("/tmp/Data Dictionary Alerts.csv")
-ge_data_dict_demographics = pandas.read_csv("/tmp/Data Dictionary Demographics.csv")
 ge_heat_scores = pandas.read_csv("/tmp/heat_scores.csv")
-ge_indicator_data = pandas.read_csv("/tmp/indicator_pairs_data.csv")
+
+ge_indicator_data = pandas.read_csv("/tmp/indicator_pairs_data updated.csv")
+ge_indicator_data['indicator_pairs'] = ge_indicator_data['indicator_pairs'].str.strip()
+ge_indicator_data.to_csv("/tmp/indicator_data.csv", index=False)
+
 ge_obfuscated_demo_data = pandas.read_csv("/tmp/obfuscated_demo_data.csv")
 
-
+# Set table columns & Import data from .csv file 
 ge_indicator_data.dtypes
 """
 CREATE TABLE indicator_data (
@@ -90,19 +61,20 @@ hru TEXT,
 alert_category TEXT,
 alert_type TEXT,
 indicator_pairs TEXT
-)
+);
 """
 
-LOAD DATA INFILE "/tmp/indicator_pairs_data.csv"
+"""
+LOAD DATA INFILE "/tmp/indicator_pairs_data updated.csv"
 INTO TABLE indicator_data
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
-
+"""
 
 ge_heat_scores.dtypes
-
+"""
 CREATE TABLE heat_scores(
 SHARED_INDICATION_NAME TEXT,
 SHARED_INDICATOR_APPLICATION TEXT,
@@ -111,14 +83,16 @@ SHARED_INDICATOR_TYPE TEXT,
 SHARED_INDICATOR_SUFFIX TEXT,
 HEAT_VALUE TEXT
 );
+"""
 
+"""
 LOAD DATA INFILE "/tmp/heat_scores.csv"
 INTO TABLE heat_scores
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
-
+"""
 
 ge_obfuscated_demo_data.dtypes
 """
@@ -137,9 +111,11 @@ industry_focus_name TEXT
 );
 """
 
+"""
 LOAD DATA INFILE "/tmp/obfuscated_demo_data.csv"
 INTO TABLE obfuscated_demo_data
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
+"""
