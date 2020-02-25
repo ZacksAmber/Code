@@ -1,3 +1,21 @@
+#!/usr/bin/env python3
+# -*- coding:utf-8 -*-
+################################################################################
+# Title: index copy.py                                                         #
+# File: /Users/zacks/Desktop/Code/Python/BOS311/index copy.py                  #
+# Project: /Users/zacks/Desktop/Code/Python/BOS311                             #
+# Created Date: 2020-02-25                                                     #
+# -----                                                                        #
+# Author: Zacks Shen                                                           #
+# Blog: https://zacks.one                                                      #
+# Email: <zacks.shen@gmail.com>                                                #
+# Github: https://github.com/ZacksAmber                                        #
+# -----                                                                        #
+# Last Modified: 2020-02-25 5:16:35 am                                         #
+# Modified By: Zacks Shen <zacks.shen@gmail.com>                               #
+# -----                                                                        #
+# Copyright (c) 2020 Zacks Shen                                                #
+################################################################################
 from flask import Flask, render_template, redirect, jsonify, json
 import requests
 import mysql.connector
@@ -115,16 +133,16 @@ def main_function():
     if judge_duplicate():
         if judge_open(): # Situation 4: Open case
             print("Situation 4: This is a duplicate case. You should UPDATE database!")
-            mysql_UPDATE_priority()
+            mysql_update()
         else: # Must be Closed case
             if judge_date(): # Situation 3: closed today days
                 print("Situation 3: This may not be a new case. You should use AWS Rekognition!")
             else: # Situation 2: closed several days ago
                 print("Situation 2: This is a new case. You should INSERT database!")
-                mysql_INSERT()
+                mysql_insert()
     else: # Situation 1: NOT duplicate case
         print("Situation 1: This is a new case. You should INSERT database!")
-        mysql_INSERT()
+        mysql_insert()
 
 # Define a function to judge if the case is duplicate.
 def judge_duplicate():
@@ -188,17 +206,26 @@ def judge_date():
     l = []
     for i in result:
         l.append(i[1].strftime("%Y-%m-%d %H:%M:%S")[0:10]) # change datetime.datetime type to string first then extract date
+    """
+    if '2020-01-31' in l: # extract the date part from open_dt. e.g, '2020-01-31 14:35:46' > '2020-01-31'
+        return(result)
+    else:
+        return(None)
+    """
+
     if datetime.datetime.now().date().isoformat() in l:
         return(result)
     else:
-        return(None) 
+        return(None)
+
+
 
 ##########################
 # Define MySQL Functions #
 ##########################
 
-# Define the UPDATE function to raise the priority
-def mysql_UPDATE_priority():
+# Define the UPDATE function raise the priority
+def mysql_update():
     if case_information['priority'] > 5:
         case_information['priority'] = 5
     else:
@@ -215,23 +242,8 @@ def mysql_UPDATE_priority():
     mysql_connect.commit()
     print(mysql.rowcount, "record(s) affected")
 
-# Define the UPDATE function to change the case_status
-def mysql_UPDATE_case_status(case_status):
-    case_information['case_status'] = case_status
-
-    sql = "UPDATE {0} SET case_status = '{1}' WHERE reason = '{2}' AND location = '{3}'".format(
-        mysql_table,
-        case_information['case_status'],
-        case_information['reason'],
-        case_information['location']
-    )
-
-    mysql.execute(sql)
-    mysql_connect.commit()
-    print(mysql.rowcount, "record(s) affected")
-
 # Define the INSERT function to insert new case
-def mysql_INSERT():
+def mysql_insert():
     sql = "INSERT INTO " + mysql_table + " (case_enquiry_id, open_dt, target_dt, closed_dt, ontime, case_status, closure_reason, case_title, subject, reason, type, queue, department, submittedphoto, closedphoto, location, fire_district, pwd_district, city_council_district, police_district, neighborhood, neighborhood_services_district, ward, precinct, location_street_name, location_zipcode, latitude, longitude, source, email, priority) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
     val = (0, case_information['open_dt'], None, None, None, 'Open', None, case_information['case_title'], None, case_information['reason'], None, None, None, None, None, case_information['location'], None, None, None, None, None, None, None, None, None, None, None, None, case_information['source'], case_information['email'], 1)

@@ -2307,3 +2307,112 @@ import plotly.express as px
 df = px.data.iris()
 fig = px.scatter(df, x="sepal_width", y="sepal_length", color="species", marginal_y="rug", marginal_x="histogram")
 fig
+
+import plotly.figure_factory as ff
+import numpy as np
+
+x1 = np.random.randn(200) - 1
+x2 = np.random.randn(200)
+x3 = np.random.randn(200) + 1
+
+hist_data = [x1, x2, x3]
+
+group_labels = ['Group 1', 'Group 2', 'Group 3']
+colors = ['#333F44', '#37AA9C', '#94F3E4']
+
+# Create distplot with curve_type set to 'normal'
+fig = ff.create_distplot(hist_data, group_labels, show_hist=False, colors=colors)
+
+# Add title
+fig.update_layout(title_text='Curve and Rug Plot')
+fig.show()
+
+
+
+
+import pandas as pd
+import numpy as np
+import plotly.express as px
+
+# Define Wight
+np.random.seed(1234)
+weight1 = np.random.normal(55, size = 200)
+weight2 = np.random.normal(58, size = 200)
+weight = np.append(weight1, weight2)
+
+# Define sex
+sex = ['F'] * 200 + ['M'] * 200
+
+# Define Data Frame
+wdata = pd.DataFrame(list(zip(sex, weight)), columns = ["Sex", "Weight"]) # zip() for zipping two lists
+
+
+w1 = wdata[wdata['Sex'] == 'F'].iloc[:, 1]
+w2 = wdata[wdata['Sex'] == 'M'].iloc[:, 1]
+
+
+wdata[wdata['Sex'] == 'M']
+
+df[df.p1.isin(['SD','HN'])]
+
+import mysql.connector
+
+mysql_root = mysql.connector.connect(
+    host="localhost",
+    user="test",
+    passwd="passwd"
+)
+
+mysql_root = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    passwd="00GUNDAM7Sword/GM"
+)
+
+
+sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}' AND open_dt LIKE '%{3}%'".format(
+    mysql_table,
+    case_information['reason'],
+    case_information['location'],
+    case_information['open_dt']
+)
+
+mysql.execute(sql)
+result = mysql.fetchall()
+
+result[0][1].strftime("%Y-%m-%d %H:%M:%S")[0:10]
+
+def mysql_UPDATE_case_status(case_status):
+    case_information['case_status'] = case_status
+
+    sql = "UPDATE {0} SET case_status = {1} WHERE reason = '{2}' AND location = '{3}'".format(
+        mysql_table,
+        case_information['case_status'],
+        case_information['reason'],
+        case_information['location']
+    )
+
+    mysql.execute(sql)
+    mysql_connect.commit()
+    print(mysql.rowcount, "record(s) affected")
+
+sql = "UPDATE {0} SET case_status = '{1}' WHERE reason = '{2}' AND location = '{3}'".format(
+    mysql_table,
+    case_information['case_status'],
+    case_information['reason'],
+    case_information['location']
+)
+
+case_information['location'] = "87 Blue Hill Ave  Roxbury  MA  02119"
+case_information['reason'] = "Housing"
+
+sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}'".format(
+    mysql_table,
+    case_information['reason'],
+    case_information['location']
+)
+
+mysql.execute(sql)
+result = mysql.fetchall()
+
+result
