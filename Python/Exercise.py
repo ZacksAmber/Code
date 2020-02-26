@@ -2403,8 +2403,12 @@ sql = "UPDATE {0} SET case_status = '{1}' WHERE reason = '{2}' AND location = '{
     case_information['location']
 )
 
+case_information = {}
 case_information['location'] = "87 Blue Hill Ave  Roxbury  MA  02119"
 case_information['reason'] = "Housing"
+
+
+SELECT * FROM sample_311 WHERE reason = 'Housing' AND location = '87 Blue Hill Ave  Roxbury  MA  02119';
 
 sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}'".format(
     mysql_table,
@@ -2415,4 +2419,254 @@ sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}'".format(
 mysql.execute(sql)
 result = mysql.fetchall()
 
-result
+result[0][-1]
+
+l = []
+for i in result:
+    if i[5] == 'Open':
+        l.append(i)
+len(l)
+
+if datetime.datetime.now().date().isoformat() in l:
+    return(result)
+else:
+    return(None) 
+
+l = [1, 2, 3]
+max(l)
+
+class MyClass:
+    x = 5
+    y = 6
+
+
+MyClass().x
+MyClass().y
+MyClass().z
+
+def d_Person(name, age):
+    name = name
+    age = age
+
+# Create a Class named Person:
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def myfunc(self):
+        return("Hello my name is " + self.name)
+
+p1 = Person("Zacks", 25)
+
+def Weather(location):
+    weather = "Sunny"
+    Summary = "{0}: Today is {1}".format(location, weather)
+    return(Summary)
+
+Weather("Boston")
+# 'Boston: Today is Sunny'
+
+# Provide weather information based on location
+def Weather(location):
+    weather = "Sunny" # Assume you have gotten the weather from somewhere.
+    humidity = "20%"
+    Summary = "{0}: Today is {1}, and humidity is {2}".format(location, weather, humidity)
+    return(Summary)
+
+Weather("Boston")
+# 'Boston: Today is Sunny, and humidity is 20%'
+
+
+import datetime
+
+class Weather:
+    def __init__(self, location):
+        self.location = location
+
+    def Date(self, date = 0):
+        self.date = datetime.date.today() + datetime.timedelta(days = date)
+        print("Date: " + self.date.isoformat())
+
+    def Location(self):
+        print("Location: " + self.location)
+        
+    def Weather(self):
+        self.weather = "Sunny"
+        print("Weather: " + self.weather)
+
+    def Humidity(self):
+        self.humidity = "20%"
+        print("Humidity: " + self.humidity)
+
+    def Rain(self):
+        self.rain = "10%"
+        print("Chance of Rain: " + self.rain)
+
+    def Summary(self): # Invoke all functions above
+        for i in range (6):
+            self.Date(i)
+            self.Location()
+            self.Weather()
+            self.Humidity()
+            self.Rain()
+            print("")
+
+location_1 = Weather("Boston")
+location_1.Summary()
+
+"""
+Date: 2020-02-26
+Location: Boston
+Weather: Sunny
+Humidity: 20%
+Chance of Rain: 10%
+
+Date: 2020-02-27
+Location: Boston
+Weather: Sunny
+Humidity: 20%
+Chance of Rain: 10%
+
+Date: 2020-02-28
+Location: Boston
+Weather: Sunny
+Humidity: 20%
+Chance of Rain: 10%
+
+Date: 2020-02-29
+Location: Boston
+Weather: Sunny
+Humidity: 20%
+Chance of Rain: 10%
+
+Date: 2020-03-01
+Location: Boston
+Weather: Sunny
+Humidity: 20%
+Chance of Rain: 10%
+"""
+
+
+# import required modules 
+import requests, json 
+  
+# Enter your API key here 
+api_key = "af239eac3d426ff8aa48238038f3e701"
+  
+# base_url variable to store url 
+base_url = "http://api.openweathermap.org/data/2.5/forecast"
+
+# Give city name 
+city_name = input("Enter city name : ") 
+
+# complete_url variable to store 
+# complete url address 
+complete_url = base_url + "?q=" + city_name + "&appid=" + api_key
+
+# get method of requests module 
+# return response object 
+response = requests.get(complete_url) 
+  
+# json method of response object  
+# convert json format data into 
+# python format data 
+x = response.json() 
+
+x
+
+x['list'][0] # date 0
+
+
+# kelvin unit
+int(x['list'][0]['main']['temp'] - 273.15)
+int(x['list'][0]['main']['temp_min'] - 273.15)
+int(x['list'][0]['main']['temp_max'] - 273.15)
+
+# Weather
+x['list'][0]['weather'][0]['main'] 
+
+# Humidity
+x['list'][0]['main']['humidity']
+
+# Chance of Rain
+x['list'][0]
+
+self.x['list'][date]['rain']['3h']
+
+import datetime
+import requests, json
+
+class Weather:
+    def __init__(self, city_name):
+        self.city_name = city_name
+
+    def API(self):
+        # Enter your API key here 
+        api_key = "af239eac3d426ff8aa48238038f3e701"
+
+        # base_url variable to store url 
+        base_url = "http://api.openweathermap.org/data/2.5/forecast"
+
+        # complete_url variable to store 
+        # complete url address 
+        complete_url = base_url + "?q=" + self.city_name + "&appid=" + api_key
+
+        # get method of requests module 
+        # return response object 
+        response = requests.get(complete_url)
+
+        # json method of response object  
+        # convert json format data into 
+        # python format data 
+        self.x = response.json()
+
+    def Date(self, date = 0):
+        self.date = datetime.date.today() + datetime.timedelta(days = date)
+        print("Date: " + self.date.isoformat())
+
+    def City_name(self):
+        print("City Name: " + self.city_name)
+        
+    def Temperature(self, date = 0):
+        # kelvin unit
+        self.temp = int(self.x['list'][date]['main']['temp'] - 273.15)
+        self.temp_min = int(self.x['list'][date]['main']['temp_min'] - 273.15)
+        self.temp_max = int(self.x['list'][date]['main']['temp_max'] - 273.15)
+
+        print("Temperature: " + str(self.temp) + "°C")
+        print("Min temperature: " + str(self.temp_min) + "°C")
+        print("Max temperature: " + str(self.tempe_max) + "°C")
+    def Weather(self, date = 0):
+        self.weather = self.x['list'][date]['weather'][0]['main']
+        
+        print("Weather: " + self.weather)
+
+    def Humidity(self, date = 0):
+        self.humidity = self.x['list'][date]['main']['humidity']
+
+        print("Humidity: " + str(self.humidity) + "%")
+
+    """ Give up because miss information
+    def Rain(self, date = 0):
+        self.rain = self.x['list'][date]['rain']['3h']
+
+        print("Chance of Rain: " + self.rain)
+    """
+
+    def Summary(self): # Invoke all functions above
+        self.API()
+
+        for i in range (6):
+            self.Date(i)
+            self.City_name()
+            self.Weather(i)
+            self.Temperature(i)
+            self.Humidity(i)
+    #        self.Rain(i)
+            print("")
+
+#city_1 = Weather(input("Input Your City Name: "))
+city_1 = Weather("Boston")
+city_1.Summary()
+
