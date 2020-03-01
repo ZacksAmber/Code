@@ -97,30 +97,28 @@ plt.scatter(centroids_x, centroids_y, marker = 'D', s = 50)
 plt.show()
 
 # Chapter - 1: Course 4
-# Import KMeans
+# Import Modules
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-samples = pd.read_csv('https://raw.githubusercontent.com/ZacksAmber/Code/master/Python/Projects/seeds_dataset.txt', sep="\t",)
+samples = pd.read_csv('https://raw.githubusercontent.com/ZacksAmber/Code/master/Python/Projects/seeds_dataset.txt', sep = "\t", lineterminator = '\n', header = None)
 
-samples
-
-data.columns = ["a", "b", "c", "etc."]
+samples = samples.iloc[:, 0:7]
 
 ks = range(1, 6)
 inertias = []
 
 for k in ks:
     # Create a KMeans instance with k clusters: model
-    ____
+    model = KMeans(n_clusters = k)
     
     # Fit model to samples
-    ____
+    model.fit(samples)
     
     # Append the inertia to the list of inertias
-    ____
+    inertias.append(model.inertia_)
     
 # Plot ks vs inertias
 plt.plot(ks, inertias, '-o')
@@ -128,4 +126,39 @@ plt.xlabel('number of clusters, k')
 plt.ylabel('inertia')
 plt.xticks(ks)
 plt.show()
+
+# Chapter - 1: Course 5
+# Import Modules
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Create a KMeans model with 3 clusters: model
+model = KMeans(n_clusters = 3)
+
+# Use fit_predict to fit model and obtain cluster labels: labels
+labels = model.fit_predict(samples)
+
+# Create a DataFrame with labels and varieties as columns: df
+varieties_1 = ["Kama wheat"] * 70
+varieties_2 = ["Rosa wheat"] * 70
+varieties_3 = ["Canadian wheat"] * 70
+varieties = varieties_1 + varieties_2 + varieties_3
+
+df = pd.DataFrame({'labels': labels, 'varieties': varieties})
+
+# Create crosstab: ct
+ct = pd.crosstab(df['labels'], df['varieties'])
+
+# Display ct
+print(ct)
+
+# Chapter - 1: Course 6
+
+readme = pd.read_csv('http://jse.amstat.org/datasets/fishcatch.txt')
+
+df = pd.read_csv('http://jse.amstat.org/datasets/fishcatch.dat.txt', delimiter = " ", lineterminator = '\n', header = None)
+
+df
 
