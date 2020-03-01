@@ -2557,12 +2557,12 @@ api_key = "af239eac3d426ff8aa48238038f3e701"
 # base_url variable to store url 
 base_url = "http://api.openweathermap.org/data/2.5/forecast"
 
-# Give city name 
-city_name = input("Enter city name : ") 
+# Give Location 
+location = input("Enter Location : ") 
 
 # complete_url variable to store 
 # complete url address 
-complete_url = base_url + "?q=" + city_name + "&appid=" + api_key
+complete_url = base_url + "?q=" + location + "&appid=" + api_key
 
 # get method of requests module 
 # return response object 
@@ -2594,12 +2594,14 @@ x['list'][0]
 
 self.x['list'][date]['rain']['3h']
 
+x['list'][0s]
+
 import datetime
 import requests, json
 
 class Weather:
-    def __init__(self, city_name):
-        self.city_name = city_name
+    def __init__(self, location):
+        self.location = location
 
     def API(self):
         # Enter your API key here 
@@ -2610,7 +2612,8 @@ class Weather:
 
         # complete_url variable to store 
         # complete url address 
-        complete_url = base_url + "?q=" + self.city_name + "&appid=" + api_key
+        #complete_url = base_url + "?q=" + self.location + "&appid=" + api_key
+        complete_url = base_url + "?zip=" + self.location + "&appid=" + api_key
 
         # get method of requests module 
         # return response object 
@@ -2625,18 +2628,18 @@ class Weather:
         self.date = datetime.date.today() + datetime.timedelta(days = date)
         print("Date: " + self.date.isoformat())
 
-    def City_name(self):
-        print("City Name: " + self.city_name)
+    def Location(self):
+        print("Location: " + self.location)
         
     def Temperature(self, date = 0):
-        # kelvin unit
+        # - kelvin unit (273.15)
         self.temp = int(self.x['list'][date]['main']['temp'] - 273.15)
         self.temp_min = int(self.x['list'][date]['main']['temp_min'] - 273.15)
         self.temp_max = int(self.x['list'][date]['main']['temp_max'] - 273.15)
 
         print("Temperature: " + str(self.temp) + "°C")
         print("Min temperature: " + str(self.temp_min) + "°C")
-        print("Max temperature: " + str(self.tempe_max) + "°C")
+        print("Max temperature: " + str(self.temp_max) + "°C")
     def Weather(self, date = 0):
         self.weather = self.x['list'][date]['weather'][0]['main']
         
@@ -2659,14 +2662,65 @@ class Weather:
 
         for i in range (6):
             self.Date(i)
-            self.City_name()
+            self.Location()
             self.Weather(i)
             self.Temperature(i)
             self.Humidity(i)
     #        self.Rain(i)
             print("")
 
-#city_1 = Weather(input("Input Your City Name: "))
-city_1 = Weather("Boston")
-city_1.Summary()
+#location = Weather(input("Input Your Location: "))
+print("Sample 'Zip Code, Country Code': 02115, us")
+location = Weather(input("Input Your 'Zip Code, Country Code': "))
+location.Summary()
 
+
+import plotly.express as px
+
+dir(px.data)
+
+
+import plotly.express as px
+
+df = px.data.gapminder()
+fig = px.scatter(df, x = "gdpPercap", y = "lifeExp", animation_frame = "year", animation_group = "country",
+           size="pop", color = "continent", hover_name = "country", facet_col = "continent",
+           log_x = True, size_max = 45, range_x = [100,100000], range_y = [25,90])
+fig.show()
+
+people <- list(name = c("John", "Joe"), grades = c(99, 98), athlete = c(TRUE, FALSE))
+
+people = {"name": ["John", "Joe"], "grades": [99, 98], "athlete": [True, False]}
+
+people["name"][0]
+
+name = ["John", "Joe"]
+grades = [99, 98]
+athlete = [True, False]
+
+people = [name, grades, athlete]
+
+people
+
+
+SELECT * FROM indicator_data WHERE score != 10 AND classification != 'TP/DE' ORDER BY score \G
+
+
+SELECT * FROM indicator_data WHERE alter_category = 'Atomic' \G
+
+dir(px.colors)
+
+data = pd.read_csv('https://raw.githubusercontent.com/drazenz/heatmap/master/autos.clean.csv')
+
+corr = data.corr()
+ax = sns.heatmap(
+    corr, 
+    vmin=-1, vmax=1, center=0,
+    cmap=sns.diverging_palette(20, 220, n=200),
+    square=True
+)
+ax.set_xticklabels(
+    ax.get_xticklabels(),
+    rotation=45,
+    horizontalalignment='right'
+);

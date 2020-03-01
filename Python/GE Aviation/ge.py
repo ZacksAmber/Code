@@ -16,14 +16,16 @@
 # Requirements:
 # 1. Download the files you in needed. Then run the following code in your shell:
 #    cp *.csv /tmp
-# 2. Your Python needs two modules: mysql-connector-python, pandas
+# 2. Your Python needs two modules: mysql-connector-python, pd
 #    https://zacks.one/2020/02/05/Python-MySQL/#2.4
 # 3. If your MySQL version > 5.6. Make sure you configure it in a right way.
 #    https://zacks.one/2020/02/05/Python-MySQL/#2.7
 # 4. Create a MySQL database.
 
 import mysql.connector
-import pandas
+import pandas as pd
+import numpy as np
+import plotly.express as px
 
 # Set MySQL login information
 mysql_connect = mysql.connector.connect(
@@ -36,13 +38,13 @@ mysql_connect = mysql.connector.connect(
 mysql = mysql_connect.cursor()
 
 # Read data from .csv files
-ge_heat_scores = pandas.read_csv("/tmp/heat_scores.csv")
+ge_heat_scores = pd.read_csv("/tmp/heat_scores.csv")
 
-ge_indicator_data = pandas.read_csv("/tmp/indicator_pairs_data updated.csv")
+ge_indicator_data = pd.read_csv("/tmp/indicator_pairs_data updated.csv")
 ge_indicator_data['indicator_pairs'] = ge_indicator_data['indicator_pairs'].str.strip()
 ge_indicator_data.to_csv("/tmp/indicator_data.csv", index=False)
 
-ge_obfuscated_demo_data = pandas.read_csv("/tmp/obfuscated_demo_data.csv")
+ge_obfuscated_demo_data = pd.read_csv("/tmp/obfuscated_demo_data.csv")
 
 # Set table columns & Import data from .csv file 
 ge_indicator_data.dtypes

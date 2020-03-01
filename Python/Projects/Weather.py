@@ -89,5 +89,10 @@ class Weather:
     #        self.Rain(i)
             print("")
 
+print("Sample Location: boston")
+print("Sample Location: boston, us")
+print("Sample Location: boston, ma, us")
+print("")
 location = Weather(input("Input Your Location: "))
+print("")
 location.Summary()
