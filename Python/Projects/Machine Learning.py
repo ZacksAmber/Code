@@ -100,8 +100,14 @@ plt.show()
 # Import KMeans
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
 
+samples = pd.read_csv('https://raw.githubusercontent.com/ZacksAmber/Code/master/Python/Projects/seeds_dataset.txt', sep="\t",)
 
+samples
+
+data.columns = ["a", "b", "c", "etc."]
 
 ks = range(1, 6)
 inertias = []
@@ -122,3 +128,4 @@ plt.xlabel('number of clusters, k')
 plt.ylabel('inertia')
 plt.xticks(ks)
 plt.show()
+
