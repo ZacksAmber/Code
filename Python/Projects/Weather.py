@@ -60,6 +60,7 @@ class Weather:
         print("Temperature: " + str(self.temp) + "°C")
         print("Min temperature: " + str(self.temp_min) + "°C")
         print("Max temperature: " + str(self.temp_max) + "°C")
+    
     def Weather(self, date = 0):
         self.weather = self.x['list'][date]['weather'][0]['main']
         

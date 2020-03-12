@@ -275,9 +275,7 @@ t
 # NameError: name 't' is not defined
 
 d = {
-  "brand": "Ford",
-  "model": "Mustang",
-  "year": 1964
+  "brand": "Ford",  "model": "Mustang",  "year": 1964
 }
 
 for x in d:
@@ -295,21 +293,15 @@ for b, n in d.items():
 
 s = set(("apple", "banana", "cherry")) # note the double round-brackets
 s
-# {'apple', 'banana',
-
-d = {
-  "brand": "Ford",
-  "model": "Mustang",
-  "year": 1964
+# {'apple', 'banana',d = {
+  "brand": "Ford",  "model": "Mustang",  "year": 1964
 }
 d.update({'brand': 'Ford', 'brand': 'Chevrolet'})
 d
 # {'brand': 'Chevrolet', 'model': 'Mustang', 'year': 1964}
 
 d = {
-  "brand": "Ford",
-  "model": "Mustang",
-  "year": 1964
+  "brand": "Ford",  "model": "Mustang",  "year": 1964
 }
 d.update({'brand': 'Ford', 'brand': 'Chevrolet', 'year': 1964, 'year': 2020})
 d
@@ -318,12 +310,10 @@ d
 x = float(1)
 type(x)
 
-ccp = """ The most crazy terrorist organization,
-which is no democracy, no freedom, and no human right.
+ccp = """ The most crazy terrorist organization,which is no democracy, no freedom, and no human right.
 It must be destroyed on 2020."""
 print(ccp)
-"""The most crazy terrorist organization,
-which is no democracy, no freedom, and no human right.
+"""The most crazy terrorist organization,which is no democracy, no freedom, and no human right.
 It must be destroyed on 2020."""
 
 "Hello World!"[0:5]
@@ -1411,9 +1401,7 @@ exp(2, 10)
 # 1024
 
 person = {
-    "Name": "Zacks",
-    "Age": 25,
-    "Country": "United States"
+    "Name": "Zacks",    "Age": 25,    "Country": "United States"
 }
 
 import tmp as population
@@ -1429,111 +1417,25 @@ print(person["Name"])
 import Math
 dir(Math)
 """
-['__builtins__',
- '__cached__',
- '__doc__',
- '__file__',
- '__loader__',
- '__name__',
- '__package__',
- '__spec__',
- 'exp']
+['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'exp']
 """
 
 import tmp
 dir(tmp)
 """
-['__builtins__',
- '__cached__',
- '__doc__',
- '__file__',
- '__loader__',
- '__name__',
- '__package__',
- '__spec__',
- 'person']
+['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'person']
 """
 
 import platform
 dir(platform)
 """
-['_WIN32_CLIENT_RELEASES',
- '_WIN32_SERVER_RELEASES',
- '__builtins__',
- '__cached__',
- '__copyright__',
- '__doc__',
- '__file__',
- '__loader__',
- '__name__',
- '__package__',
- '__spec__',
- '__version__',
- '_comparable_version',
- '_component_re',
- '_default_architecture',
- '_follow_symlinks',
- '_ironpython26_sys_version_parser',
- '_ironpython_sys_version_parser',
- '_java_getprop',
- '_libc_search',
- '_mac_ver_xml',
- '_node',
- '_norm_version',
- '_platform',
- '_platform_cache',
- '_pypy_sys_version_parser',
- '_sys_version',
- '_sys_version_cache',
- '_sys_version_parser',
- '_syscmd_file',
- '_syscmd_uname',
- '_syscmd_ver',
- '_uname_cache',
- '_ver_output',
- '_ver_stages',
- 'architecture',
- 'collections',
- 'java_ver',
- 'libc_ver',
- 'mac_ver',
- 'machine',
- 'node',
- 'os',
- 'platform',
- 'processor',
- 'python_branch',
- 'python_build',
- 'python_compiler',
- 'python_implementation',
- 'python_revision',
- 'python_version',
- 'python_version_tuple',
- 're',
- 'release',
- 'sys',
- 'system',
- 'system_alias',
- 'uname',
- 'uname_result',
- 'version',
- 'win32_edition',
- 'win32_is_iot',
- 'win32_ver']
+['_WIN32_CLIENT_RELEASES', '_WIN32_SERVER_RELEASES', '__builtins__', '__cached__', '__copyright__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', '__version__', '_comparable_version', '_component_re', '_default_architecture', '_follow_symlinks', '_ironpython26_sys_version_parser', '_ironpython_sys_version_parser', '_java_getprop', '_libc_search', '_mac_ver_xml', '_node', '_norm_version', '_platform', '_platform_cache', '_pypy_sys_version_parser', '_sys_version', '_sys_version_cache', '_sys_version_parser', '_syscmd_file', '_syscmd_uname', '_syscmd_ver', '_uname_cache', '_ver_output', '_ver_stages', 'architecture', 'collections', 'java_ver', 'libc_ver', 'mac_ver', 'machine', 'node', 'os', 'platform', 'processor', 'python_branch', 'python_build', 'python_compiler', 'python_implementation', 'python_revision', 'python_version', 'python_version_tuple', 're', 'release', 'sys', 'system', 'system_alias', 'uname', 'uname_result', 'version', 'win32_edition', 'win32_is_iot', 'win32_ver']
 """
 
 import sys
 sys.path
 """
-['/private/CHAR/folders/31/lj6nmqhx1711vgv7r7g9r_cm0000gp/T/9c5d056e-aad5-4997-99e9-b8991b740258',
- '/Library/Frameworks/Python.framework/Versions/3.8/lib/python38.zip',
- '/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8',
- '/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/lib-dynload',
- '',
- '/Users/zack/Library/Python/3.8/lib/python/site-packages',
- '/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages',
- '/Users/zack/Library/Python/3.8/lib/python/site-packages/IPython/extensions',
- '/Users/zack/.ipython']
+['/private/CHAR/folders/31/lj6nmqhx1711vgv7r7g9r_cm0000gp/T/9c5d056e-aad5-4997-99e9-b8991b740258', '/Library/Frameworks/Python.framework/Versions/3.8/lib/python38.zip', '/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8', '/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/lib-dynload', '', '/Users/zack/Library/Python/3.8/lib/python/site-packages', '/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages', '/Users/zack/Library/Python/3.8/lib/python/site-packages/IPython/extensions', '/Users/zack/.ipython']
  """
 
 import platform
@@ -1543,58 +1445,20 @@ print(platform.python_version())
 import sys
 sys.path
 """
-['/private/CHAR/folders/31/lj6nmqhx1711vgv7r7g9r_cm0000gp/T/c1b404a3-2753-4a56-931a-20c02831e04f',
- '/Users/zack/.vscode/extensions/ms-python.python-2020.1.58038/pythonFiles',
- '/Users/zack/.vscode/extensions/ms-python.python-2020.1.58038/pythonFiles/lib/python',
- '/Users/zack/opt/anaconda3/lib/python37.zip',
- '/Users/zack/opt/anaconda3/lib/python3.7',
- '/Users/zack/opt/anaconda3/lib/python3.7/lib-dynload',
- '',
- '/Users/zack/opt/anaconda3/lib/python3.7/site-packages',
- '/Users/zack/opt/anaconda3/lib/python3.7/site-packages/aeosa',
- '/Users/zack/opt/anaconda3/lib/python3.7/site-packages/IPython/extensions',
- '/Users/zack/.ipython']
+['/private/CHAR/folders/31/lj6nmqhx1711vgv7r7g9r_cm0000gp/T/c1b404a3-2753-4a56-931a-20c02831e04f', '/Users/zack/.vscode/extensions/ms-python.python-2020.1.58038/pythonFiles', '/Users/zack/.vscode/extensions/ms-python.python-2020.1.58038/pythonFiles/lib/python', '/Users/zack/opt/anaconda3/lib/python37.zip', '/Users/zack/opt/anaconda3/lib/python3.7', '/Users/zack/opt/anaconda3/lib/python3.7/lib-dynload', '', '/Users/zack/opt/anaconda3/lib/python3.7/site-packages', '/Users/zack/opt/anaconda3/lib/python3.7/site-packages/aeosa', '/Users/zack/opt/anaconda3/lib/python3.7/site-packages/IPython/extensions', '/Users/zack/.ipython']
 """
 
 import sys
 sys.path.append("/tmp")
 sys.path
 """
-['/private/CHAR/folders/31/lj6nmqhx1711vgv7r7g9r_cm0000gp/T/c1b404a3-2753-4a56-931a-20c02831e04f',
- '/Users/zack/.vscode/extensions/ms-python.python-2020.1.58038/pythonFiles',
- '/Users/zack/.vscode/extensions/ms-python.python-2020.1.58038/pythonFiles/lib/python',
- '/Users/zack/opt/anaconda3/lib/python37.zip',
- '/Users/zack/opt/anaconda3/lib/python3.7',
- '/Users/zack/opt/anaconda3/lib/python3.7/lib-dynload',
- '',
- '/Users/zack/opt/anaconda3/lib/python3.7/site-packages',
- '/Users/zack/opt/anaconda3/lib/python3.7/site-packages/aeosa',
- '/Users/zack/opt/anaconda3/lib/python3.7/site-packages/IPython/extensions',
- '/Users/zack/.ipython',
- '/tmp']
+['/private/CHAR/folders/31/lj6nmqhx1711vgv7r7g9r_cm0000gp/T/c1b404a3-2753-4a56-931a-20c02831e04f', '/Users/zack/.vscode/extensions/ms-python.python-2020.1.58038/pythonFiles', '/Users/zack/.vscode/extensions/ms-python.python-2020.1.58038/pythonFiles/lib/python', '/Users/zack/opt/anaconda3/lib/python37.zip', '/Users/zack/opt/anaconda3/lib/python3.7', '/Users/zack/opt/anaconda3/lib/python3.7/lib-dynload', '', '/Users/zack/opt/anaconda3/lib/python3.7/site-packages', '/Users/zack/opt/anaconda3/lib/python3.7/site-packages/aeosa', '/Users/zack/opt/anaconda3/lib/python3.7/site-packages/IPython/extensions', '/Users/zack/.ipython', '/tmp']
 """
 
 import datetime
 dir(datetime)
 """
-['MAXYEAR',
- 'MINYEAR',
- '__builtins__',
- '__cached__',
- '__doc__',
- '__file__',
- '__loader__',
- '__name__',
- '__package__',
- '__spec__',
- 'date',
- 'datetime',
- 'datetime_CAPI',
- 'sys',
- 'time',
- 'timedelta',
- 'timezone',
- 'tzinfo']
+['MAXYEAR', 'MINYEAR', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'date', 'datetime', 'datetime_CAPI', 'sys', 'time', 'timedelta', 'timezone', 'tzinfo']
  """
 
 import datetime
@@ -1640,19 +1504,13 @@ data['people'] = []
 
 # Add three values to the key people.
 data['people'].append({
-    'name': 'Scott',
-    'website': 'stackabuse.com',
-    'from': 'Nebraska'
+    'name': 'Scott',    'website': 'stackabuse.com',    'from': 'Nebraska'
 })
 data['people'].append({
-    'name': 'Larry',
-    'website': 'google.com',
-    'from': 'Michigan'
+    'name': 'Larry',    'website': 'google.com',    'from': 'Michigan'
 })
 data['people'].append({
-    'name': 'Tim',
-    'website': 'apple.com',
-    'from': 'Alabama'
+    'name': 'Tim',    'website': 'apple.com',    'from': 'Alabama'
 })
 
 # Save data to the file named sample.json. It will be saved to the same working directory as your current Python working directory.
@@ -1687,9 +1545,7 @@ import json
 
 # a Python object (dict):
 x = {
-    "name": "John",
-    "age": 30,
-    "city": "New York"
+    "name": "John",    "age": 30,    "city": "New York"
 }
 
 # convert into JSON:
@@ -1729,15 +1585,8 @@ null
 import json
 
 x = {
-    "name": "John",
-    "age": 30,
-    "married": True,
-    "divorced": False,
-    "children": ("Ann","Billy"),
-    "pets": None,
-    "cars": [
-        {"model": "BMW 230", "mpg": 27.5},
-        {"model": "Ford Edge", "mpg": 24.1}
+    "name": "John",    "age": 30,    "married": True,    "divorced": False,    "children": ("Ann","Billy"),    "pets": None,    "cars": [
+        {"model": "BMW 230", "mpg": 27.5},        {"model": "Ford Edge", "mpg": 24.1}
     ]
 }
 
@@ -1754,8 +1603,7 @@ json.dumps(x, indent=4, separators=(". ", "= "))
     "children" = [
         "Ann".
         "Billy"
-    ],
-    "pets" = null.
+    ],    "pets" = null.
     "cars" = [
         {
             "model" = "BMW 230".
@@ -1772,25 +1620,15 @@ json.dumps(x, indent=4, separators=(". ", "= "))
 json.dumps(x, indent=4, sort_keys=True)
 """
 {
-    "age": 30,
-    "cars": [
+    "age": 30,    "cars": [
         {
-            "model": "BMW 230",
-            "mpg": 27.5
-        },
-        {
-            "model": "Ford Edge",
-            "mpg": 24.1
+            "model": "BMW 230",            "mpg": 27.5
+        },        {
+            "model": "Ford Edge",            "mpg": 24.1
         }
-    ],
-    "children": [
-        "Ann",
-        "Billy"
-    ],
-    "divorced": false,
-    "married": true,
-    "name": "John",
-    "pets": null
+    ],    "children": [
+        "Ann",        "Billy"
+    ],    "divorced": false,    "married": true,    "name": "John",    "pets": null
 }
 """
 
@@ -1805,33 +1643,24 @@ print(c.hump(txt))
 import mysql.connector
 
 root_db = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password='00GUNDAM7Sword/GM',
-    auth_plugin='mysql_native_password'
+    host='localhost',    user='root',    password='00GUNDAM7Sword/GM',    auth_plugin='mysql_native_password'
 )
 
 mysql_root = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    passwd='00GUNDAM7Sword/GM'
+    host='localhost',    user='root',    passwd='00GUNDAM7Sword/GM'
 )
 
 import mysql.connector
 
 root_db = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password='password'
+    host='localhost',    user='root',    password='password'
 
 
 
 import mysql.connector
 
 mysql_root = mysql.connector.connect(
-    host="localhost",
-    user="your_username",
-    passwd="your_password"
+    host="localhost",    user="your_username",    passwd="your_password"
 )
 
 root_cursor = mysql_root.cursor()
@@ -1846,9 +1675,7 @@ root_cursor.execute("CREATE USER 'test'@'localhost' \
 import mysql.connector
 
 mysql_test = mysql.connector.connect(
-    host="localhost",
-    user="test",
-    passwd="passwd"
+    host="localhost",    user="test",    passwd="passwd"
 )
 
 import urllib2
@@ -1878,10 +1705,7 @@ bos311.head(10)
 import mysql.connector
 
 mysql_test = mysql.connector.connect(
-    host="localhost",
-    user="test",
-    passwd="passwd",
-    database="BOS311"
+    host="localhost",    user="test",    passwd="passwd",    database="BOS311"
 )
 
 test_cursor = mysql_test.cursor()
@@ -1900,10 +1724,7 @@ Test1234
 import mysql.connector
 
 mysql_test = mysql.connector.connect(
-    host="cloud-analytics-db.crmnbmzm85lc.us-east-1.rds.amazonaws.com",
-    user="admin",
-    passwd="Test1234",
-    database="bosbot"
+    host="cloud-analytics-db.crmnbmzm85lc.us-east-1.rds.amazonaws.com",    user="admin",    passwd="Test1234",    database="bosbot"
 )
 
 test_cursor = mysql_test.cursor()
@@ -1971,10 +1792,7 @@ SELECT * from test WHERE location_street_name='8 Clover St';
 import mysql.connector
 
 mysql_test = mysql.connector.connect(
-    host="localhost",
-    user="test",
-    passwd="passwd",
-    database="BOS311"
+    host="localhost",    user="test",    passwd="passwd",    database="BOS311"
 )
 
 test_cursor = mysql_test.cursor()
@@ -1995,10 +1813,7 @@ result[0]
 import mysql.connector
 
 mysql_test = mysql.connector.connect(
-    host="localhost",
-    user="test",
-    passwd="passwd",
-    database="BOS311"
+    host="localhost",    user="test",    passwd="passwd",    database="BOS311"
 )
 
 test_cursor = mysql_test.cursor()
@@ -2013,9 +1828,7 @@ result = test_cursor.fetchall()
 
 def judge_duplicated():
     sql = "SELECT * FROM test WHERE reason = '{0}' AND location_zipcode = '{1}' AND '{2}'".format(
-    case_information['reason'],
-    case_information['location_zipcode'],
-    case_information['location_street_name']
+    case_information['reason'],    case_information['location_zipcode'],    case_information['location_street_name']
 )
 
     test_cursor.execute(sql)
@@ -2034,11 +1847,7 @@ SELECT * FROM test WHERE location_zipcode = "02203" AND open_dt LIKE "2020-01-22
 
 def judge_date():
     sql = "SELECT * FROM test WHERE reason = '{0}' AND location_zipcode = '{1}' AND '{2}' AND case_status = '{3}' AND open_dt LIKE '{4}%'".format(
-        case_information['reason'],
-        case_information['location_zipcode'],
-        case_information['location_street_name'],
-        case_information['case_status'],
-        case_information['open_dt']
+        case_information['reason'],        case_information['location_zipcode'],        case_information['location_street_name'],        case_information['case_status'],        case_information['open_dt']
     )
 
     test_cursor.execute(sql)
@@ -2073,11 +1882,7 @@ case_information
 
 def judge_date():
     sql = "SELECT * FROM test WHERE reason = '{0}' AND location_zipcode = '{1}' AND '{2}' AND case_status = '{3}' AND open_dt LIKE '{4}%'".format(
-        case_information['reason'],
-        case_information['location_zipcode'],
-        case_information['location_street_name'],
-        case_information['case_status'],
-        case_information['open_dt']
+        case_information['reason'],        case_information['location_zipcode'],        case_information['location_street_name'],        case_information['case_status'],        case_information['open_dt']
     )
 
     test_cursor.execute(sql)
@@ -2098,10 +1903,7 @@ git reset --soft HEAD~7
 import mysql.connector
 
 mysql_test = mysql.connector.connect(
-    host="cloud-analytics-db.crmnbmzm85lc.us-east-1.rds.amazonaws.com",
-    user="admin",
-    passwd="Test1234",
-    database="bosbot"
+    host="cloud-analytics-db.crmnbmzm85lc.us-east-1.rds.amazonaws.com",    user="admin",    passwd="Test1234",    database="bosbot"
 )
 
 
@@ -2119,11 +1921,7 @@ if _name_ == '_main_':
 
 def judge_date():
     sql = "SELECT * FROM test WHERE reason = '{0}' AND location_zipcode = '{1}' AND '{2}' AND case_status = '{3}' AND open_dt LIKE '{4}%'".format(
-        case_information['reason'],
-        case_information['location_zipcode'],
-        case_information['location_street_name'],
-        case_information['case_status'],
-        case_information['open_dt']
+        case_information['reason'],        case_information['location_zipcode'],        case_information['location_street_name'],        case_information['case_status'],        case_information['open_dt']
     )
 
     test_cursor.execute(sql)
@@ -2358,23 +2156,16 @@ df[df.p1.isin(['SD','HN'])]
 import mysql.connector
 
 mysql_root = mysql.connector.connect(
-    host="localhost",
-    user="test",
-    passwd="passwd"
+    host="localhost",    user="test",    passwd="passwd"
 )
 
 mysql_root = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="00GUNDAM7Sword/GM"
+    host="localhost",    user="root",    passwd="00GUNDAM7Sword/GM"
 )
 
 
 sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}' AND open_dt LIKE '%{3}%'".format(
-    mysql_table,
-    case_information['reason'],
-    case_information['location'],
-    case_information['open_dt']
+    mysql_table,    case_information['reason'],    case_information['location'],    case_information['open_dt']
 )
 
 mysql.execute(sql)
@@ -2386,10 +2177,7 @@ def mysql_UPDATE_case_status(case_status):
     case_information['case_status'] = case_status
 
     sql = "UPDATE {0} SET case_status = {1} WHERE reason = '{2}' AND location = '{3}'".format(
-        mysql_table,
-        case_information['case_status'],
-        case_information['reason'],
-        case_information['location']
+        mysql_table,        case_information['case_status'],        case_information['reason'],        case_information['location']
     )
 
     mysql.execute(sql)
@@ -2397,10 +2185,7 @@ def mysql_UPDATE_case_status(case_status):
     print(mysql.rowcount, "record(s) affected")
 
 sql = "UPDATE {0} SET case_status = '{1}' WHERE reason = '{2}' AND location = '{3}'".format(
-    mysql_table,
-    case_information['case_status'],
-    case_information['reason'],
-    case_information['location']
+    mysql_table,    case_information['case_status'],    case_information['reason'],    case_information['location']
 )
 
 case_information = {}
@@ -2411,9 +2196,7 @@ case_information['reason'] = "Housing"
 SELECT * FROM sample_311 WHERE reason = 'Housing' AND location = '87 Blue Hill Ave  Roxbury  MA  02119';
 
 sql = "SELECT * FROM {0} WHERE reason = '{1}' AND location = '{2}'".format(
-    mysql_table,
-    case_information['reason'],
-    case_information['location']
+    mysql_table,    case_information['reason'],    case_information['location']
 )
 
 mysql.execute(sql)
@@ -2683,9 +2466,7 @@ dir(px.data)
 import plotly.express as px
 
 df = px.data.gapminder()
-fig = px.scatter(df, x = "gdpPercap", y = "lifeExp", animation_frame = "year", animation_group = "country",
-           size="pop", color = "continent", hover_name = "country", facet_col = "continent",
-           log_x = True, size_max = 45, range_x = [100,100000], range_y = [25,90])
+fig = px.scatter(df, x = "gdpPercap", y = "lifeExp", animation_frame = "year", animation_group = "country",           size="pop", color = "continent", hover_name = "country", facet_col = "continent",           log_x = True, size_max = 45, range_x = [100,100000], range_y = [25,90])
 fig.show()
 
 people <- list(name = c("John", "Joe"), grades = c(99, 98), athlete = c(TRUE, FALSE))
@@ -2715,12 +2496,439 @@ data = pd.read_csv('https://raw.githubusercontent.com/drazenz/heatmap/master/aut
 corr = data.corr()
 ax = sns.heatmap(
     corr, 
-    vmin=-1, vmax=1, center=0,
-    cmap=sns.diverging_palette(20, 220, n=200),
-    square=True
+    vmin=-1, vmax=1, center=0,    cmap=sns.diverging_palette(20, 220, n=200),    square=True
 )
 ax.set_xticklabels(
-    ax.get_xticklabels(),
-    rotation=45,
-    horizontalalignment='right'
+    ax.get_xticklabels(),    rotation=45,    horizontalalignment='right'
 );
+
+2.14 - 2.29 586
+3.1 - 1.31 1000
+4.1 - 4.30
+5.1 - 5.31
+6.1 - 6.30
+7.1 - 7.20
+
+
+-994.88 + 240.22 + 5463.78 + 2048.64 + 315.18 - 1900.06
+
+cost = 400 * 67.8 + 800 * 67.3425 + 50 * 66.35
+
+income = 75.75 * 650 + 76.47 * 600
+
+income - cost
+
+100 * 1.1 ** 7
+
+l = [0, 1, 2, 3]
+l[2:] = 4, 5, 6, 8, 9 ,10
+
+l
+# [0, 1, 4, 5, 6, 8, 9, 10]
+
+l = [0, 1, 2, 3]
+l = l + [4]
+
+l
+# [0, 1, 2, 3, 4]
+
+areas = ["hallway", 11.25, "kitchen", 18.0,
+        "chill zone", 20.0, "bedroom", 10.75,
+         "bathroom", 10.50, "poolhouse", 24.5,
+         "garage", 15.45]
+
+del(areas[-4:-2])
+
+areas
+
+
+# Create list areas
+areas = [11.25, 18.0, 20.0, 10.75, 9.50]
+
+# Create areas_copy
+areas_copy = areas.copy()
+
+# Change areas_copy
+areas_copy[0] = 5.0
+
+# Print areas
+print(areas)
+# [11.25, 18.0, 20.0, 10.75, 9.5]
+
+help(complex())
+?complex()
+
+# Create list areas
+areas = [11.25, 18.0, 20.0, 10.75, 9.50]
+
+# Print out the index of the element 20.0
+areas.index(20.0)
+
+# Print out how often 9.50 appears in areas
+print(areas.count(9.50))
+
+# Create list areas
+areas = [11.25, 18.0, 20.0, 10.75, 9.50]
+
+# Print out the index of the element 20.0
+print(areas.index(20.0))
+
+# Print out how often 9.50 appears in areas
+print(areas.count(9.50))
+
+
+import math
+math.pi
+
+math.pi ** 2
+
+math.pi * math.pi
+
+math.radians(360)
+
+help(math.radians)
+
+
+height = [1.73, 1.68, 1.71, 1.89, 1.79]
+weight = [65.4, 59.2, 63.6, 88.4, 68.7]
+
+height * weight
+# TypeError: can't multiply sequence by non-int of type 'list'
+
+h_w = [round(height[i] * weight[i], 3) for i in range(len(height))]
+
+h_w
+# [113.142, 99.456, 108.756, 167.076, 122.973]
+
+
+h_w = []
+for i in range(len(height)):
+    h_w.append(round(height[i] * weight[i], 3))
+
+print(h_w)
+# [113.14, 99.46, 108.76, 167.08, 122.97]
+
+import numpy as np
+
+height = np.array([1.73, 1.68, 1.71, 1.89, 1.79])
+weight = np.array([65.4, 59.2, 63.6, 88.4, 68.7])
+
+print(height * weight)
+# [113.142  99.456 108.756 167.076 122.973]
+
+np.zeros(2)
+array([0., 0.])
+
+import numpy as np
+
+a = np.array([(1, 2, 3), (4, 5, 6), (7, 8, 9)])
+
+print(a)
+# [[1 2 3]
+# [4 5 6]
+# [7 8 9]]
+
+a
+# array([[1, 2, 3],
+#        [4, 5, 6],
+#        [7, 8, 9]])
+
+a = np.array([2, 1, 5, 3, 7, 4, 6, 8])
+
+np.sort(a)
+# array([1, 2, 3, 4, 5, 6, 7, 8])
+
+a = np.array([2, 1, 5, 3, 7, 4, 6, 8])
+
+np.sort(-a)
+# 
+
+
+height = [1.73, 1.68, 1.71, 1.89, 1.79]
+weight = [65.4, 50.0, 69.6, 88.4, 68.7]
+values = [(height[i], weight[i]) for i in range(len(height))]
+
+dtype = [('height', float), ('weight', float)]
+h_w = np.array(values, dtype = dtype)
+
+h_w
+# array([(1.73, 65.4), (1.68, 50. ), (1.71, 69.6), (1.89, 88.4),
+#        (1.79, 68.7)], dtype=[('height', '<f8'), ('weight', '<f8')])
+
+np.sort(h_w, order = 'height')
+# array([(1.68, 50. ), (1.71, 69.6), (1.73, 65.4), (1.79, 68.7),
+#        (1.89, 88.4)], dtype=[('height', '<f8'), ('weight', '<f8')])
+
+np.sort(h_w, order = 'weight')
+# array([(1.68, 50. ), (1.73, 65.4), (1.79, 68.7), (1.71, 69.6),
+#        (1.89, 88.4)], dtype=[('height', '<f8'), ('weight', '<f8')])
+
+np.sort(h_w, order = 'height') == np.sort(h_w, axis = -1)
+# array([ True,  True,  True,  True,  True])
+
+np.sort(h_w, order = 'weight') == np.sort(h_w, axis = 1)
+# 
+
+import numpy as np
+
+a = np.array([1, 2, 3, 4])
+b = np.array([5, 6, 7, 8])
+np.concatenate((a, b))
+# array([1, 2, 3, 4, 5, 6, 7, 8])
+
+
+x = np.array([[1, 2], [3, 4]])
+y = np.array([[5, 6], [7, 8]])
+np.concatenate((x, y), axis = 0)
+# array([[1, 2],
+#       [3, 4],
+#       [5, 6],
+#       [7, 8]])
+
+x = np.array([[1, 2], [3, 4]])
+y = np.array([[5, 6], [7, 8]])
+np.concatenate((x, y), axis = 1)
+# array([[1, 2, 5, 6],
+#        [3, 4, 7, 8]])
+
+# List
+a = [1, 2, 3, 4]
+b = [5, 6, 7, 8]
+
+a + b
+# [1, 2, 3, 4, 5, 6, 7, 8]
+
+# ndarray
+a = np.array([1, 2, 3, 4])
+b = np.array([5, 6, 7, 8])
+
+a + b
+# array([ 6,  8, 10, 12])
+
+
+import numpy as np
+
+height = [1.73, 1.68, 1.71, 1.89, 1.79]
+weight = [65.4, 59.2, 63.6, 88.4, 68.7]
+
+np_height = np.array(height)
+np_weight = np.array(weight)
+
+bmi = np_weight / np_height ** 2
+bmi = np.around(bmi, 3)
+
+bmi
+# array([21.852, 20.975, 21.75 , 24.747, 21.441])
+
+bmi > 24
+# array([False, False, False,  True, False])
+
+bmi[bmi > 24]
+# array([24.747])
+
+l = [1, 2, 3]
+l * 3
+
+x = ["a", "b", "c"]
+x[1]
+
+np_x = np.array(x)
+np_x[1]
+
+import numpy as np
+
+l = [1, 2, 3]
+
+print(l)
+# [1, 2, 3]
+
+import numpy as np
+
+a = np.array([1, 2, 3])
+
+a.shape
+# (3,)
+np.sum(a, axis = 0)
+# 6
+
+a[0]
+# 1
+a[1]
+# 2
+a[2]
+# 3
+
+print(a)
+# [1 2 3]
+a
+# array([1, 2, 3])
+
+import numpy as np
+
+a = np.array([[1, 2, 3], [4, 5, 6]])
+
+a.shape
+# (2, 3)
+a
+# array([[1, 2, 3],
+#        [4, 5, 6]])
+
+np.sum(a, axis = 0) # the sum of the array by row
+# array([5, 7, 9])
+np.sum(a, axis = 1) # the sum of the array by column
+# array([ 6, 15])
+
+a[0] # the first row
+# array([1, 2, 3])
+a[1] # the second row
+# array([4, 5, 6])
+
+a[0][0] # the element of the first row and the first column
+# 1
+a[1][2] # the element of the second row and the third column
+# 6
+a[-1][-1] # the element of the last row and the last column
+# 6
+
+
+import numpy as np
+
+a = np.array([[[0, 1, 2, 3], [4, 5, 6, 7]],
+             [[8, 9, 10, 11], [12, 13, 14, 15]]])
+
+
+a.shape
+# (2, 2, 4)
+a[0] # axis = 0
+# array([[0, 1, 2, 3],
+#        [4, 5, 6, 7]])
+a[1] # axis = 1
+# array([[ 8,  9, 10, 11],
+#        [12, 13, 14, 15]])
+
+a[0][0] #
+# array([0, 1, 2, 3])
+a[0][1]
+# array([4, 5, 6, 7])
+a[1][0]
+# array([ 8,  9, 10, 11])
+a[1][1]
+# array([12, 13, 14, 15])
+
+a[0][0][0]
+# 0
+a[0][0][1]
+# 1
+a[-1][-1][-1]
+# 15
+
+height = [1.73, 1.68, 1.71, 1.89, 1.79]
+weight = [65.4, 59.2, 63.6, 88.4, 68.7]
+
+n_2d = np.array([[1.73, 1.68, 1.71, 1.89, 1.79], [65.4, 59.2, 63.6, 88.4, 68.7]])
+n_2d.shape # 2 rows, 5 columns
+
+np_mat = np.array([[1, 2],
+                   [3, 4],
+                   [5, 6]])
+np_mat * 2
+np_mat + np.array([10, 10])
+np_mat + np_mat
+
+import numpy as np
+
+a = np.array([1, 2, 3])
+
+a[0]
+# 1
+a[-1]
+# 3
+a[0:2]
+# array([1, 2])
+a[1:]
+# array([2, 3])
+a[:-2]
+# array([1])
+import numpy as np
+a = np.array([[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]])
+
+a
+# array([[ 0,  1,  2,  3],
+#        [ 4,  5,  6,  7],
+#        [ 8,  9, 10, 11],
+#        [12, 13, 14, 15]])
+
+a.shape # 4 rows, 4 columns
+# (4, 4)
+
+a < 5
+# array([[ True,  True,  True,  True],
+#        [ True, False, False, False],
+#        [False, False, False, False],
+#        [False, False, False, False]])
+
+a[a < 5]
+# array([0, 1, 2, 3, 4])
+
+a[a >= 5]
+# array([ 5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15])
+
+a[a%2 == 0]
+# array([ 0,  2,  4,  6,  8, 10, 12, 14])
+
+b = a[(a > 5) | (a == 5)]
+b
+# array([ 5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15])
+
+c = a[(a > 2) & (a < 11)]
+c
+# array([ 3,  4,  5,  6,  7,  8,  9, 10])
+
+d = np.nonzero(a < 5)
+d # row + column
+# (array([0, 0, 0, 0, 1]), array([0, 1, 2, 3, 0]))
+
+
+list_of_coordinates = list(zip(d[0], d[1]))
+
+for coord in list_of_coordinates:
+    print(coord)
+# (0, 0)
+# (0, 1)
+# (0, 2)
+# (0, 3)
+# (1, 0)
+
+a[d]
+# array([0, 1, 2, 3, 4])
+
+a[0][0]
+# 0
+a[1][1]
+# 5
+a[-1][-1]
+# 15
+
+a[0:1, 1:3]
+# array([[1, 2]])
+a[0:3, 2:]
+# array([[ 2,  3],
+#        [ 6,  7],
+#        [10, 11]])
+
+index = np.nonzero(a < 5)
+type(index)
+
+import os
+
+os.getcwd()
+
+os.chdir('/Users/zacks/Desktop/Code/Python/Projects')
+
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("MLB.csv")
+df.head()
+
+np_baseball = np.array(df)
