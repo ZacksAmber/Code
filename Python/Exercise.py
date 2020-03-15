@@ -2928,7 +2928,20 @@ os.chdir('/Users/zacks/Desktop/Code/Python/Projects')
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("MLB.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/ZacksAmber/Code/master/Python/Projects/MLB.csv")
 df.head()
 
+np_baseball[:, 3]
+
+df.isnull()
+
+np.corrcoef(df['Height(inches)'][:100], df['Weight(pounds)'][:100])
+# array([[1.        , 0.54518481],
+#        [0.54518481, 1.        ]])
+
 np_baseball = np.array(df)
+np.corrcoef(np_baseball[:100, 3].astype(float), np_baseball[:100, 4].astype(float))
+# array([[1.        , 0.54518481],
+#        [0.54518481, 1.        ]])
+
+df[df.iloc[:, 3]]

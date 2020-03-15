@@ -29,6 +29,30 @@ ys = points[:, 1]
 plt.scatter(xs, ys)
 plt.show()
 
+# Import KMeans
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+# Create a KMeans instance with 3 clusters: model
+model = KMeans(n_clusters = 3)
+
+# Fit model to points
+model.fit(points)
+# model.labels_
+# model.cluster_centers_
+
+# Determine the cluster labels of new_points: labels
+labels = model.predict(points)
+
+print(labels)
+
+plt.scatter(xs, ys, c = labels)
+plt.show()
+
+import plotly.express as px
+fig = px.scatter(points, x = points[:, 0], y = points[:, 1])
+fig.show()
+
 
 # Chapter - 1: Course 2
 """
@@ -80,7 +104,6 @@ labels = model.predict(new_points)
 # Print cluster labels of new_points
 print(labels)
 
-
 # Chapter - 1: Course 3
 
 # Import pyplot
@@ -111,11 +134,20 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
+# data source: https://archive.ics.uci.edu/ml/datasets/seeds
+# Data Set Information:
+"""
+The examined group comprised kernels belonging to three different varieties of wheat: Kama, Rosa and Canadian, 70 elements each, randomly selected for
+the experiment. High quality visualization of the internal kernel structure was detected using a soft X-ray technique. It is non-destructive and considerably cheaper than other more sophisticated imaging techniques like scanning microscopy or laser technology. The images were recorded on 13x18 cm X-ray KODAK plates. Studies were conducted using combine harvested wheat grain originating from experimental fields, explored at the Institute of Agrophysics of the Polish Academy of Sciences in Lublin.
+"""
+
 samples = pd.read_csv('https://raw.githubusercontent.com/ZacksAmber/Code/master/Python/DataCamp/Python/Machine%20Learning/Unsupervised%20Learning%20in%20Python/seeds_dataset.txt', sep = "\t", lineterminator = '\n', header = None)
 
-samples = samples.iloc[:, 0:7]
+samples.columns = ['area A', 'perimeter P', 'compactness C', 'length of kernel', 'width of kernel', 'asymmetry coefficient', 'length of kernel groove', 'species id']
 
-ks = range(1, 6)
+# samples = samples.iloc[:, 0:7]
+
+ks = range(1, 6) # the 8th column is the species id
 inertias = []
 
 for k in ks:
@@ -123,7 +155,7 @@ for k in ks:
     model = KMeans(n_clusters = k)
     
     # Fit model to samples
-    model.fit(samples)
+    model.fit(samples.iloc[:, 0:7])
     
     # Append the inertia to the list of inertias
     inertias.append(model.inertia_)
@@ -146,15 +178,20 @@ import numpy as np
 model = KMeans(n_clusters = 3)
 
 # Use fit_predict to fit model and obtain cluster labels: labels
-labels = model.fit_predict(samples)
+labels = model.fit_predict(samples.iloc[:, 0:7])
 
-# Create a DataFrame with labels and varieties as columns: df
+# Create a DataFrame labels
+labels = pd.DataFrame(labels, columns = ['labels'])
+
+# Create a DataFrame varieties
 varieties_1 = ["Kama wheat"] * 70
 varieties_2 = ["Rosa wheat"] * 70
 varieties_3 = ["Canadian wheat"] * 70
 varieties = varieties_1 + varieties_2 + varieties_3
+varieties = pd.DataFrame(varieties, columns = ['varieties'])
 
-df = pd.DataFrame({'labels': labels, 'varieties': varieties})
+# Combine varieties and labels
+df = pd.concat([varieties, labels], axis = 1)
 
 # Create crosstab: ct
 ct = pd.crosstab(df['labels'], df['varieties'])
