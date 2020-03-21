@@ -201,3 +201,170 @@ ct = pd.crosstab(df['labels'], df['species'])
 
 # Display ct
 print(ct)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Unsupervised Machine Learning - factor variables
+# Extract rows where alert_category == "Atomic
+ge3 = ge[ge.alert_category == "Atomic"]
+
+# Extract sample from ge3, drop useless columns
+df = ge3.drop(columns=["classification", "alert_category", "alert_type", "score", "risk_factor", "avg_score", "city", "state_name"])
+df_f = df.copy()
+
+# Factorize variables
+l = ['owner_name', 'hru', 'indicator_pairs', 'person_type', 'person_status', 'ge_hire_date', 'country_name', 'function_group', 'job_function', 'career_band', 'industry_focus_name']
+
+for i in l:
+    df_f[i], uniques = pd.factorize(df_f[i])
+
+
+# Standardization
+scaler = StandardScaler()
+scaler.fit(df_f)
+
+df_scaled = scaler.transform(df_f)
+df_scaled = pd.DataFrame(df_scaled, columns=df_f.columns)
+
+# The number of clusters - Elbow Chart
+# The number of columns is the number of dimensions
+nCol = df_scaled.shape[1]
+
+ks = range(1, nCol)
+inertias = [] # define a empty list
+
+for k in ks:
+    # Create a KMeans instance with k clusters: model
+    model = KMeans(n_clusters=k)
+    
+    # Fit model to samples
+    model.fit(df_scaled)
+    
+    # Append the inertia to the list of inertias
+    inertias.append(model.inertia_)
+    
+# Draw the Elbow Chart
+fig = px.line(x = ks, y = inertias, render_mode = 'svg',
+             title = 'Elbow Chart',
+             height = 800)
+fig.show()
+
+# Unsupervised Machine Learning
+kmeans = KMeans(n_clusters=4)
+
+pipeline = make_pipeline(scaler, kmeans) # use pipline to combine scaler & kmeans
+pipeline.fit(df_scaled)
+
+scaled_labels = pipeline.predict(df_scaled)
+result = pd.crosstab(scaled_labels, ge3["classification"])
+result
+
+
+
+
+
+
+
+
+
+
+
+
+# Unsupervised Machine Learning - dummy variables
+# Extract rows where alert_category == "Atomic
+ge4 = ge[ge.alert_category == "Atomic"]
+
+# Extract sample from ge3, drop useless columns
+df = ge4.drop(columns=["alert_category", "alert_type", "city", "state_name"])
+
+# Get dummy variables
+df_d = pd.get_dummies(df)
+
+# Replace Null to -1
+#df_d.replace([None], ["-1"], inplace=True)
+
+# Unsupervised Machine Learning
+kmeans = KMeans(n_clusters=11)
+
+pipeline = make_pipeline(scaler, kmeans) # use pipline to combine scaler & kmeans
+pipeline.fit(df_d)
+
+labels = pipeline.predict(df_d)
+
+result = pd.crosstab(labels, ge3["classification"])
+result
+
+
+
+
+
+
+
+# Import necessary modules
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
+
+# Create feature and target arrays
+X = df_scaled
+y = ge3["classification"]
+
+# Split into training and test set
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state=100, stratify=y)
+
+
+# Create a k-NN classifier with 7 neighbors: knn
+knn = KNeighborsClassifier(n_neighbors=4)
+
+# Fit the classifier to the training data
+knn.fit(X_train, y_train)
+
+
+# Setup arrays to store train and test accuracies
+neighbors = np.arange(1, 11)
+train_accuracy = np.empty(len(neighbors))
+test_accuracy = np.empty(len(neighbors))
+
+# Loop over different values of k
+for i, k in enumerate(neighbors):
+    # Setup a k-NN Classifier with k neighbors: knn
+    knn = KNeighborsClassifier(n_neighbors=k)
+
+    # Fit the classifier to the training data
+    knn.fit(X_train, y_train)
+    
+    #Compute accuracy on the training set
+    train_accuracy[i] = knn.score(X_train, y_train)
+
+    #Compute accuracy on the testing set
+    test_accuracy[i] = knn.score(X_test, y_test)
+
+
+# Generate plot
+plt.title('k-NN: Varying Number of Neighbors')
+plt.plot(neighbors, test_accuracy, label = 'Testing Accuracy')
+plt.plot(neighbors, train_accuracy, label = 'Training Accuracy')
+plt.legend()
+plt.xlabel('Number of Neighbors')
+plt.ylabel('Accuracy')
+plt.rcParams['figure.figsize'] = (8.0, 4.0) # 设置figure_size尺寸
+plt.rcParams['figure.dpi'] = 500 #分辨率
+plt.rcParams['image.interpolation'] = 'nearest'
+plt.rcParams['image.cmap'] = 'gray'
+plt.show()
+
+pd.DataFrame({"Train Accuracy": train_accuracy, "Test Accuracy": test_accuracy})
+
+y_pred = knn.predict(X_test)
+pred = pd.DataFrame({"Classification": y_test, "Predicted classification": y_pred})
+pred

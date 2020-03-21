@@ -1,0 +1,145 @@
+# get_quote
+
+{'symbol': 'JBLU',
+ 'companyName': 'JetBlue Airways Corp.',
+ 'primaryExchange': 'NASDAQ',
+ 'calculationPrice': 'tops',
+ 'open': None,
+ 'openTime': None,
+ 'openSource': 'official',
+ 'close': None,
+ 'closeTime': None,
+ 'closeSource': 'official',
+ 'high': 8.28,
+ 'highTime': 1584637697564,
+ 'highSource': '15 minute delayed price',
+ 'low': 6.701,
+ 'lowTime': 1584625544398,
+ 'lowSource': '15 minute delayed price',
+ 'latestPrice': 7.97,
+ 'latestSource': 'IEX real time price',
+ 'latestTime': '1:22:48 PM',
+ 'latestUpdate': 1584638568770,
+ 'latestVolume': 6906560,
+ 'iexRealtimePrice': 7.97,
+ 'iexRealtimeSize': 2,
+ 'iexLastUpdated': 1584638568770,
+ 'delayedPrice': None,
+ 'delayedPriceTime': None,
+ 'oddLotDelayedPrice': None,
+ 'oddLotDelayedPriceTime': None,
+ 'extendedPrice': None,
+ 'extendedChange': None,
+ 'extendedChangePercent': None,
+ 'extendedPriceTime': None,
+ 'previousClose': 7.66,
+ 'previousVolume': 18738725,
+ 'change': 0.31,
+ 'changePercent': 0.04047,
+ 'volume': 6906560,
+ 'iexMarketPercent': 0.03486612727609693,
+ 'iexVolume': 240805,
+ 'avgTotalVolume': 10662834,
+ 'iexBidPrice': 7.15,
+ 'iexBidSize': 200,
+ 'iexAskPrice': 0,
+ 'iexAskSize': 0,
+ 'iexOpen': None,
+ 'iexOpenTime': None,
+ 'iexClose': 7.98,
+ 'iexCloseTime': 1584638568770,
+ 'marketCap': 2249149940,
+ 'peRatio': 4.12,
+ 'week52High': 21.65,
+ 'week52Low': 7.01,
+ 'ytdChange': -0.554024,
+ 'lastTradeTime': 1584638568770,
+ 'isUSMarketOpen': True}
+
+# get_balance_sheet
+
+{'symbol': 'JBLU',
+ 'balancesheet': [{'reportDate': '2019-12-31',
+   'fiscalDate': '2019-12-31',
+   'currency': 'USD',
+   'currentCash': 959000000, # 现金及现金等价物
+   'shortTermInvestments': 369000000, # 短期投资
+   'receivables': 231000000, # 应收账款
+   'inventory': 81000000, # 存货
+   'otherCurrentAssets': 146000000,
+   'currentAssets': 1786000000, # 流动资产合计
+   'longTermInvestments': 100000000,
+   'propertyPlantEquipment': 9526000000,
+   'goodwill': None,
+   'intangibleAssets': 102000000,
+   'otherAssets': 404000000,
+   'totalAssets': 11918000000, # 总资产
+   'accountsPayable': 401000000,
+   'currentLongTermDebt': 344000000,
+   'otherCurrentLiabilities': 1790000000,
+   'totalCurrentLiabilities': 2663000000, # 流动负债合计
+   'longTermDebt': 2680000000,
+   'otherLiabilities': 525000000,
+   'minorityInterest': 0,
+   'totalLiabilities': 7119000000, # 负债合计
+   'commonStock': 282000000, # 总股本
+   'retainedEarnings': 4322000000,
+   'treasuryStock': 1782000000,
+   'capitalSurplus': 2253000000,
+   'shareholderEquity': 4799000000,
+   'netTangibleAssets': 4799000000}]} # 净资产合计
+
+# get_cash_flow
+
+{'symbol': 'JBLU',
+ 'cashflow': [{'reportDate': '2019-12-31',
+   'fiscalDate': '2019-12-31',
+   'currency': 'USD',
+   'netIncome': 161000000, # 净收入
+   'depreciation': 140000000,
+   'changesInReceivables': 20000000,
+   'changesInInventories': None,
+   'cashChange': 261000000,
+   'cashFlow': 251000000,
+   'capitalExpenditures': -479000000, # 资本支出
+   'investments': -71000000, # 有价证券投资
+   'investingActivityOther': -2000000, # 其他投资活动的现金流
+   'totalInvestingCashFlows': -552000000, # 投资活动的现金流
+   'dividendsPaid': None,
+   'netBorrowings': 698000000,
+   'otherFinancingCashFlows': 1000000, # 其他筹资活动的现金流
+   'cashFlowFinancing': 562000000, # 筹资活动的现金流
+   'exchangeRateEffect': None}]}
+
+# get_key_stats
+
+{'week52change': -0.53911,
+    'week52high': 21.65,
+    'week52low': 7.01,
+    'marketcap': 2161667320,
+    'employees': None,
+    'day200MovingAvg': 18.26,
+    'day50MovingAvg': 17.82,
+    'float': 280299112,
+    'avg10Volume': 18431030.9,
+    'avg30Volume': 10662834.4,
+    'ttmEPS': 1.933,
+    'ttmDividendRate': None,
+    'companyName': 'JetBlue Airways Corp.',
+    'sharesOutstanding': 282202000,
+    'maxChangePercent': -0.3675,
+    'year5ChangePercent': -0.6019,
+    'year2ChangePercent': -0.6545,
+    'year1ChangePercent': -0.53911,
+    'ytdChangePercent': -0.594494,
+    'month6ChangePercent': -0.552309,
+    'month3ChangePercent': -0.594494,
+    'month1ChangePercent': -0.631908,
+    'day30ChangePercent': -0.629773,
+    'day5ChangePercent': -0.333333,
+    'nextDividendDate': None,
+    'dividendYield': None,
+    'nextEarningsDate': '2020-04-28',
+    'exDividendDate': None,
+    'peRatio': 3.98,
+    'beta': 0.8397660279666561}

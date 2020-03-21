@@ -200,7 +200,10 @@ ct = pd.crosstab(df['labels'], df['varieties'])
 print(ct)
 
 # Chapter - 1: Course 6
+
+# data source: http://jse.amstat.org/jse_data_archive.htm
 samples = pd.read_csv('https://raw.githubusercontent.com/ZacksAmber/Code/master/Python/DataCamp/Python/Machine%20Learning/Unsupervised%20Learning%20in%20Python/fishcatch.dat.txt', sep = ",", header = None)
+
 samples = samples.iloc[:, 1:7]
 samples = samples.drop([13])
 
