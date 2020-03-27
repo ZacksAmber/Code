@@ -30,7 +30,7 @@ from iexfinance.stocks import Stock
 # Import content
 def content(companies_list):
     # Define TOKEN
-    TOKEN = "sk_da7acf29bbaa44419c0077f41a10d8a7"
+    TOKEN = "pk_9f21ff865a7b4f5885c420b6101a8075"
 
     # define query info
     companies = Stock(companies_list, token=TOKEN, output_format="pandas")
@@ -92,7 +92,7 @@ def content(companies_list):
     data.to_csv(path + name, index = False)
 
 # define query list
-companies_list = ["GOOG", "AMZN", "AAPL", "FB", "DIS", "ADM", "BG", "CAT", "BAC", "AXP", "BA", "DAL", "JBLU", "ALK", "TSLA", "KO"]
+companies_list = ["GOOG", "AMZN", "AAPL", "FB", "DIS", "ADM", "BG", "CAT", "V", "BAC", "AXP", "BA", "DAL", "AAL", "JBLU", "ALK", "TSLA", "KO"]
 
 # Create dataframe "Target Mean", "Target High", "Target Low"
 df = pd.DataFrame(columns = ["Name", "Symbol", "Mkt Cap", "Price", "Previous Close", "52wk High Price", "52wk Low Price", "P/E", "P/B", "EPS", "Current Ratio", "Debt Ratio", "ROE", "Vol/30 Avg Vol", "Vol/10 Avg Vol", "P/H", "P/L"])

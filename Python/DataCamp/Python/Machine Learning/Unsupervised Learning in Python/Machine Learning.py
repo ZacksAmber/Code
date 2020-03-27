@@ -317,14 +317,14 @@ from sklearn.model_selection import train_test_split
 
 # Create feature and target arrays
 X = df_scaled
-y = ge3["classification"]
+y = ge4["alert_type"]
 
 # Split into training and test set
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state=100, stratify=y)
 
 
-# Create a k-NN classifier with 7 neighbors: knn
-knn = KNeighborsClassifier(n_neighbors=4)
+# Create a k-NN classifier with 9 neighbors: knn
+knn = KNeighborsClassifier(n_neighbors=9)
 
 # Fit the classifier to the training data
 knn.fit(X_train, y_train)

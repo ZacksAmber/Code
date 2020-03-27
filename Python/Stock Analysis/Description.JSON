@@ -86,7 +86,7 @@
    'retainedEarnings': 4322000000,
    'treasuryStock': 1782000000,
    'capitalSurplus': 2253000000,
-   'shareholderEquity': 4799000000,
+   'shareholderEquity': 4799000000, # 股东权益
    'netTangibleAssets': 4799000000}]} # 净资产合计
 
 # get_cash_flow
