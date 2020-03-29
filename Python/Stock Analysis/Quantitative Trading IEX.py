@@ -26,11 +26,16 @@ import requests, json
 import numpy as np
 import pandas as pd
 from iexfinance.stocks import Stock
+from iexfinance.account import allow_pay_as_you_go
+from iexfinance.account import disallow_pay_as_you_go
 
 # Import content
 def content(companies_list):
     # Define TOKEN
     TOKEN = "pk_9f21ff865a7b4f5885c420b6101a8075"
+
+    # allow_pay_as_you_go(token=TOKEN)
+    # disallow_pay_as_you_go(TOKEN)
 
     # define query info
     companies = Stock(companies_list, token=TOKEN, output_format="pandas")
@@ -56,7 +61,6 @@ def content(companies_list):
     df["Previous Close"] = companies_quote.loc["previousClose"] # Previous Close
     df["52wk High Price"] = companies_quote.loc["week52High"] # 52wk High Price
     df["52wk Low Price"] = companies_quote.loc["week52Low"] # 52wk Low Price
-    df["P/E"] = companies_quote.loc["peRatio"] # P/E
 
     # P/B
     # Url setting
@@ -73,14 +77,35 @@ def content(companies_list):
         PBR.append(response.json()[i]["advanced-stats"]["priceToBook"])
     df["P/B"] = PBR # P/B
 
+    df["P/E"] = companies_quote.loc["peRatio"] # P/E
+
+    PEH = []
+    for i in companies_list:
+        PEH.append(response.json()[i]["advanced-stats"]["peHigh"])
+    df["PEH"] = PEH # PEH
+
+    PEL = []
+    for i in companies_list:
+        PEL.append(response.json()[i]["advanced-stats"]["peLow"])
+    df["PEL"] = PEL # PEL   
+
     df["EPS"] = companies_key_stats.loc["ttmEPS"] # EPS
     df["Current Ratio"] = np.array(companies_balance_sheet.loc["currentAssets"]) / np.array(companies_balance_sheet.loc["totalCurrentLiabilities"]) # Current Ratio
     df["Debt Ratio"] = np.array(companies_balance_sheet.loc["totalAssets"]) / np.array(companies_balance_sheet.loc["totalLiabilities"]) # Debt Ratio
     df["ROE"] = np.array(companies_cash_flow.loc["netIncome"]) / np.array(companies_balance_sheet.loc["shareholderEquity"]) # ROE
+    df["ROA"] = np.array(companies_cash_flow.loc["netIncome"]) / np.array(companies_balance_sheet.loc["totalAssets"]) # ROA
     df["Vol/30 Avg Vol"] = companies_quote.loc["volume"] / companies_quote.loc["avgTotalVolume"] # "Vol/30 Avg Vol"
     df["Vol/10 Avg Vol"] = companies_quote.loc["volume"] / companies_key_stats.loc["avg10Volume"] # "Vol/10 Avg Vol"
-    df["P/H"] = companies_quote.loc["latestPrice"]/companies_quote.loc["week52High"] # P/H
-    df["P/L"] = companies_quote.loc["latestPrice"]/companies_quote.loc["week52Low"] # P/L
+    df["P/H"] = companies_quote.loc["latestPrice"] / companies_quote.loc["week52High"] # P/H
+    df["PE/PEH"] = df["P/E"] / df["PEH"] # PE/PEH
+    df["P/L"] = companies_quote.loc["latestPrice"] / companies_quote.loc["week52Low"] # P/L
+    df["PE/PEL"] = df["P/E"] / df["PEL"] # PE/PEL
+    df["H/P"] = companies_quote.loc["week52High"] / companies_quote.loc["latestPrice"] # H/P
+    df["PEH/PE"] = df["PEH"] / df["P/E"] # PEH/PE
+    df["L/P"] = companies_quote.loc["week52Low"] / companies_quote.loc["latestPrice"] # H/L
+    df["PEL/PE"] = df["PEL"] / df["P/E"] # PEL/PE
+    df["P Position"] = (companies_quote.loc["latestPrice"] - companies_quote.loc["week52Low"]) / (companies_quote.loc["week52High"] - companies_quote.loc["week52Low"]) # Position 
+    df["P/E Position"] = (df["P/E"] - df["PEL"]) / (df["PEH"] - df["PEL"]) # P/E Position
 
     # Data Clean
     data = df.convert_dtypes() # Convert the DataFrame to use best possible dtypes. 
@@ -89,13 +114,13 @@ def content(companies_list):
     # Export csv
     name = "Stock Analysis " + datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S") + ".csv"
     path = "/Users/zacks/Desktop/Code/Python/Stock Analysis/"
-    data.to_csv(path + name, index = False)
+    data.to_csv(path + name, index=False)
 
 # define query list
-companies_list = ["GOOG", "AMZN", "AAPL", "FB", "DIS", "ADM", "BG", "CAT", "V", "BAC", "AXP", "BA", "DAL", "AAL", "JBLU", "ALK", "TSLA", "KO"]
+companies_list = ["GOOG", "AMZN", "AAPL", "FB", "DIS", "ADM", "BG", "CAT", "V", "BAC", "AXP", "JPM", "CCL", "BA", "DAL", "AAL", "JBLU", "ALK", "TSLA", "KO"]
 
 # Create dataframe "Target Mean", "Target High", "Target Low"
-df = pd.DataFrame(columns = ["Name", "Symbol", "Mkt Cap", "Price", "Previous Close", "52wk High Price", "52wk Low Price", "P/E", "P/B", "EPS", "Current Ratio", "Debt Ratio", "ROE", "Vol/30 Avg Vol", "Vol/10 Avg Vol", "P/H", "P/L"])
+df = pd.DataFrame(columns=["Name", "Symbol", "Mkt Cap", "Price", "Previous Close", "52wk High Price", "52wk Low Price", "P/B", "P/E", "PEH", "PEL", "EPS", "Current Ratio", "Debt Ratio", "ROE", "ROA", "Vol/30 Avg Vol", "Vol/10 Avg Vol", "P/H", "PE/PEH", "P/L", "PE/PEL", "H/P", "PEH/PE", "L/P", "PEL/PE", "P Position", "P/E Position"])
 
 content(companies_list)
 
@@ -105,3 +130,9 @@ content(companies_list)
 
 # 自动化类型转变
 # 负债表输出
+
+88/(91+85)
+
+1110/1532
+
+(1110-1013)/(1532-1013)
