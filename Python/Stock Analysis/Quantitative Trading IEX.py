@@ -91,19 +91,19 @@ def content(companies_list):
 
     df["EPS"] = companies_key_stats.loc["ttmEPS"] # EPS
     df["Current Ratio"] = np.array(companies_balance_sheet.loc["currentAssets"]) / np.array(companies_balance_sheet.loc["totalCurrentLiabilities"]) # Current Ratio
-    df["Debt Ratio"] = np.array(companies_balance_sheet.loc["totalAssets"]) / np.array(companies_balance_sheet.loc["totalLiabilities"]) # Debt Ratio
+    df["Debt Ratio"] =  np.array(companies_balance_sheet.loc["totalLiabilities"]) / np.array(companies_balance_sheet.loc["totalAssets"]) # Debt Ratio
     df["ROE"] = np.array(companies_cash_flow.loc["netIncome"]) / np.array(companies_balance_sheet.loc["shareholderEquity"]) # ROE
     df["ROA"] = np.array(companies_cash_flow.loc["netIncome"]) / np.array(companies_balance_sheet.loc["totalAssets"]) # ROA
     df["Vol/30 Avg Vol"] = companies_quote.loc["volume"] / companies_quote.loc["avgTotalVolume"] # "Vol/30 Avg Vol"
     df["Vol/10 Avg Vol"] = companies_quote.loc["volume"] / companies_key_stats.loc["avg10Volume"] # "Vol/10 Avg Vol"
-    df["P/H"] = companies_quote.loc["latestPrice"] / companies_quote.loc["week52High"] # P/H
-    df["PE/PEH"] = df["P/E"] / df["PEH"] # PE/PEH
-    df["P/L"] = companies_quote.loc["latestPrice"] / companies_quote.loc["week52Low"] # P/L
-    df["PE/PEL"] = df["P/E"] / df["PEL"] # PE/PEL
-    df["H/P"] = companies_quote.loc["week52High"] / companies_quote.loc["latestPrice"] # H/P
-    df["PEH/PE"] = df["PEH"] / df["P/E"] # PEH/PE
-    df["L/P"] = companies_quote.loc["week52Low"] / companies_quote.loc["latestPrice"] # H/L
-    df["PEL/PE"] = df["PEL"] / df["P/E"] # PEL/PE
+    #df["P/H"] = companies_quote.loc["latestPrice"] / companies_quote.loc["week52High"] # P/H
+    #df["PE/PEH"] = df["P/E"] / df["PEH"] # PE/PEH
+    #df["P/L"] = companies_quote.loc["latestPrice"] / companies_quote.loc["week52Low"] # P/L
+    #df["PE/PEL"] = df["P/E"] / df["PEL"] # PE/PEL
+    #df["H/P"] = companies_quote.loc["week52High"] / companies_quote.loc["latestPrice"] # H/P
+    #df["PEH/PE"] = df["PEH"] / df["P/E"] # PEH/PE
+    #df["L/P"] = companies_quote.loc["week52Low"] / companies_quote.loc["latestPrice"] # H/L
+    #df["PEL/PE"] = df["PEL"] / df["P/E"] # PEL/PE
     df["P Position"] = (companies_quote.loc["latestPrice"] - companies_quote.loc["week52Low"]) / (companies_quote.loc["week52High"] - companies_quote.loc["week52Low"]) # Position 
     df["P/E Position"] = (df["P/E"] - df["PEL"]) / (df["PEH"] - df["PEL"]) # P/E Position
 
@@ -117,10 +117,10 @@ def content(companies_list):
     data.to_csv(path + name, index=False)
 
 # define query list
-companies_list = ["GOOG", "AMZN", "AAPL", "FB", "DIS", "ADM", "BG", "CAT", "V", "BAC", "AXP", "JPM", "CCL", "BA", "DAL", "AAL", "JBLU", "ALK", "TSLA", "KO"]
+companies_list = ["CCL", "RCL", "LMT", "BA", "LUV", "DAL", "AAL", "UAL", "JBLU", "ALK", "ADM", "BG", "CAT", "V", "BAC", "AXP", "JPM", "GS", "AAPL", "AMZN", "GOOG", "FB", "MSFT", "TSLA", "DIS", "GILD", "MMM", "KO", "NKE", "UAA"]
 
 # Create dataframe "Target Mean", "Target High", "Target Low"
-df = pd.DataFrame(columns=["Name", "Symbol", "Mkt Cap", "Price", "Previous Close", "52wk High Price", "52wk Low Price", "P/B", "P/E", "PEH", "PEL", "EPS", "Current Ratio", "Debt Ratio", "ROE", "ROA", "Vol/30 Avg Vol", "Vol/10 Avg Vol", "P/H", "PE/PEH", "P/L", "PE/PEL", "H/P", "PEH/PE", "L/P", "PEL/PE", "P Position", "P/E Position"])
+df = pd.DataFrame(columns=["Name", "Symbol", "Mkt Cap", "Price", "Previous Close", "52wk High Price", "52wk Low Price", "P/B", "P/E", "PEH", "PEL", "EPS", "Current Ratio", "Debt Ratio", "ROE", "ROA", "Vol/30 Avg Vol", "Vol/10 Avg Vol", "P Position", "P/E Position"]) # "P/H", "PE/PEH", "P/L", "PE/PEL", "H/P", "PEH/PE", "L/P", "PEL/PE", 
 
 content(companies_list)
 
