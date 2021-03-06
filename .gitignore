@@ -17,3 +17,6 @@ jupyterlab-git
 
 # MySQL
 *.cnf
+
+# Personal
+Databricks
