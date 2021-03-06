@@ -8,6 +8,10 @@
 ###
 
 # 以下函数允许计算两个数的乘积，请稍加改造，变成可接收一个或多个数并计算乘积：
+from _typeshed import SupportsLessThanT
+from os import lchown
+
+
 def product(*n):
     result = 1
     for i in n:
@@ -3093,3 +3097,1585 @@ population * beds * availableRatio
 1000,000,000
 
 2.35/0.05*0.95
+
+nums = [2, 3, 5, 7, 9, 10, 1, 4, 50]
+# nums.sort()
+
+
+target = 13
+
+hash_table = {}
+result = []
+for i in range(len(nums)):
+    if (target - nums[i]) not in hash_table.keys():
+        hash_table[nums[i]] = i
+    else:
+        hash_table[nums[i]] = "False"
+        result.append([i, target-nums[i]])
+
+        print(i, nums[i])
+        print(hash_table[target-nums[i]], target-nums[i])
+        print("")
+
+
+result[0]
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        hash_table = {}
+        result = []
+        for i in range(len(nums)):
+            if (target - nums[i]) not in hash_table.keys():
+                hash_table[nums[i]] = i
+            else:
+                hash_table[nums[i]] = "False"
+                result.append([i, hash_table[target-nums[i]]])
+
+        return(result)
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        hash_table = {}
+        results = []
+        for i in range(len(nums)):
+            if (target - nums[i]) not in hash_table.keys():
+                hash_table[nums[i]] = i
+            else:
+                hash_table[nums[i]] = "False"
+                results.append([i, hash_table[target-nums[i]]])
+        
+        # return results
+        result = results[0]
+        result.sort()
+        return result      
+
+nums = [2, 3, 5, 7, 9, 10, 1, 4, 50, -5, -2, 11]
+nums = [3, 3]
+
+Solution().twoSum(nums, 6)
+
+sortedNums = sorted(nums)
+sortedNums
+
+for i in range(len(sortedNums)):
+    L = 0
+    R = len(SortedNums) - 1
+    result = sortedNums[L] + sortedNums[R]
+    if result == target:
+        print(L, R)
+    elif result < target:
+
+
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        sortedNums = sorted(nums)
+        results = []
+        L = 0
+        R = len(sortedNums) - 1
+        while L < R:
+            currentSum = sortedNums[L] + sortedNums[R]
+            if currentSum == target:
+                results.append([sortedNums[L], sortedNums[R]])
+                L += 1
+            elif currentSum < target:
+                L += 1
+            elif currentSum > target:
+                R -= 1
+        
+        index = []
+        for i in results:
+            if i[0] != i[1]:
+                index.append([nums.index(i[0]), nums.index(i[1])])
+            elif i[0] == i[1]:
+                index.append([nums.index(i[0]), nums.index(i[1], nums.index(i[0])+1)])
+        
+        return index[0]
+
+#nums = [2, 3, 5, 7, 9, 10, 1, 4, 50, -5, -2, 11]
+
+nums = [3, 3, 3 ,3]
+
+Solution().twoSum(nums, 6)
+
+results = [[2, 11], [3, 10], [4, 9]]
+
+for i in results:
+    if i[0] != i[1]:
+        print(nums.index(i[0]), nums.index(i[1]))
+    elif i[0] == i[1]:
+        print(nums.index(i[0]), nums.index(i[0], nums.index(i[0])))
+
+
+%reset -f
+
+len([3, 3])
+[3, 3][1]
+
+n = [3, 3]
+
+n.index(3, 1)
+
+nums.index(10)
+
+leftIndex
+R
+
+if sortedNums[L] != sortedNums[L]:
+    [sortedNums[L], sortedNums[R]] 
+    #return [nums.index(sortedNums[L]), nums.index(sortedNums[R])]
+else:
+    return [nums.index(sortedNums[L]), nums.index(sortedNums[L], nums.index(sortedNums[L]))]
+
+import re
+address = "2785 ARBOR LN, , ONTARIO CA 91762, United States"
+
+l = re.split(",", address)
+street = l[0]
+apt = l[1]
+cityStateZip = l[2]
+country = l[3]
+
+cityStateZip = re.split(" ", cityStateZip)
+city = cityStateZip[1]
+state = cityStateZip[2]
+zipcode = cityStateZip[3]
+
+street
+city
+state
+zipcode
+
+
+def gen(n):
+    for i in range(n):
+        yield i**2
+
+for i in gen(5):
+    print(i)
+
+def square(n):
+    ls = [i**2 for i in range(5)]
+    return ls
+
+for i in square(5):
+    print(i)
+
+
+# Learning DataFrame
+
+# Print the head of the homelessness data
+import pandas as pd
+
+help(pd.agg())
+
+help(pd.pivot_table)
+
+
+n = [0, 1, 2, 3, 4, 5, 6 ,7]
+for i in n:
+    for j in range (i, n[-1]):
+        print(i+j)
+
+n = [0, 1, 2, 3]
+for i in n:
+    for j in n:
+        print(i+j)
+
+
+elements = [3, 5, -4, 8, 11, 1, -1, 6]
+target = 10
+
+len(elements) # the last element in list elements
+
+# Algorithm
+hash_table = [] # define hash table
+def Algorithm(elements):
+    for i in range(len(elements)):
+        for j in range(i+1, len(elements)):
+            result = elements[i] + elements[j]
+            hash_table.append({result: [elements[i], elements[j]]})
+    
+    return hash_table
+
+# Check
+def Check(target):
+    for i in range(len(hash_table)):
+        if target in hash_table[i].keys():
+            return hash_table[i]
+
+Algorithm(elements)
+Check(target)
+
+print(hash_table)
+
+len(hash_table)
+
+%reset -f
+
+
+r = {3: [1, 2], 5: [2, 3]}
+r.key
+r = {[1, 2]: 3, [2, 3]: 5}
+
+r = [{3: [1, 2]}, {5: [2, 3]}]
+len(r)
+r[0].keys()
+type(r[0].keys())
+
+
+
+elements = [3, 5, -4, 8, 11, 1, -1, 6]
+target = 10
+
+# Algorithm
+hash_table = [] # define hash table
+def Algorithm(elements):
+    for i in range(len(elements)):
+            x = elements[i]
+            y = target - x
+            if y in hash_table:
+                print([x, y])
+            else:
+                hash_table.append(x)
+
+Algorithm(elements)
+
+
+elements = [3, 5, -4, 8, 11, 1, -1, 6]
+target = 10
+
+# Algorithm
+sorted_elements = sorted(elements)
+def TwoSum(sorted_elements, target):
+    L = 0
+    R = len(sorted_elements)
+    while L < R:
+        currentSum = sorted_elements[L] + sorted_elements[R]
+        if currentSum == target:
+            return [sorted_elements[L], sorted_elements[R]]
+        elif currentSum > target:
+
+
+
+
+elements = [3, 5, -4, 8, 11, 1, -1, 6]
+            
+def twoNumberSum(array, targetSum):
+    # Write your code here.
+    # Algoirthm
+    hash_table = []
+    for i in range(len(array)):
+        for j in range(i+1, len(array)):
+            result = array[i] + array[j]
+            hash_table.append({result: [array[i], array[j]]})
+
+	# Check
+    result = []
+    for i in range(len(hash_table)):
+        if targetSum in hash_table[i].keys():
+            result = hash_table[i][targetSum]
+
+    # Return the result
+    return result
+            
+
+twoNumberSum(array, 5)
+
+
+{"array": [-21, 301, 12, 4, 65, 56, 210, 356, 9, -47], "targetSum": 164}
+
+array = [4, 6, 1]
+
+
+# Algorithm
+
+def twoNumberSum(array, targetSum):
+    sorted_array = sorted(array)
+    L = 0
+    R = len(sorted_array) - 1
+    result = []
+    while L < R:
+        currentSum = sorted_array[L] + sorted_array[R]
+        if currentSum == targetSum:
+            result = [sorted_array[L], sorted_array[R]]
+            break # Or L += 1; Very important! To avoid infinite loop & find other possible answer
+        elif currentSum > targetSum:
+            R -= 1
+        elif currentSum < targetSum:
+            L += 1
+
+    return result
+
+array = [3, 5, -4, 8, 11, 1, -1, 6]
+sorted(array)
+targetSum = 13
+twoNumberSum(array, targetSum)
+
+def twoNumberSum(array, targetSum):
+    # Write your code here.
+    # Algoirthm
+    hash_table = []
+    for i in range(len(array)-1):
+        for j in range(i+1, len(array)-1):
+            result = array[i] + array[j]
+            hash_table.append({result: [array[i], array[j]]})
+
+	# Check
+    result = []
+    for i in range(len(hash_table)-1):
+        if targetSum in hash_table[i].keys():
+            result = hash_table[i][targetSum]
+
+    # Return the result
+    return result
+
+array = [3, 5, -4, 8, 11, 1, -1, 6]
+targetSum = 10
+twoNumberSum(array, targetSum)
+
+
+array = [5, 1, 22, 25, 6, -1, 8, 10]
+sequence = [1, 6, -1, 10]
+
+for i in sequence:
+    if i in array:
+        print(i)
+        array.remove(i)
+        sequence.remove(i)
+        print(array)
+        print(sequence)
+        print()
+
+array
+sequence
+
+
+for i in range(len(sequence)):
+    if sequence[i] in array:
+        print(sequence[i])
+
+len(sequence)
+
+for i in range(len(sequence)):
+    print(i)
+
+[1, 2, 3] == [3, 2, 1]
+
+array = [1, 1, 6, 1]
+sequence = [1, 1, 1, 6]
+
+def isValidSubsequence(array, sequence):
+    for i in sequence:
+        if i in array:
+            array.remove(i)
+            print(array)
+        #else:
+        #    return False
+	
+    return array
+
+for i in sequence:
+    if i in array:
+        print(array)
+        array.remove(i)
+
+
+
+{"array": [1, 1, 6, 1], "sequence": [1, 1, 1, 6]}
+
+{
+  "array": [5, 1, 22, 25, 6, -1, 8, 10],
+  "sequence": [5, 1, 22, 25, 6, -1, 8, 10]
+}
+
+array = [5, 1, 22, 25, 6, -1, 8, 10]
+sequence = [1, 6, -1, -1]
+
+sequence_copy = sequence.copy()
+for i in sequence:
+    if i in array:
+        sequence_copy.remove(i)
+        array.remove(i)
+        if sequence_copy == []:
+            print(sequence_copy)
+
+array = [5, 1, 22, 25, 6, -1, 8, 10]
+sequence = [5, 1, 22, 25, 6, -1, 8, 10]
+
+len(array)
+len(sequence)
+
+array == sequence
+
+
+def isValidSubsequence(array, sequence):
+    if len(array) < len(sequence):
+        return False
+
+    for i in sequence:
+        if i in array:
+            array.remove(i)
+        else:
+            return False
+        
+    return True
+
+array = [1, 1, 6, 1]
+sequence = [1, 1, 1, 6]
+isValidSubsequence(array, sequence)
+
+for i in array:
+    array.remove(i)
+    print(array)
+
+array.index(6)
+
+###
+
+# Do not edit the class below except for
+# the insert, contains, and remove methods.
+# Feel free to add new properties and methods
+# to the class.
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def insert(self, value):
+        # Write your code here.
+        # Do not edit the return statement of this method.
+        if value < self.value:
+            if self.left is None:
+                self.left = BST(value)
+            else:
+                self.left.insert(value)
+        else:
+            if self.right is None:
+                self.right = BST(value)
+            else:
+                self.right.insert(value)
+        return self
+
+    def contains(self, value):
+        # Write your code here.
+        if value < self.value:
+            if self.left is None:
+                return False
+            else:
+                return self.left.contains(value)
+        elif value > self.value:
+            if self.right is None:
+                return False
+            else:
+                return self.right.contains(value)
+        else:
+            return True
+
+    def remove(self, value):
+        # Write your code here.
+        # Do not edit the return statement of this method.
+        return self
+
+    def getMinValue(self):
+        if self.left is None:
+            return self.value
+        else:
+            return self.left.getMinValue()
+
+l = [5, 15, 2, 5, 1, 13, 22, 14]
+p = BST(10)
+for i in l:
+    p.insert(i)
+
+x = 10
+p.contains(x)
+p.remove(x)
+p.insert(x)
+
+               10         12
+              /   \
+             5     15
+            / \    / \
+           2   5  13 22
+          /         \
+         1           14
+
+p.value
+p.left.value
+
+
+
+###
+# Do not edit the class below except for
+# the insert, contains, and remove methods.
+# Feel free to add new properties and methods
+# to the class.
+class BST:
+    def __init__(self, value): # self is current project
+        self.value = value # current node
+        self.left = None # the left node of current node 
+        self.right = None # the right node of current node
+
+    # Average: O(log(n)) time | O(1) space
+    # Worst: O(n) time | O(1) space
+    def insert(self, value):
+        # Write your code here.
+        # Do not edit the return statement of this method.
+        currentNode = self # current node will be initialized to be self. At the begining, the current node is the node that we called the insertion method on and that's self.
+        while True:
+            if value < currentNode.value: # skip the right subtree
+                if currentNode.left is None: # value is the smallest number of the current subtree
+                    currentNode.left = BST(value) # insert the value
+                else:
+                    currentNode = currentNode.left # go back to the while definition
+            else: # skip the left subtree
+                if currentNode.right is None: # value is the biggest number of the current
+                    currentNode.right = BST(value) # insert the value
+                else:
+                    currentNode = currentNode.right # go back to the while definition
+
+            return self
+
+    # Average: O(log(n)) time | O(1) space
+    # Worst: O(n) time | O(1) space
+    def contains(self, value):
+        # Write your code here.
+        currentNode = self
+        while currentNode is not None: # if None, go to the last line of this function
+            if value < currentNode.value: # skip the right subtree
+                currentNode = currentNode.left # loop
+            elif value > currentNode.value: # skip the left subtree
+                currentNode = currentNode.right # loop
+            elif value == currentNode.value: # we find the value
+                return True
+
+        return False # the value is not exist
+
+    def remove(self, value, parentNode = None): # if you remove the root node of the BST, there is no parent node.
+        # Write your code here.
+        # Do not edit the return statement of this method.
+        currentNode = self
+        while currentNode is not None:
+            if value < currentNode.value: # skip the right subtree
+                parentNode = currentNode # cause when we update the current node, the parent node becomes the node that we just exploring.
+                currentNode = currentNode.left # loop
+            elif value > currentNode.value: # skip the left subtree
+                parentNode = currentNode
+                currentNode = currentNode.right # loop
+            else: # the removing process, but we cannot simply remove it, we need consider more 
+                if currentNode.left is not None and currentNode.right is not None: # both the children nodes aren't null values
+                    currentNode.value = currentNode.right.getMinValue() # replace the current node value to the minimum value of the subtree of the current node
+                    # currentNode.value = smallest value of right subtree
+                    currentNode.right.remove(currentNode.value, currentNode) # invoke the remove function, notice the parameters
+                # we're gonna come back to the root node case
+                elif parentNode is None:
+                    if currentNode.left is not None:
+                        currentNode.value = currentNode.left.value
+                        currentNode.right = currentNode.left.right
+                        currentNode.left = currentNode.left.left
+                    elif currentNode.right is not None:
+                        currentNode.value = currentNode.right.value
+                        currentNode.left = currentNode.right.left
+                        currentNode.right = currentNode.right.right
+                    else:
+                        # this is a single-node tree; do nothing.
+                        pass
+                elif parentNode.left == currentNode:
+                    parentNode.left = currentNode.left if currentNode.left is not None else currentNode.right
+                elif parentNode.right == currentNode:
+                    parentNode.right = currentNode.left if currentNode.left is not None else currentNode.right
+                break
+        return self
+
+    def getMinValue(self):
+        currentNode = self
+        while currentNode.left is not None:
+            currentNode = currentNode.left
+        return currentNode.value
+
+
+##### Binary Tree Practice
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def insert(self, value):
+        currentNode = self
+        while True:
+            if value < currentNode.value:
+                if currentNode.left is None:
+                    currentNode.left = BST(value)
+                    break
+                else:
+                    currentNode = currentNode.left
+            elif value >= currentNode.value:
+                if currentNode.right is None:
+                    currentNode.right = BST(value)
+                    break
+                else:
+                    currentNode = currentNode.right
+
+        return self
+
+    def contains(self, value):
+        currentNode = self
+        while currentNode is not None:
+            if value < currentNode.value:
+                currentNode = currentNode.left
+            elif value > currentNode.value:
+                currentNode = currentNode.right
+            elif value == currentNode.value:
+                return True
+        
+        return False
+
+    def getMinValue(self):
+        currentNode = self
+        while currentNode.left is not None:
+            currentNode = currentNode.left
+        
+        return currentNode.value
+
+    def getMaxValue(self):
+        currentNode = self
+        while currentNode.right is not None:
+            currentNode = currentNode.right
+
+        return currentNode.value
+
+    def getRootNode(self):
+        currentNode = self
+        
+        return currentNode.value
+
+
+l = [5, 15, 2, 5, 1, 13, 22, 14]
+p = BST(10)
+for i in l:
+    p.insert(i)
+
+p.contains(1)
+p.insert(12)
+p.contains(12)
+
+p.getRootNode()
+p.getMinValue()
+p.getMaxValue()
+
+
+# Binary Tree Practice 2
+
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+    
+    def insert(self, value):
+        currentNode = self
+        while True:
+            if value < currentNode.value:
+                if currentNode.left is None:
+                    currentNode.left = BST(value)
+                    break
+                else:
+                    currentNode = currentNode.left
+            elif value >= currentNode.value:
+                if currentNode.right is None:
+                    currentNode.right = BST(value)
+                    break
+                else:
+                    currentNode = currentNode.right
+
+        return self
+
+    def contains(self, value):
+        currentNode = self
+        while currentNode is not None:
+            if value < currentNode.value:
+                currentNode = currentNode.left
+            elif value > currentNode.value:
+                currentNode = currentNode.right
+            else:
+                return True
+
+        return False
+
+    def remove(self, value, parentNode = None):
+        currentNode = self
+
+        if self.contains(value) is False:
+            return "The value does no exist."
+
+        while currentNode is not None:
+            if value < currentNode.value:
+                parentNode = currentNode
+                currentNode = currentNode.left
+            elif value > currentNode.value:
+                parentNode = currentNode
+                currentNode = currentNode.right
+            else: # the target value
+                if currentNode.left is not None and currentNode.right is not None:
+                    currentNode.value = currentNode.right.getMinValue()
+                    currentNode.right.remove(currentNode.value, parentNode=currentNode) # to remove the next same node. e.g, you have three 5 in a BST.
+                elif parentNode is None: # to remove the root node
+                    if currentNode.left is not None:
+                        currrentNode.value = currentNode.left.value # beacuse we need to move rest of BST up toward.
+                        currentNode.left = currentNode.left.left
+                        currentNode.right = currentNode.left.right
+                    elif currentNode.right is not None:
+                        currentNode.value = currentNode.right.value
+                        currentNode.left = currentNode.right.left
+                        currentNode.right = currentNode.right.right
+                    else: # to remove the node without any parent node and child node
+                        currentNode.value = None
+                elif parentNode.left == currentNode: # check if it is a left child. In this example, 2, 13 are the compliant scenario.
+                    parentNode.left = currentNode.left if currentNode.left is not None else currentNode.right
+                elif parentNode.right == currentNode: # check if it is a right child.
+                    parentNode.right = currentNode.right if currentNode.right is not None else currentNode.left
+                break
+
+        return self
+        
+    def getRootNode(self):
+        currentNode = self
+
+        return currentNode.value
+
+    def getMinValue(self):
+        currentNode = self
+
+        while currentNode.left is not None:
+            currentNode = currentNode.left
+
+        return currentNode.value
+
+    def getMaxValue(self):
+        currentNode = self
+
+        while currentNode.right is not None:
+            currentNode = currentNode.right
+
+        return currentNode.value
+
+
+l = [5, 15, 2, 5, 1, 13, 22, 14]
+l = [5, 15]
+p = BST(10)
+for i in l:
+    p.insert(i)
+
+x = 10
+p.remove(x)
+p.contains(x)
+p.getRootValue()
+p.getMaxValue()
+p.getMinValue()
+
+%reset -f
+
+
+
+####
+# Do not edit the class below except for
+# the insert, contains, and remove methods.
+# Feel free to add new properties and methods
+# to the class.
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def insert(self, value):
+        # Write your code here.
+        # Do not edit the return statement of this method.
+        currentNode = self
+        # keep iterating unless we break the process
+        while True:
+            # 1. the value should be inserted in the left subtree
+            if value < currentNode.value:
+                # 1.1. keep iterating
+                if currentNode.left is not None:
+                    currentNode = currentNode.left
+                # 1.2. insert the value to the currentNode.left
+                else:
+                    currentNode.left = BST(value)
+                    break
+            # 2. the value should be in serted in the right subtree
+            elif value >= currentNode.value:
+                # 2.1. keep iterating
+                if currentNode.right is not None:
+                    currentNode = currentNode.right
+                # 2.2. insert the value to the currentNode.right
+                else:
+                    currentNode.right = BST(value)
+                    break
+        
+        return self
+
+    def contains(self, value):
+        # Write your code here.
+        currentNode = self
+        # keep iterating unless the currentNode is None, otherwise it returns False
+        while currentNode is not None:
+            # 1. the value may in the left subtree
+            if value < currentNode.value:
+                currentNode = currentNode.left
+            # 2. the value may in the left subtree
+            elif value > currentNode.value:
+                currentNode = currentNode.right
+            # 3. the value exists
+            elif value == currentNode.value:
+                return True
+        
+        return False
+
+    def remove(self, value, parentNode=None):
+        # Write your code here.
+        # Do not edit the return statement of this method.
+        currentNode = self
+        # Check if the target value exists.
+        if self.contains(value) is False:
+            return "The value does not exist."
+        # keep iterating unless the currentNode is None
+        while currentNode is not None:
+            # 1. the value in the left subtree
+            if value < currentNode.value:
+                parentNode = currentNode
+                currentNode = currentNode.left
+            # 2. the value in the right subtree
+            elif value > currentNode.value:
+                parentNode = currentNode
+                currentNode = currentNode.right
+            # 3. the value we have founded
+            elif value == currentNode.value:
+                # 3.1. remove a node with two children node, e.g, 5 or 15
+                if currentNode.left is not None and currentNode.right is not None:
+                    # set the value of the currentNode to the minimum value from the right node of current node
+                    currentNode.value = currentNode.right.getMinValue()
+                    # then we remove the minimum node of the right of the current node, and keep going with the loop
+                    currentNode.right.remove(currentNode.value, parentNode=currentNode)
+                # 3.2. remove the root node, notice if the root node have two children node, we did it on 3.1.
+                elif parentNode is None:
+                    # 3.2.1. the root node has no child node, which means a single-node tree
+                    if currentNode.left is None and currentNode.right is None:
+                        pass
+                        # currentNode.value = None
+                    # 3.2.2. the root node only has a right child node
+                    elif currentNode.left is None:
+                        # set currentNode as (currentNode.right)
+                        currentNode.value = currentNode.right.value
+                        # set currentNode.left as (currentNode.right).left. You MUST first set up the None side to avoid cover the side we did not finish yet.
+                        currentNode.left = currentNode.right.left
+                        # set currentNode.right as (currentNode.right).right
+                        currentNode.right = currentNode.right.right
+                    # 3.2.3. the root node only has a left child node
+                    elif currentNode.right is None:
+                        # set currentNode as (currentNode.left)
+                        currentNode.value = currentNode.left.value
+                        # set currentNode.right as (currentNode.left).right, You MUST first set up the None side to avoid cover the side we did not finish yet.
+                        currentNode.right = currentNode.left.right
+                        # set currentNode.left as (currentNode.left).left
+                        currentNode.left = currentNode.left.left
+                # 3.3. remove the left child, e.g, 2 or 13			
+                elif parentNode.left == currentNode:
+                    parentNode.left = currentNode.left if currentNode.left is not None else currentNode.right
+                # 3.4. remove the right child, e.g, 15 if we have removed 22 or 13&14
+                elif parentNode.right == currentNode:
+                    parentNode.right = currentNode.right if currentNode.left is not None else currentNode.right
+                break
+                
+        return self
+
+    def getRootValue(self):
+        currentNode = self
+        # return the root node if it exists
+        if currentNode is not None:
+            return currentNode.value
+        
+    def getMaxValue(self):
+        currentNode = self
+        # keep iterating unless the currentNode.right is None
+        while currentNode.right is not None:
+            currentNode = currentNode.right
+            
+        return currentNode.value
+            
+    def getMinValue(self):
+        currentNode = self
+        # keep iterating unless the currentNode.left is None
+        while currentNode.left is not None:
+            currentNode = currentNode.left
+        
+        return currentNode.value
+
+    def getMinValue2(self):
+        if self.left is not None:
+            return self.getMinValue(self.left.value)
+            
+        return self.value
+
+
+p = BST(10)
+for i in [5, 15, 2, 5, 1, 13, 22, 14]:
+    p.insert(i)
+
+p.contains(1)
+# True
+p.insert(12)
+p.contains(12)
+# True
+
+p.getRootValue()
+# 10
+p.getMinValue()
+# 1
+p.getMaxValue()
+# 22
+
+for i in [10, 5, 15, 2, 5, 1, 13, 22, 14]:
+    p.remove(i)
+    print(p.contains(i))
+'''
+False
+True
+False
+False
+False
+False
+False
+False
+False
+'''
+
+p.contains(10)
+# True
+
+
+# Do not edit the class below except for
+# the insert, contains, and remove methods.
+# Feel free to add new properties and methods
+# to the class.
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def insert(self, value):
+        # 1. the value should be inserted in the left subtree
+        if value < self.value:
+            if self.left is None:
+                self.left = BST(value)
+            else:
+                self.left.insert(value)
+        # 2. the value should be inserted in the right subtree
+        elif value >= self.value:
+            if self.right is None:
+                self.right = BST(value)
+            else:
+                self.right.insert(value)
+                
+        return self
+
+    def contains(self, value):
+        # 1. the value may in the left subtree
+        if value < self.value:
+            if self.left is None:
+                return False
+            else:
+                return self.left.contains(value) # must come with return
+        # 2. the value may in the right subtree
+        elif value > self.value:
+            if self.right is None:
+                return False
+            else:
+                return self.right.contains(value) # must come with return
+        # 3. the value exists
+        elif value == self.value:
+            return True
+            
+    def remove(self, value, parent=None):
+        # 1. the value in the left subtree
+        if value < self.value:
+            if self.left is not None:
+                self.left.remove(value, parent=self)
+        # 2. the value in the right subtree
+        elif value > self.value:
+            if self.right is not None:
+                self.right.remove(value, parent=self)
+        # 3. the value we have founded
+        elif value == self.value:
+            # 3.1. remove a node with two children node, e.g, 5 or 15
+            if self.left is not None and self.right is not None:
+                self.value = self.right.getMinValue()
+                self.right.remove(self.value, parent=self)
+            # 3.2. remove the root node, notice if the root node have two children node, we did it on 3.1.
+            elif parent is None:
+                # 3.2.1. the root node has no child node, which means a single-node tree
+                if self.left is None and self.right is None:
+                    pass
+                # 3.2.2. the root node only has a right child node
+                elif self.left is None:
+                    self.value = self.right.value
+                    # set self.left as (self.right).left. You MUST first set up the None side to avoid cover the side we did not finish yet.
+                    self.left = self.right.left
+                    # set self.right as (self.right).right
+                    self.right = self.right.right
+                # 3.2.3. the root node only has a left child node
+                elif self.right is None:
+                    self.value = self.left.value
+                    # set self.right as (self.left).right. You MUST first set up the None side to avoid cover the side we did not finish yet.
+                    self.right = self.left.right
+                    # set self.left as (self.left).left
+                    self.left = self.left.left
+            # 3.3. remove the left child, e.g, 2 or 13
+            elif parent.left == self:
+                parent.left = self.left if self.left is not None else self.right
+            # 3.4. remove the right child, e.g, 15 if we have removed 22 or 13&14
+            elif parent.right == self:
+                parent.right = self.right if self.left is not None else self.right
+        
+        return self
+
+    def getRootValue(self):
+        if self is not None:
+            return self.value
+
+    def getMinValue(self):
+        if self.left is not None:
+            return self.left.getMinValue()
+        else:
+            return self.value
+        
+    def getMaxValue(self):
+        if self.right is not None:
+            return self.right.getMaxValue()
+        else:
+            return self.value
+
+
+####### mdb
+
+
+# Read the schema file
+file = open(mdbSchema, "r")
+
+schema = file.read().splitlines()
+file.close()
+
+
+# get the start index & end index of each table
+
+# Grab the index of "CRATE TABLE" statement
+startIndex = [] # startIndex: in schema, the items start with "CREAT" is a create table statement block
+for i in schema:
+    if re.findall("^CREATE", i) != []:
+        startIndex.append(schema.index(i))
+
+# define endIndex: start from the second item of startIndex, everyone-2 is the end_index
+endIndex = startIndex.copy()
+del endIndex[0] # so I delete the first item
+endIndex = np.array(endIndex)-2 # temporarily convert endIndex to array object, then -2
+endIndex = list(endIndex) # convert it back to list object
+endIndex.append(len(schema)-3) # add the last ");" index
+
+# define sqlTableIndex storing the startIndex & endIndex for each table
+sqlTableIndex = []
+for s, e in zip(startIndex, endIndex):
+    sqlTableIndex.append([s, e])
+
+sqlTableIndex
+# get the full indices from start index and end index, then get the table name and column name.
+
+# Grab each table with columns
+tableIndices = [] # define the whole table
+for tableIndex in sqlTableIndex:
+    tableBlock = range(tableIndex[0], tableIndex[1])
+    tableContent = []
+    for i in tableBlock:
+        try:
+            startItem = re.search('\[', schema[i]).start()
+        except AttributeError:
+            pass
+        else:
+            endItem = re.search('\]', schema[i]).end()
+            tableContent.append(schema[i][startItem+1:endItem-1])
+    tableIndices.append(tableContent)
+
+tableIndices
+
+# get table name and columns name
+sourcetables = []
+for eachTable in tableIndices:
+    sourcetables.append(eachTable[0]) # add table name as the first item
+    for i in eachTable[1:]:
+        columnName = r'{0}\{1}'.format(eachTable[0], i)
+        sourcetables.append(eachTable[0] + '\\' + i) # add columns name as the rest items
+
+sourcetables
+
+a = "tmp.txt"
+a.replace(".txt", ".ini")
+
+import os
+os.getcwd()
+
+for i in range(5):
+    print(i)
+
+
+import random
+x = random.randint(1,5)
+x = x*50 
+y = x+30
+
+x = random.randint(1,5)
+x
+
+random.randint(x, y)
+
+
+range(3)
+
+
+
+higher_order_lambda = lambda f: lambda x: f(x)
+''' The above code is equal to:
+def higher_order_lambda(f):
+    def func(x):
+        return f(x)
+    return func
+'''
+g = lambda x: x * x
+''' The above code is equal to:
+def g(x):
+    return x * x
+'''
+higher_order_lambda(g)(2)  # Which argument belongs to which function call?
+# TypeError: 'int' object is not callable
+
+
+
+def higher_order_lambda(f):
+    def func(x):
+        return f(x)
+    return func
+
+def g(x):
+    return x * x
+higher_order_lambda(g)(2)  # Which argument belongs to which function call?
+
+##
+
+call_thrice = lambda f: lambda x: f(f(f(x)))
+''' The above code is equal to:
+def call_thrice(f):
+    def func(x):
+        return f(f(f(x)))
+    return func
+'''
+call_thrice(lambda y: y + 1)(0)
+# 3
+
+
+print_lambda = lambda z: print(z)  # When is the return expression of a lambda expression executed?
+''' The above code is equal to:
+def print_lambda(z):
+    print(z)
+'''
+print_lambda
+# <function __main__.<lambda>(z)>
+
+one_thousand = print_lambda(1000)
+# 1000
+
+one_thousand # Because print does not return anything 
+# 
+
+type(one_thousand) # Because print does not return anything 
+# NoneType
+
+city = make_city(name, lat, lon)
+get_name(city)
+get_lat(city)
+get_lon(city)
+
+
+get_name(berkeley)
+get_lat(berkeley)
+get_lon(berkeley)
+
+
+
+class make_city:
+    def __init__(self, name, lat, lon):
+        self.city = {
+            'name': name,
+            'lat': lat,
+            'lon': lon
+        }
+    
+    def get_name(self):
+        return self.city['name']
+
+    def get_lat(self):
+        return self.city['lat']
+
+    def get_lon(self):
+        return self.city['lon']
+
+berkeley = make_city('Berkeley', 122, 37)
+berkeley.get_name()
+# 'Berkeley'
+berkeley.get_lat()
+# 122
+berkeley.get_lon()
+# 37
+
+####
+
+
+## Data Abstraction
+
+
+# Treat all the following code as being behind an abstraction layer, you shouldn't need to look at it!
+
+def change_abstraction(change):
+    change_abstraction.changed = change
+
+change_abstraction.changed = False
+
+def make_city(name, lat, lon):
+    if change_abstraction.changed:
+        return {"name" : name, "lat" : lat, "lon" : lon} # directory
+    else:
+        return [name, lat, lon] # list
+
+def get_name(city):
+    if change_abstraction.changed:
+        return city["name"]
+    else:
+        return city[0]
+
+def get_lat(city):
+    if change_abstraction.changed:
+        return city["lat"]
+    else:
+        return city[1]
+
+def get_lon(city):
+    if change_abstraction.changed:
+        return city["lon"]
+    else:
+        return city[2]
+
+city = make_city('Berkeley', 0, 1)
+get_name(city)
+# 'Berkeley'
+get_lat(city)
+# 0
+get_lon(city)
+# 1
+
+city = make_city('Berkeley', 122, 37)
+
+####
+
+from math import sqrt
+
+city1 = make_city('city1', 0, 1)
+city2 = make_city('city2', 0, 2)
+
+l = list(zip(city1[1:], city2[1:]))
+f = lambda x: (x[0] - x[1])**2
+sqrt(sum(map(f, l)))
+
+for i, j in list(zip(city1[1:], city2[1:])):
+    print(i, j)
+
+
+
+l[0]
+l[1]
+
+f(l[1])
+
+###
+
+def definePolitician(name, party, age):
+    return {'name': name, 'party': party, 'age': age}
+
+def getName(politician):
+    return politician['name']
+    
+def getParty(politician):
+    return politician['party']
+    
+def getAge(politician):
+    return politician['age']
+
+# query ADT variable
+trump = definePolitician('Donald Trump', 'Republica', 74)
+
+getName(trump)
+# 'Donald Trump'
+getParty(trump)
+# 'Republica'
+getAge(trump)
+# 74
+
+# query ADT variable as dict
+trump
+# {'name': 'Donald Trump', 'party': 'Republica', 'age': 74}
+
+trump['name']
+# 'Donald Trump'
+trump['party']
+# 'Republica'
+trump[age]
+# 74
+
+class politicianInfo:
+    def __init__(self, name, party, age):
+        self.politician = {'name':name, 'party':party, 'age':age}
+
+    def getName(self):
+        return self.politician['name']
+    
+    def getParty(self):
+        return self.politician['party']
+
+    def getAge(self):
+        return self.politician['age']
+
+trump = politicianInfo('Donald Trump', 'Republica', 74)
+
+trump.getName()
+# 'Donald Trump'
+trump.getParty()
+# 'Republica'
+trump.getAge()
+# 74
+
+###
+
+
+import random
+
+random.seed(10)
+print(random.random())
+# 0.5714025946899135
+
+random.seed(10)
+print(random.random())
+# 0.5714025946899135
+
+random.randrange(1, 6)
+
+
+######
+
+def point (x, y):
+    return [x, y]
+
+x = lambda point: point[0]
+y = lambda point: point[1]
+
+p = point(3, 5)
+x(p)
+y(p)
+
+def substract(p1, p2):
+    return (p2[0] - p1[0]), (p2[1] - p1[1]) #But this one violates the ADT
+
+def substract(p1, p2):
+    return (x(p2)-x(p1), y(p2)-y(p1))
+
+
+def definePolitician(name, party, age):
+    return {'name': name, 'party': party, 'age': age}
+
+getName = lambda politician: politician['name']
+
+getParty = lambda politician: politician['party']
+
+getAge = lambda politician: politician['age']
+
+# query ADT variable
+trump = definePolitician('Donald Trump', 'Republica', 74)
+
+getName(trump)
+# 'Donald Trump'
+getParty(trump)
+# 'Republica'
+getAge(trump)
+# 74
+
+%reset -f
+>> match_and_apply_factory([[1,2], [3,4], [5,6]], 3)(identity) # 3 matches to 4.
+4
+>> match_and_apply_factory([[1,2], [3,4], [5,6]], 3)(square) # 4**2 == 16.
+16
+>> match_and_apply_factory([[1,2], [3,4], [5,6]], 4)(identity) # 4 doesn't match.
+None
+
+def test_function(pairs, match, func_str)
+    func = eval(func_str)
+    return match_and_apply_factory(pairs, match)(func_str)
+
+identity = lambda x: x
+square = lambda x: x**2
+
+def match_and_apply_factory(pairs, match):
+    pair = [i[1] for i in pairs if i[0] == match]
+    if pair == []:
+        return lambda f: None
+    else:
+        return lambda f: f(pair[0])
+
+match_and_apply_factory([[1,2], [3,4], [5,6]], 3)(identity)
+match_and_apply_factory([[1,2], [3,4], [5,6]], 3)(square)
+match_and_apply_factory([[1,2], [3,4], [5,6]], 4)(identity)
+
+x = lambda: None
+
+x()
+
+###
+
+
+def exp(x, n):
+    result = 1
+    for i in range(n):
+        result *= x
+    return result
+
+2**10
+
+def encrypt(message):
+    for i messsage:
+        
+
+encryptionAlgorithm = {'a': 1, 'b': 2, 'c': 3 ...}
+
+####
+
+huck_finn_url = 'https://www.inferentialthinking.com/data/huck_finn.txt'
+huck_finn_text = read_url(huck_finn_url)
+huck_finn_chapters = huck_finn_text.split('CHAPTER ')[44:]
+
+from IPython.display import YouTubeVideo
+# The original URL is: 
+# https://www.youtube.com/watch?v=U7db6ZeLR5s
+
+YouTubeVideo("U7db6ZeLR5s")
+
+###
+
+
+def func1(x):
+    def func2():
+        # nonlocal x
+        while x >= 0:
+            print(x)
+            x -= 1
+    return func2
+
+func1(7)()
+# UnboundLocalError: local variable 'x' referenced before assignment
+
+
+###
+
+def exp(x, n):
+    result = 1
+    for i in range(n):
+        result *= x
+    return result
+
+exp(2, 0)
+# 1
+
+exp(2, 1)
+# 2
+
+exp(2, 10)
+# 1024
+
+###
+
+# A function returns exponentiation
+def exp(b, n):
+    return b * exp(b, n - 1)
+# when n = 0, function returns exp(b, 0) -> 1
+# when n = 1, function returns b * exp(b, n - 1) -> b * 1
+# when n = 2, function returns b * exp(b , n - 1) * exp(b , n - 2) -> b * b * 1
+
+exp(2, 0)
+# 1
+
+exp(2, 1)
+# 2
+
+exp(2, 10)
+# 1024
+
+
+
+
+
+# f1 local variable x = 5
+# f2 local variable x = 7
+print(x)
+
+
+x = 5
+
+x = x -2
+print(x)
+
+%reset -f
+def make_withdraw(balance):
+    def withdraw(amount):
+        nonlocal balance
+        if amount > balance:
+            return 'Insufficient funds'
+        balance = balance - amount
+        return balance
+    return withdraw
+
+wd = make_withdraw(balance=20)
+wd(5)
+
+
+
+soda_reviews = [make_review('Soda', 4.5), make_review('Soda', 4)]
+soda = make_restaurant('Soda', [127.0, 0.1], ['Restaurants', 'Breakfast & Brunch'], 1, soda_reviews)
+restaurant_ratings(soda)
+
+
+
+
+for lst in soda_reviews:
+    print(lst)

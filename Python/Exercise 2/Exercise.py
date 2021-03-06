@@ -8,6 +8,9 @@
 ###
 
 # 以下函数允许计算两个数的乘积，请稍加改造，变成可接收一个或多个数并计算乘积：
+from os import register_at_fork, truncate
+
+
 def product(*n):
     result = 1
     for i in n:
@@ -2614,3 +2617,563 @@ val = (0, case_information['open_dt'], None, None, None, 'Open', None, case_info
 mysql.execute(sql, val3)
 mysql_connect.commit()
 print(mysql.rowcount, "record inserted.")
+
+########
+
+def ab(c, d):
+    if c > 5:
+        print(c)
+    elif c > 7:
+        print(d)
+    print('foo')
+
+'''
+ab(10, 20)
+
+10
+foo
+'''
+
+def bake(cake, make):
+    if cake == 0:
+        cake = cake + 1
+        print(cake)
+    if cake == 1:
+        print(make)
+    else:
+        return cake
+    return make
+
+______
+
+>>> bake(1, "mashed potatoes")
+
+---
+
+
+def falling(n, k):
+    """Compute the falling factorial of n to depth k.
+
+    >>> falling(6, 3)  # 6 * 5 * 4
+    120
+    >>> falling(4, 3)  # 4 * 3 * 2
+    24
+    >>> falling(4, 1)  # 4
+    4
+    >>> falling(4, 0)
+    1
+    """
+    "*** YOUR CODE HERE ***"
+    # 为什么 coding 时先考虑特殊情况, 因为这样可以避免 bug or/and 提高效率
+    if k == 0:
+      return 1
+    else:     
+        if n < k:
+            k = n
+        # main function
+
+        factorial_n = 1
+        for i in range(1, n+1): # 因为 range() 是, [1, n), 所以必须 n+1
+            factorial_n *= i
+        
+        factorial_k = 1
+        for i in range(1, n-k+1): # 因为 range() 是, [1, n-k), 所以必须 n-k+1
+            factorial_k *= i
+
+        result = int(factorial_n/factorial_k)
+        
+        return result
+
+print(falling(6, 3))
+print(falling(4, 3))
+print(falling(4, 1))
+print(falling(4, 0))
+
+
+        
+def falling(n, k):
+    """Compute the falling factorial of n to depth k.
+
+    >>> falling(6, 3)  # 6 * 5 * 4
+    120
+    >>> falling(4, 3)  # 4 * 3 * 2
+    24
+    >>> falling(4, 1)  # 4
+    4
+    >>> falling(4, 0)
+    1
+    """
+    "*** YOUR CODE HERE ***"
+    # 为什么 coding 时先考虑特殊情况, 因为这样可以避免 bug or/and 提高效率
+    if k == 0:
+      return 1
+    else:     
+        if n < k:
+            k = n
+        # main function
+
+        result = 1
+        for i in range(n-k+1, n+1): # 因为 range() 是, [1, n), 所以必须 n+1
+            result *= i
+            
+        return result
+
+print(falling(6, 3))
+print(falling(4, 3))
+print(falling(4, 1))
+print(falling(4, 0))
+
+####
+
+def triangular_sum(n):
+    """
+    >>> t_sum = triangular_sum(5)
+    1
+    3
+    6
+    10
+    15
+    >>> t_sum
+    35
+    """
+    "*** YOUR CODE HERE ***"
+    result = 0
+    for i in range(1, n+1):
+        result += (i+1) * i / 2
+    
+    return(int(result))
+
+triangular_sum(5)
+
+#######
+
+n = '8888888'
+re.findall('88', n)
+
+import re
+
+def double_eights(n):
+    """Return true if n has two eights in a row.
+    >>> double_eights(8)
+    False
+    >>> double_eights(88)
+    True
+    >>> double_eights(2882)
+    True
+    >>> double_eights(880088)
+    True
+    >>> double_eights(12345)
+    False
+    >>> double_eights(80808080)
+    False
+    """
+    "*** YOUR CODE HERE ***"
+    n = str(n)
+    if re.findall('88', n) == []:
+        return False
+    else:
+        return True
+
+print(double_eights(8))
+print(double_eights(88))
+print(double_eights(2882))
+print(double_eights(880088))
+print(double_eights(12345))
+print(double_eights(80808080))
+
+####
+
+def sum_digits(n):
+    """Sum all the digits of n.
+
+    >>> sum_digits(10) # 1 + 0 = 1
+    1
+    >>> sum_digits(4224) # 4 + 2 + 2 + 4 = 12
+    12
+    >>> sum_digits(1234567890)
+    45
+    >>> x = sum_digits(123) # make sure that you are using return rather than print
+    >>> x
+    6
+    """
+    "*** YOUR CODE HERE ***"
+    digit = 0
+    while n > 0:
+          digit = digit + n % 10 # digit 3, digit = 2, digit = 1
+          n = n // 10 # n = 12, n = 1, n = 0
+
+    return digit
+
+print(sum_digits(10))
+print(sum_digits(4224))
+print(sum_digits(1234567890))
+print(sum_digits(123))
+
+###
+
+def double_eights(n):
+    """Return true if n has two eights in a row.
+    >>> double_eights(8)
+    False
+    >>> double_eights(88)
+    True
+    >>> double_eights(2882)
+    True
+    >>> double_eights(880088)
+    True
+    >>> double_eights(12345)
+    False
+    >>> double_eights(80808080)
+    False
+    """
+    "*** YOUR CODE HERE ***"
+    digit_1 = 0
+    digit_2 = 0
+    while n > 0:
+        digit_1 = n % 10 # 拿到 n 的个位数
+        n = n // 10 # 将 n 整除从来下一次循环
+        if digit_1 == 8:
+            if digit_2 == 8:
+                return True
+            else:
+                digit_2 = 8
+        else:
+            digit_2 = 0
+        
+    return False # 若 loop 结束仍没有 88, return False
+        
+print(double_eights(8))
+print(double_eights(88))
+print(double_eights(2882))
+print(double_eights(880088))
+print(double_eights(12345))
+print(double_eights(80808080))
+
+8080808 // 10
+
+#####
+
+
+
+
+def right_triangle(a, b, c):
+    """Determine whether a, b, and c can be sides of a right triangle
+    >>> right_triangle(1, 1, 1)
+    False
+    >>> right_triangle(5, 3, 4)
+    True
+    >>> right_triangle(8, 10, 6)
+    True
+    """
+    "*** YOUR CODE HERE ***"
+    l = sorted([a, b, c])
+    if l[0]**2 + l[1]**2 == l[2]**2:
+        return True
+    else:
+        return False
+
+print(right_triangle(1, 1, 1))
+print(right_triangle(5, 3, 4))
+print(right_triangle(8, 10, 6))
+
+#####
+
+def odd(number):
+    """Return whether the number is odd.
+
+    >>> odd(2)
+    False
+    >>> odd(5)
+    True
+    """
+    "*** YOUR CODE HERE ***"
+    if number % 2 == 0:
+        return False
+    else:
+        return True
+
+print(odd(2))
+print(odd(5))
+    
+###
+
+from math import sqrt
+
+def distance(x1, y1, x2, y2):
+    """Calculates the Euclidian distance between two points (x1, y1) and (x2, y2)
+
+    >>> distance(1, 1, 1, 2)
+    1.0
+    >>> distance(1, 3, 1, 1)
+    2.0
+    >>> distance(1, 2, 3, 4)
+    2.8284271247461903
+    """
+    "*** YOUR CODE HERE ***"
+    return sqrt((x1 - x2)**2 + (y1 - y2)**2)
+
+print(distance(1, 1, 1, 2))
+print(distance(1, 3, 1, 2))
+print(distance(1, 2, 3, 4))
+
+####
+
+from math import sqrt
+
+def distance3d(x1, y1, z1, x2, y2, z2):
+    """Calculates the 3D Euclidian distance between two points (x1, y1, z1) and
+    (x2, y2, z2).
+
+    >>> distance3d(1, 1, 1, 1, 2, 1)
+    1.0
+    >>> distance3d(2, 3, 5, 5, 8, 3)
+    6.164414002968976
+    """
+    "*** YOUR CODE HERE ***"
+    return sqrt((x1 - x2)**2 + (y1 - y2)**2 + (z1 - z2)**2)
+
+print(distance3d(1, 1, 1, 1, 2, 1))
+print(distance3d(2, 3, 5, 5, 8, 3))
+
+###
+
+def diff(x, y, z):
+    """Return whether one argument is the difference between the other two.
+
+    x, y, and z are all integers.
+
+    >>> diff(5, 3, 2) # 5 - 3 is 2
+    True
+    >>> diff(2, 3, 5) # 5 - 3 is 2
+    True
+    >>> diff(2, 5, 3) # 5 - 3 is 2
+    True
+    >>> diff(-2, 3, 5) # 3 - 5 is -2
+    True
+    >>> diff(-5, -3, -2) # -5 - -2 is -3
+    True
+    >>> diff(-2, 3, -5) # -2 - 3 is -5
+    True
+    >>> diff(2, 3, -5)
+    False
+    >>> diff(10, 6, 4)
+    True
+    >>> diff(10, 6, 3)
+    False
+
+
+    """
+    "*** YOUR CODE HERE ***"
+    if x + y == z:
+        return True
+    elif x + z == y:
+        return True
+    elif y + z == x:
+        return True
+    else:
+        return False
+
+print(diff(5, 3, 2))
+print(diff(2, 3, 5))
+print(diff(2, 5, 3))
+print(diff(-2, 3, 5))
+print(diff(-5, -3, -2))
+print(diff(-2, 3, -5))
+print(diff(2, 3, -5))
+print(diff(10, 6, 4))
+print(diff(10, 6, 3))
+
+####
+
+from operator import add, sub
+
+def a_plus_abs_b(a, b):
+    """Return a+abs(b), but without calling abs.
+
+    >>> a_plus_abs_b(2, 3)
+    5
+    >>> a_plus_abs_b(2, -3)
+    5
+    >>> a_plus_abs_b(-5, -1)
+    -4
+    """
+    if b < 0:
+        f = sub
+    else:
+        f = add
+    return f(a, b) # You can replace this line, but don't have to.
+
+print(a_plus_abs_b(2, 3))
+print(a_plus_abs_b(2, -3))
+print(a_plus_abs_b(-5, -1))
+
+###
+
+
+from math import sqrt
+
+def quadratic(a,b,c):
+    """
+    >>> quadratic(1,0,-1)
+    (-1.0, 1.0)
+    >>> quadratic(1,2,1)
+    (-1.0, -1.0)
+    >>> quadratic(1,3,-4)
+    (-4.0, 1.0)
+    """
+    "*** YOUR CODE HERE ***"
+    x1 = (-b - sqrt(b**2 - 4*a*c))/(2*a)
+    x2 = (-b + sqrt(b**2 - 4*a*c))/(2*a)
+    return(x1, x2)
+
+print(quadratic(1, 0, -1))
+print(quadratic(1, 2, 1))
+print(quadratic(1, 3, -4))
+###
+
+def hailstone(n):
+    """Print the hailstone sequence starting at n and return its
+    length.
+
+    >>> a = hailstone(10)
+    10
+    5
+    16
+    8
+    4
+    2
+    1
+    >>> a
+    7
+    """
+    "*** YOUR CODE HERE ***"
+    l = [n]
+    while n != 1:
+        if n % 2 == 0:
+            n = n / 2
+            l.append(int(n))
+        else:
+            n = n * 3 + 1
+            l.append(int(n))
+    
+    for i in l:
+        print(i)
+    return len(l)
+
+a = hailstone(10)
+a
+        
+def lastName(l):
+    return l
+
+def firstName(f):
+    return f
+
+def person(l, f):
+    print('First Name: ' + firstName(f))
+    print('Last Name: ' + lastName(l))
+
+person('Lyu', 'Amber')
+
+###
+
+def lastName(l):
+    print(l)
+
+def firstName(f):
+    print(f)
+
+def person(l, f):
+    print('First Name: ' + firstName(f))
+    print('Last Name: ' + lastName(l))
+
+person('Lyu', 'Amber')
+
+#####
+
+
+result = 1
+last_i = 1
+
+for i in range (5, 10):
+    result = last_i * i
+    last_i = i
+
+print(result)
+
+f = 1
+for i in range (5, 10):
+    f *= i
+
+print(f)
+
+###
+
+def harmonic_mean(x, y):
+    """Return the harmonic mean of x and y.
+
+    >>> harmonic_mean(2, 6)
+    3.0
+    >>> harmonic_mean(1, 1)
+    1.0
+    >>> harmonic_mean(2.5, 7.5)
+    3.75
+    >>> harmonic_mean(4, 12)
+    6.0
+    """
+    "*** YOUR CODE HERE ***"
+    return(2/(1/x + 1/y))
+
+print(harmonic_mean(2, 6))
+print(harmonic_mean(2.5, 7.5))
+print(harmonic_mean(4, 12))
+
+###
+
+
+def two_of_three(a, b, c):
+    """Return x*x + y*y, where x and y are the two largest members of the
+    positive numbers a, b, and c.
+
+    >>> two_of_three(1, 2, 3)
+    13
+    >>> two_of_three(5, 3, 1)
+    34
+    >>> two_of_three(10, 2, 8)
+    164
+    >>> two_of_three(5, 5, 5)
+    50
+    """
+    "*** YOUR CODE HERE ***"
+    return(sorted([a, b, c])[1]**2 + sorted([a, b, c])[2]**2)
+
+print(two_of_three(1, 2, 3))
+print(two_of_three(5, 3, 1))
+print(two_of_three(10, 2, 8))
+print(two_of_three(5, 5, 5))
+
+#### 
+
+import datetime
+
+dir(datetime)
+
+type(datetime)
+
+datetime
+
+###
+
+dir(datetime.datetime)
+
+type(datetime.datetime)
+
+datetime.datetime
+
+###
+
+type(datetime.datetime.now)
+
+datetime.datetime.now
+
+###

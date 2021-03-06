@@ -11,7 +11,7 @@
 # Email: <zacks.shen@gmail.com>                                                #
 # Github: https://github.com/ZacksAmber                                        #
 # -----                                                                        #
-# Last Modified: 2020-05-19 3:29:27 pm                                         #
+# Last Modified: 2020-05-22 3:19:11 pm                                         #
 # Modified By: Zacks Shen <zacks.shen@gmail.com>                               #
 # -----                                                                        #
 # Copyright (c) 2020 Zacks Shen                                                #
@@ -234,4 +234,8 @@ soup.find_all(string = re.compile("Python")) == soup(string = re.compile("Python
 
 tplt = "{0:^10}\t{1:{3}^10}\t{2:^10}"
 
-print(tplt.format("排名", "学校名称", "总分", chr(12288)))
+print(tplt.format("排名", "学校名称", "总分", chr(12288))) 
+
+"python" == "python"
+
+re.compile("a*")

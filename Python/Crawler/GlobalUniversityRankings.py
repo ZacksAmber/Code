@@ -11,8 +11,8 @@
 # Email: <zacks.shen@gmail.com>                                                #
 # Github: https://github.com/ZacksAmber                                        #
 # -----                                                                        #
-# Last Modified: 2020-05-20 7:50:32 pm                                         #
-# Modified By: Zacks Shen <zacks.shen@gmail.com>                               #
+# Last Modified: 2020-11-06 10:38:44 pm                                        #
+# Modified By: Zacks Shen <zacks.shen@pluralpoint.com>                         #
 # -----                                                                        #
 # Copyright (c) 2020 Zacks Shen                                                #
 ################################################################################
@@ -25,6 +25,8 @@ from bs4 import BeautifulSoup
 
 import datetime
 import pandas as pd
+
+import os
 
 robots = "https://www.usnews.com/robots.txt"
 
@@ -43,14 +45,23 @@ def getHTMLText(url):
 def fillUniversityList(df, html):
     uinfo = []
     soup = BeautifulSoup(html, "html.parser")
-    results = soup.find("div", id=("resultsMain")).find_all("div", attrs="sep") # locate the result area
+    #results = soup.find("div", id=("rankings")).find_all("div", attrs="sep") # locate the result area
+    results = soup.find("div", id=("rankings")).find_all("div", attrs="sep")
 
     if isinstance(results, bs4.element.ResultSet):
         for i in range(len(results)):
             # Rank
+            '''
             rank = results[i].find("span", attrs="rankscore-bronze").string
             rank = re.findall(r"\d+\.?\d*", str(rank.string)) # convert to a list
             rank = int(rank[0]) # extract the first element that is int
+            '''
+            rank = results[i].find("span", attrs="rankscore-bronze")
+            rank = rank.find(text=re.compile("\d"))
+            rank = str(rank)
+            rank = re.search(r"\d+", rank)
+            rank = rank.group(0)
+            rank = int(rank)
 
             # Name
             name = results[i].find("h2", "h-taut").find("a").string
@@ -78,8 +89,9 @@ def fillUniversityList(df, html):
     else:
         print("error: results <- soup <- request")
 
-    for i, j in zip(uinfo, range(len(uinfo))):
-        df.loc[j, :] = i
+    # add the list to the dataframe last row
+    for i in uinfo:
+        df.loc[len(df), :] = i
 
     return df
 
@@ -91,16 +103,20 @@ def printUniversityRank(df):
 def exportUniversityRank(df):
     # Export csv
     name = "U.S News Global University Rankings " + datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S") + ".csv"
-    path = "/Users/zacks/Desktop/Code/Python/Crawler/"
+    path = os.getcwd()
     df.to_csv(path + name, index=False)
 
 # Main function
 def main():
-    url = "https://www.usnews.com/education/best-global-universities/rankings"
+    baseurl = "https://www.usnews.com/education/best-global-universities/rankings"
+    page = "?page="
+
     df = pd.DataFrame(columns=["Rank", "Name", "Global Score", "Country", "City, State", "Link"])
 
-    html = getHTMLText(url)
-    result = fillUniversityList(df, html)
+    for i in range(1, 21):
+        url = baseurl + page + str(i)
+        html = getHTMLText(url)
+        result = fillUniversityList(df, html)
     
     return printUniversityRank(result)
     #exportUniversityRank(result)

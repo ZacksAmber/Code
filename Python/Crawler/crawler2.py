@@ -78,3 +78,81 @@ if m:
     print(m)
 # ['02115', '02115']
 
+for m in re.finditer(r"\d{5}", "02115 Huntington Ave, Boston MA 02115"):
+    if m:
+        print(m.group(0))
+# 02115
+# 02115
+
+
+zipcode = re.compile(r'\d{5}')
+for m in re.finditer(zipcode, "02115 Huntington Ave, Boston MA 02115"):
+    if m:
+        print(m.group(0))
+# 02115
+# 02115
+
+result = zipcode.search("02115 Huntington Ave, Boston MA 02115")
+result.group(0)
+# 02115
+
+for result in zipcode.finditer("02115 Huntington Ave, Boston MA 02115"):
+    if result:
+        print(result.group(0))
+# 02115
+# 02115
+
+result.start()
+
+help(result.string
+
+
+zipcode = re.compile(r'\d{5}')
+result = zipcode.search("02115 Huntington Ave, Boston MA 02115")
+
+result.string
+# '02115 Huntington Ave, Boston MA 02115'
+
+result.re
+# re.compile(r'\d{5}', re.UNICODE)
+
+result.pos
+# 0
+
+result.endpos
+# 37
+
+result.group()
+# '02115'
+
+result.start()
+# 0
+
+result.end()
+# 5
+
+result.span()
+# (0, 5)
+
+
+import re
+
+m = re.search("^P.*", "Python")
+if m:
+    print(m.group(0))
+# Python
+
+import re
+
+m = re.search("^P.*?", "Python")
+if m:
+    print(m.group(0))
+# P
+
+
+d = 0.22
+
+m = re.search(r"-?\d+\.?\d*", "fasfds ---0.")
+m = re.search("\d+\.?\d*", "fasfsdf ---0.22")
+m.group(0)
+

@@ -8,6 +8,9 @@
 ###
 
 # 以下函数允许计算两个数的乘积，请稍加改造，变成可接收一个或多个数并计算乘积：
+from typing import no_type_check
+
+
 def product(*n):
     result = 1
     for i in n:
@@ -3776,3 +3779,949 @@ qplot('weight', data = wdata, geom = "histogram",
 # change line type
 qplot('weight', data = wdata, geom = "density",
     color = 'sex', linetype = 'sex')
+
+
+d = {"a":1, "b":2}
+d.keys()
+
+help(map)
+
+help(list.any())
+
+dir(any)
+help(any)
+
+import json
+
+# some JSON:
+x =  '{ "name":"John", "age":30, "city":"New York"}'
+
+# parse x:
+y = json.loads(x)
+
+# the result is a Python dictionary:
+print(y["age"])
+# 30
+
+json.dumps(x, indent=4)
+"""
+{
+    "name": "John",
+    "age": 30,
+    "married": true,
+    "divorced": false,
+    "children": [
+        "Ann",
+        "Billy"
+    ],
+    "pets": null,
+    "cars": [
+        {
+            "model": "BMW 230",
+            "mpg": 27.5
+        },
+        {
+            "model": "Ford Edge",
+            "mpg": 24.1
+        }
+    ]
+}
+"""
+
+s = 'Python-Tutorial'
+s.lower()
+
+
+
+import shutil
+import os
+os.chdir('/Users/zacks/Desktop/ZacksAmber.github.io/source/_posts')
+files = os.listdir()
+
+for file in files:
+    shutil.move(file, file.lower())
+
+t = 1690589
+b = 1252537
+
+t2 = 1670631
+b2 = 1272495
+
+t - t2
+b2 - b
+
+### Unit test
+
+import unittest
+import calc
+
+dir(unittest)
+help(unittest)
+
+p = 330600585
+vp = 0.5572
+rvp = 0.8680
+
+p*vp*rvp
+
+73351022 + 80000000
+
+
+def twenty_twenty_one():
+    Amber_Anniversery = 2018
+    Amber_Love_Experience = 3
+    This_Year = Amber_Anniversery + Amber_Love_Experience
+    return This_Year
+
+twenty_twenty_one()
+
+from datetime import datetime
+
+r = {}
+r["jobProcessedDateTime"] = datetime.today()
+r
+
+f = {'Type':'Yellow'}
+f
+
+def AddProcessedTime(r):
+    r["jobProcessedDateTime"] = datetime.today() #timestamp of when we ran this.
+    return r
+
+AddProcessedTime()
+
+
+
+
+
+
+
+import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from pyspark.context import SparkContext
+from awsglue.context import GlueContext
+from awsglue.job import Job
+
+## @params: [JOB_NAME]
+args = getResolvedOptions(sys.argv, ['JOB_NAME'])
+
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+job = Job(glueContext)
+job.init(args['JOB_NAME'], args)
+## @type: DataSource
+## @args: [database = "ny_taxi_db", table_name = "ny_taxi", transformation_ctx = "DataSource0"]
+## @return: DataSource0
+## @inputs: []
+DataSource0 = glueContext.create_dynamic_frame.from_catalog(database = "ny_taxi_db", table_name = "ny_taxi", transformation_ctx = "DataSource0")
+## @type: ApplyMapping
+## @args: [mappings = [("vendorid", "long", "vendorid", "long"), ("tpep_pickup_datetime", "string", "pickup_date", "timestamp"), ("tpep_dropoff_datetime", "string", "dropoff_date", "timestamp"), ("passenger_count", "long", "passenger_count", "long"), ("trip_distance", "double", "trip_distance", "double"), ("pickup_longitude", "double", "pickup_longitude", "double"), ("pickup_latitude", "double", "pickup_latitude", "double"), ("ratecodeid", "long", "ratecodeid", "long"), ("store_and_fwd_flag", "string", "store_and_fwd_flag", "string"), ("dropoff_longitude", "double", "dropoff_longitude", "double"), ("dropoff_latitude", "double", "dropoff_latitude", "double"), ("payment_type", "long", "payment_type", "long"), ("fare_amount", "double", "fare_amount", "double"), ("extra", "double", "extra", "double"), ("mta_tax", "double", "mta_tax", "double"), ("tip_amount", "double", "tip_amount", "double"), ("tolls_amount", "double", "tolls_amount", "double"), ("improvement_surcharge", "double", "improvement_surcharge", "double"), ("total_amount", "double", "total_amount", "double")], transformation_ctx = "Transform0"]
+## @return: Transform0
+## @inputs: [frame = DataSource0]
+Transform0 = ApplyMapping.apply(frame = DataSource0, mappings = [("vendorid", "long", "vendorid", "long"), ("tpep_pickup_datetime", "string", "pickup_date", "timestamp"), ("tpep_dropoff_datetime", "string", "dropoff_date", "timestamp"), ("passenger_count", "long", "passenger_count", "long"), ("trip_distance", "double", "trip_distance", "double"), ("pickup_longitude", "double", "pickup_longitude", "double"), ("pickup_latitude", "double", "pickup_latitude", "double"), ("ratecodeid", "long", "ratecodeid", "long"), ("store_and_fwd_flag", "string", "store_and_fwd_flag", "string"), ("dropoff_longitude", "double", "dropoff_longitude", "double"), ("dropoff_latitude", "double", "dropoff_latitude", "double"), ("payment_type", "long", "payment_type", "long"), ("fare_amount", "double", "fare_amount", "double"), ("extra", "double", "extra", "double"), ("mta_tax", "double", "mta_tax", "double"), ("tip_amount", "double", "tip_amount", "double"), ("tolls_amount", "double", "tolls_amount", "double"), ("improvement_surcharge", "double", "improvement_surcharge", "double"), ("total_amount", "double", "total_amount", "double")], transformation_ctx = "Transform0")
+
+## Add a column 'type' with all the values are 'yellow'
+def AddType(rec):
+    rec["type"] = "yellow" # add "yellow" to dictionary rec when then function runs
+    return rec
+
+mapped_Transform0 = Map.apply(frame = Transform0, f = AddType)
+
+## @type: DataSink
+## @args: [connection_type = "s3", format = "parquet", connection_options = {"path": "s3://aws-labs-bucket/EMR/ny_taxi_parquet/", "partitionKeys": []}, transformation_ctx = "DataSink0"]
+## @return: DataSink0
+## @inputs: [frame = mapped_Transform0]
+DataSink0 = glueContext.write_dynamic_frame.from_options(frame = mapped_Transform0, connection_type = "s3", format = "parquet", connection_options = {"path": "s3://aws-labs-bucket/EMR/ny_taxi_parquet/", "partitionKeys": []}, transformation_ctx = "DataSink0")
+job.commit()
+
+
+
+
+
+def fun_1(x):
+    return x
+
+def fun_2(y):
+    return y
+
+fun_2(3)
+
+def define_parabola(a, b, c):
+    def parabola(x):
+        return a*(x**2) + b*x + c
+    return parabola
+
+a = define_parabola(-2, 3, -4)
+y1 = a(1)
+y2 = a(10)
+print(y1, y2)
+
+
+result = 1
+for i in range (1, 101):
+    result = result * square(x)
+
+###
+
+# Question 2
+def make_buzzer(n):
+    """ Returns a function that prints numbers in a specified
+    range except those divisible by n.
+
+    >>> i_hate_fives = make_buzzer(5)
+    >>> i_hate_fives(10)
+    Buzz!
+    1
+    2
+    3
+    4
+    Buzz!
+    6
+    7
+    8
+    9
+    """
+    "*** YOUR CODE HERE ***"
+    def skip(m):
+        for i in range(1, m):
+            if i == n:
+                pass
+            else:
+                print(i)
+    return skip
+    
+
+i_hate_fives = make_buzzer(5)
+i_hate_fives(15)
+
+#### 3
+
+def piecewise(f, g, b):
+    """Returns the piecewise function h where:
+
+    h(x) = f(x) if x < b,
+           g(x) otherwise
+
+    >>> def negate(x):
+    ...     return -x
+    >>> def identity(x):
+    ...     return x
+    >>> abs_value = piecewise(negate, identity, 0)
+    >>> abs_value(6)
+    6
+    >>> abs_value(-1)
+    1
+    """
+    "*** YOUR CODE HERE ***"
+    def h(x): # f = negate, g = identity, b = 0
+        if x < b:
+            return f(x) # negate(x)
+        return g(x) # identity(x)
+    return h
+
+def negate(x):
+    return -x
+def identity(x):
+    return x
+
+abs_value = piecewise(negate, identity, 0)
+abs_value(6)
+abs_value(-1)
+
+# Question 4
+%reset -f
+
+
+'''
+Write a function (funception) that takes in another function func_a and a number start and returns a function (func_b) that will have one parameter to take in the stop value. func_b should take the following into consideration the following in order:
+
+Takes in the stop value.
+If the value of start is less than 0, it should exit the function.
+If the value of start is greater than stop, apply func_a on start and return the result.
+If not, apply func_a on all the numbers from start (inclusive) up to stop (exclusive) and return the product.
+'''
+
+def funception(func_a, start):
+    """ Takes in a function (function A) and a start value.
+    Returns a function (function B) that will find the product of 
+    function A applied to the range of numbers from 
+    start (inclusive) to stop (exclusive)
+
+    >>> def func_a(num):
+    ...     return num + 1
+    >>> func_b1 = funception(func_a, 3)
+    >>> func_b1(2)
+    4
+    >>> func_b2 = funception(func_a, -2)
+    >>> func_b2(-3)
+    >>> func_b3 = funception(func_a, -1)
+    >>> func_b3(4)
+    >>> func_b4 = funception(func_a, 0)
+    >>> func_b4(3)
+    6
+    >>> func_b5 = funception(func_a, 1)
+    >>> func_b5(4)
+    24
+    """
+    "*** YOUR CODE HERE ***"
+    def func_b(num):
+        if start < 0:
+            exit
+        elif start >= num:
+            return func_a(start)
+        else:
+            result = 1
+            for i in range(start+1, num+1):
+                result *= i
+            return result
+    return func_b
+
+
+def func_a(num):
+    return num + 1
+
+func_b1 = funception(func_a, 3) # funception(func_a, 3)(2), num = 3+1, return 4
+func_b1(2) # 4
+
+func_b2 = funception(func_a, -2)
+func_b2(-3) # 
+
+func_b3 = funception(func_a, -1)
+func_b3(4) # 
+
+func_b4 = funception(func_a, 0) # funception(func_a, 0)(3), num = 0+1, return 1*2*3
+func_b4(3) # 6
+
+func_b5 = funception(func_a, 1) # funception(func_a, 1)(4), num = 1+1, return 2*3*4
+func_b5(4) # 24
+
+###
+
+def make_buzzer(n):
+    def skip(m): # make_buzzer(5)(10)
+        for i in range(1, m):
+            if i == n:
+                pass
+            else:
+                print(i)
+    return skip
+
+####
+
+def fib(n):
+    """Returns the nth Fibonacci number.
+
+    >>> fib(0)
+    0
+    >>> fib(1)
+    1
+    >>> fib(2)
+    1
+    >>> fib(3)
+    2
+    >>> fib(4)
+    3
+    >>> fib(5)
+    5
+    >>> fib(6)
+    8
+    >>> fib(100)
+    354224848179261915075
+    """
+    "*** YOUR CODE HERE ***"
+
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+
+print(fib(0))
+print(fib(1))
+print(fib(2))
+print(fib(3))
+print(fib(4))
+print(fib(5))
+print(fib(6))
+print(fib(100))
+
+fib(40)
+
+###
+
+def mul_by_num(factor):
+    """
+    Returns a function that takes one argument and returns num
+    times that argument.
+    >>> x = mul_by_num(5)
+    >>> y = mul_by_num(2)
+    >>> x(3)
+    15
+    >>> y(-4)
+    -8
+    """
+    "*** YOUR CODE HERE ***"
+    def result(factor_2):
+        return factor * factor_2
+    return result 
+
+x = mul_by_num(5)
+x(3)
+
+y = mul_by_num(2)
+y(-4)
+
+###
+
+def make_derivative(f):
+    """Returns a function that approximates the derivative of f.
+
+    Recall that f'(a) = (f(a + h) - f(a)) / h as h approaches 0. We will
+    approximate the derivative by choosing a very small value for h.
+
+    >>> def square(x): 
+    ...     # equivalent to: square = lambda x: x*x
+    ...     return x*x
+    >>> derivative = make_derivative(square)
+    >>> result = derivative(3)
+    >>> round(result, 3) # approximately 2*3
+    6.0
+    """
+    h=0.00001
+    "*** YOUR CODE HERE ***"
+    def derivative(a):
+        return (f(a + h) - f(a)) / h
+    return derivative
+
+def square(x): 
+    # equivalent to: square = lambda x: x*x
+    return x*x
+derivative = make_derivative(square)
+result = derivative(3)
+round(result, 3) # approximately 2*3
+
+def f(x):
+    return 3 * x ** 2 + 2
+make_derivative(f)(3)
+
+f(a) = x^2
+f'(a) = lim_{h -> 0} = f(a + h) - f(a) / h
+
+# x^2 = 2x -> f'(a) = 6
+# x^2 -> (x+h)^2 / h = 6 -> (x^2 + h^2 + 2xh) / h = x^2/h + h + 2x
+
+help(round)
+
+
+def F():
+    a,b = 0,1
+    while True:
+        yield a
+        a, b = b, a + b
+
+def fib(n):
+    a,b = 1,1
+    for i in range(n-1):
+        a,b = b,a+b
+    return a
+
+fib()
+ 
+# 输出了第10个斐波那契数列
+print (fib(100))
+
+####
+
+# Question 4
+# %reset -f
+
+def count_cond(mystery_function, n):
+    """
+    >>> def divisible(n, i):
+    ...     return n % i == 0
+    >>> count_cond(divisible, 2) # 1, 2
+    2
+    >>> count_cond(divisible, 4) # 1, 2, 4
+    3
+    >>> count_cond(divisible, 12) # 1, 2, 3, 4, 6, 12
+    6
+
+    >>> def is_prime(n, i):
+    ...     return count_cond(divisible, i) == 2
+    >>> count_cond(is_prime, 2) # 2
+    1
+    >>> count_cond(is_prime, 3) # 2, 3
+    2
+    >>> count_cond(is_prime, 4) # 2, 3
+    2
+    >>> count_cond(is_prime, 5) # 2, 3, 5
+    3
+    >>> count_cond(is_prime, 20) # 2, 3, 5, 7, 11, 13, 17, 19
+    8
+    """
+    "*** YOUR CODE HERE ***"
+    i, count = 1, 0
+
+    if mystery_function is divisible:
+        while i <= n:
+            if divisible(n, i):
+                count += 1
+            i += 1
+    elif mystery_function is is_prime:
+        while i <= n:
+            if is_prime(n, i):
+                count += 1
+            i += 1       
+    return count
+
+
+def divisible(n, i):
+    return n % i == 0
+
+print(count_cond(divisible, 2))
+print(count_cond(divisible, 4))
+print(count_cond(divisible, 12))
+
+def is_prime(n, i):
+    return count_cond(divisible, i) == 2
+
+print(count_cond(is_prime, 2))
+print(count_cond(is_prime, 3))
+print(count_cond(is_prime, 4))
+print(count_cond(is_prime, 5))
+print(count_cond(is_prime, 20))
+
+###
+
+def count_factors(n): # 返回因子
+    """Return the number of positive factors that n has."""
+    i, count = 1, 0
+    while i <= n:
+        if n % i == 0:
+            count += 1
+        i += 1
+    return count
+
+def count_primes(n):
+    """Return the number of prime numbers up to and including n."""
+    i, count = 1, 0
+    while i <= n:
+        if is_prime(i):
+            count += 1
+        i += 1
+    return count
+
+def is_prime(n): # 返回因子的数量是否为 2 的倍数
+    return count_factors(n) == 2 # only factors are 1 and n
+
+
+count_primes(5)
+
+###
+
+%reset -f
+
+def cycle(f1, f2, f3):
+    """ Returns a function that is itself a higher order function
+    >>> def add1(x):
+    ...     return x + 1
+    >>> def times2(x):
+    ...     return x * 2
+    >>> def add3(x):
+    ...     return x + 3
+    >>> my_cycle = cycle(add1, times2, add3)
+    >>> identity = my_cycle(0)
+    >>> identity(5)
+    5
+    >>> add_one_then_double = my_cycle(2)
+    >>> add_one_then_double(1)
+    4
+    >>> do_all_functions = my_cycle(3)
+    >>> do_all_functions(2)
+    9
+    >>> do_more_than_a_cycle = my_cycle(4)
+    >>> do_more_than_a_cycle(2)
+    10
+    >>> do_two_cycles = my_cycle(6)
+    >>> do_two_cycles(1)
+    19
+    """
+    "*** YOUR CODE HERE ***"
+    def my_cycle(n):
+        def identity(x):
+            '''
+            if n == 0:
+                return x
+            elif n == 1:
+                return f1(x)
+            elif n == 2:
+                return f2(f1(x))
+            elif n == 3:
+                return f3(f2(f1(x)))
+            elif n == 4:
+                return f1(f3(f2(f1(x))))
+            else: # n = 6, f3(f2(f1(f3(f2(f1(x))))))
+                return f1(f3(f2(f1(x))))
+            '''
+            result = x
+            for i in range(n):
+                result = [f1, f2, f3][i%3](result)
+            return result
+        return identity
+    return my_cycle
+
+
+def add1(x):
+    return x + 1
+def times2(x):
+    return x * 2
+def add3(x):
+    return x + 3
+
+# (f1, f2, f3)(n)(x)
+my_cycle = cycle(add1, times2, add3)
+identity = my_cycle(0) # cycle(add1, times2, add3)(0)
+identity(5) # cycle(add1, times2, add3)(0)(5) # 5
+
+add_one_then_double = my_cycle(2)
+add_one_then_double(1) # 4
+
+do_all_functions = my_cycle(3)
+do_all_functions(2) # 9
+
+do_more_than_a_cycle = my_cycle(4)
+do_more_than_a_cycle(2) # 10
+
+do_two_cycles = my_cycle(6)
+do_two_cycles(1) # 19
+
+###
+
+def isPositive(number):
+    return number >= 0
+
+numbers = [-1, 1, -2, 2, -3, 3, -4, 4]
+positive_nums = list(filter(isPositive, numbers))
+positive_nums
+# [1, 2, 3, 4]
+
+list(filter(lambda number: number >= 0, numbers))
+
+###
+
+from functools import *
+
+product = 1
+numbers = [4, 9, 16, 25, 36]
+
+for num in numbers:
+    product = product * num**.5
+
+multiplicative_identity = 1
+nums = [4, 9, 16, 25, 36]
+def sqrtProd(x, y):
+    return x * y ** .5
+
+reduce(sqrtProd, nums, multiplicative_identity)
+
+reduce(lambda x, y: x+y, [1, 2, 3, 4, 5]) == ((((1+2)+3)+4)+5)
+
+reduce(lambda x, y: x * y ** .5, numbers, 1)
+
+# function
+def f(x):
+    return x > 0
+
+# lambda
+f = lambda x: x > 0
+
+
+
+from functools import reduce
+def fn(x, y):
+    return x * 10 + y
+
+def char2num(s):
+    digits = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9}
+    return digits[s]
+
+reduce(fn, map(char2num, '13579'))
+
+###
+
+INCR = 2
+def inc(x):
+    return x + INCR
+
+'''
+def mymap(fun, seq):
+    return list(map(fun, seq)
+'''
+
+result = list(map(inc, [5, 6, 7]))
+print(result)
+
+###
+
+x = "hello"
+
+#if condition returns True, then nothing happens:
+assert x == "hello"
+
+#if condition returns False, AssertionError is raised:
+assert x == "goodbye"
+
+####
+
+x = "hello"
+
+#if condition returns False, AssertionError is raised:
+assert x == "goodbye", "x should be 'hello'"
+# AssertionError: x should be 'hello'
+
+[i**2 for i in [1, 2, 3, 4] if i%2 == 0]
+
+###
+%reset -f
+from functools import *
+
+def trade(first, second):
+    """Exchange the smallest prefixes of first and second that have equal sum.
+
+    >>> a = [1, 1, 3, 2, 1, 1, 4]
+    >>> b = [4, 3, 2, 7]
+    >>> trade(a, b) # Trades 1+1+3+2=7 for 4+3=7
+    'Deal!'
+    >>> a
+    [4, 3, 1, 1, 4]
+    >>> b
+    [1, 1, 3, 2, 2, 7]
+    >>> c = [3, 3, 2, 4, 1]
+    >>> trade(b, c)
+    'No deal!'
+    >>> b
+    [1, 1, 3, 2, 2, 7]
+    >>> c
+    [3, 3, 2, 4, 1]
+    >>> trade(a, c)
+    'Deal!'
+    >>> a
+    [3, 3, 2, 1, 4]
+    >>> b
+    [1, 1, 3, 2, 2, 7]
+    >>> c
+    [4, 3, 1, 4, 1]
+    """
+    m, n = 1, 1
+
+    "*** YOUR CODE HERE ***"
+    # Store all of the cumulative sum from :1 to :m of list first to firstReduceList
+    firstReduceList = []
+    while m <= len(first):
+        firstReduceList.append(reduce(lambda x, y: x + y, first[:m]))
+        m += 1
+    # Store all of the cumulative sum from :1 to :n of list first to secondReduceList
+    secondReduceList = []
+    while n <= len(second):
+        secondReduceList.append(reduce(lambda x, y: x + y, second[:n]))
+        n += 1
+    # check if there is a sum in firstReduceList equal to a sum in secondReduceList
+    for i in firstReduceList:
+        if i in secondReduceList:
+            m, n = firstReduceList.index(i)+1, secondReduceList.index(i)+1 # +1 cause m & n are exclusive
+            break # get the 1st pair
+
+    if reduce(lambda x, y: x + y, first[:m]) == reduce(lambda x, y: x + y, second[:n]):
+        first[:m], second[:n] = second[:n], first[:m]
+        return 'Deal!'
+    else:
+        return 'No deal!'
+
+
+a = [1, 1, 3, 2, 1, 1, 4]
+b = [4, 3, 2, 7]
+trade(a, b)
+
+a
+b
+
+m, n = 1, 1
+
+for m in range(len(a)):
+    for n in range(len(b)):
+        if reduce(lambda x, y: x + y, a[:m]) == reduce(lambda x, y: x + y, b[:n]):
+            break
+
+reduce(lambda x, y: x + y, a[:m]) == reduce(lambda x, y: x + y, b[:n])
+m += 1
+
+%reset -f
+m, n = 1, 1
+a = [1, 1, 3, 2, 1, 1, 4]
+b = [4, 3, 2, 7]
+from functools import *
+while m < len(a):
+    while n < len(b):
+        if reduce(lambda x, y: x + y, a[:m]) == reduce(lambda x, y: x + y, b[:n]):
+            break
+        else:   
+            n += 1
+    m += 1
+
+print(m)
+print(n)
+
+m, n, a, b
+1, 1, 1, 4
+2, 1, 2, 4
+3, 1, 5, 4
+
+'''
+m, n = 1, 1
+while m != 4:
+    while n != 2:
+        n += 1
+    m += 1
+'''
+
+%reset -f
+m, n = 1, 1
+a = [1, 1, 3, 2, 1, 1, 4]
+b = [4, 3, 2, 7]
+m, n = 1, 1
+
+from functools import *
+
+a_l = []
+while m <= len(a):
+    a_l.append(reduce(lambda x, y: x + y, a[:m]))
+    m += 1
+a_l
+
+b_l = []
+while n <= len(b):
+    b_l.append(reduce(lambda x, y: x + y, b[:n]))
+    n += 1
+b_l
+
+for i in a_l:
+    if i in b_l:
+        m, n = a_l.index(i)+1, b_l.index(i)+1
+        break
+
+
+a_l.index(i)
+
+
+
+a_l[3]
+
+###
+
+[0, 1, 5, 4]
+
+def count_inc(li):
+    count = 0
+    for i in range(1, len(li)):
+        if li[i-1] < li[i]:
+            count += 1
+    return count
+
+
+count_inc([20, 18, 8])
+count_inc([5, 0, 40])
+count_inc([1, 2, 3])
+count_inc([0, 1, 5, 4])
+
+len([20, 18, 8]) # 3
+list(range(len([20, 18, 8]))) # [0, 1, 2]
+
+enumerate[i][0] ** enumerate[i][1]
+
+l = [1, 2, 3]
+
+max(l)
+
+# [enumerate[i][0] ** enumerate[i][1] for i in range(len(list(enumerate(l))))]
+
+return [ enumerate[i][0] ** enumerate[i][1] for i in enumerate()]
+
+[element ** i for i, element in enumerate(l)]
+
+def max_diff(li):
+    l = []
+    for i in range(1, len(li)):
+        l.append(li[i] - li[i-1])
+    if max(l) < 0:
+        return 0
+    else:
+        return max(l)
+
+max_diff([20, 18, 8])
+max_diff([5, 0, 40])
+max_diff([1, 2, 3])
+
+letters = ['a', 'b', 'c', 'd']
+
+for i, element in enumerate(letters, 1):
+    result = 'index: {0}, element: {1}'
+    print(result.format(i, element))
+'''
+index: 1, element: a
+index: 2, element: b
+index: 3, element: c
+index: 4, element: d
+'''
+
+
+l = [0, 1, 2, 3]
+[element ** i for i, element in enumerate(l, 1)]
+# [0, 1, 8, 81]
+
+a = ("John", "Charles", "Mike")
+b = ("Jenny", "Christy", "Monica")
+
+x = zip(a, b)
+type(x)
+# zip
+tuple(x)
+# (('John', 'Jenny'), ('Charles', 'Christy'), ('Mike', 'Monica'))
+
+a = ("John", "Charles", "Mike")
+b = ("Jenny", "Christy", "Monica", "Vicky")
+
+x = zip(a, b)
+tuple(x)
+# # (('John', 'Jenny'), ('Charles', 'Christy'), ('Mike', 'Monica'))
+
+l_1 = [0, 1, 2, 3]
+l_2 = [5, 6, 7, 8]
+
+list(zip(l_1, l_2))
+[(0, 5), (1, 6), (2, 7), (3, 8)]
+
+for i, j in zip(l_1, l_2):
+    print(i * j)
+'''
+0
+6
+14
+24
+'''
+
+bandwidth: 500 Mbps = 62.5 MB/s
+capacity: 100 TB = 100 * 10**6 = 100000000 MB
+time comsume: 100000000 / 62.5 MB/s = 1600000.0 s = 
+1600000 / 60 / 60 / 24 = 18.5 days
+
+
+import numpy as np
+
+np.arange(1, 3)
+
+help(np.arange)
+
+np.arange(3)

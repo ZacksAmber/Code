@@ -1,0 +1,11 @@
+2020-10-25 20:24:10: Start exporting xtreme to RDS MySQL!
+2020-10-25 20:24:24: Start exporting xtreme to RDS MySQL!
+2020-10-25 20:24:25: Warning: Exporting xtreme to RDS MySQL failed!
+2020-10-25 20:27:01: Start exporting xtreme to RDS MySQL!
+2020-10-25 20:27:52: Export DB xtreme to RDS MySQL succeed!
+Time consume: 0:00:00
+2020-10-25 20:27:59: Warning: Exporting xtreme to RDS MySQL failed!
+2020-10-25 20:33:14 -- Exporting DB xtreme to RDS MySQL, mission start!
+2020-10-25 20:33:17 -- Exporting DB xtreme to RDS MySQL, mission succeed!
+Time consume: 0:00:00
+2020-10-25 20:33:19 -- Exporting xtreme to RDS MySQL, mission failed!

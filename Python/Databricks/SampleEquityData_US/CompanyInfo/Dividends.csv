@@ -1,0 +1,3 @@
+company id,declared date,ex_date,record_date,pay_date,net amount,gross amount,currency type
+23444,02/10/2014,03/03/2014,03/05/2014,04/11/2014,0.006254,0.006254,USD
+23870,02/28/2014,03/03/2014,03/05/2014,03/07/2014,0.165796,,USD
