@@ -20,4 +20,4 @@ jupyterlab-git
 
 # Personal
 /Python/Databricks/**
-Databricks
+Databricks/*.csv
