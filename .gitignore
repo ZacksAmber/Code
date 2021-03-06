@@ -19,4 +19,4 @@ jupyterlab-git
 *.cnf
 
 # Personal
-Databricks/**
+/Python/Databricks/**
